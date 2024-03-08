@@ -5,8 +5,4 @@ from timesheets.models import User
 
 @app.route("/")
 def home():
-    users = User.query.all()
-    x = ""
-    for i in users:
-        x += i.username
-    return render_template("info.html", users=users)
+    return render_template("info.html")
