@@ -37,6 +37,7 @@ class Consultant(User):
     working_status = db.Column(db.String(20), nullable=False)
     hourly_rate = db.Column(db.Float, nullable=False)
     line_manager_id = db.Column(db.Integer, db.ForeignKey("line_manager.id"), nullable=False)
+    timesheets = db.relationship("Timesheet", backref="timesheet", lazy=True)
     
     def get_working_status(self) -> str:
         return working_status
@@ -106,3 +107,60 @@ class ITTechnician(User):
         pass
 
 # ========== END OF USERS ==========
+
+class Timesheet(db.Model):
+    __tablename__ = "timesheet"
+    
+    id = db.Column(db.Integer, primary_key=True)
+    consultant_name = db.Column(db.String(30), nullable=False)
+    consultant_approval = db.Column(db.Boolean, default=False, nullable=False)
+    week_start_date = db.Column(db.DateTime, nullable=False)
+    start_work_time = db.Column(db.DateTime, nullable=False)
+    end_work_time = db.Column(db.DateTime, nullable=False)
+    start_break_time = db.Column(db.DateTime, nullable=False)
+    end_break_time = db.Column(db.DateTime, nullable=False)
+    hours_worked = db.Column(db.Integer, nullable=False)
+    status = db.Column(db.String(20), nullable=False)
+    edited = db.Column(db.Boolean, default=False, nullable=False)
+    consultant_id = db.Column(db.Integer, db.ForeignKey("consultant.id"), nullable=False)
+    
+    
+    def calculate_hours_worked(self):
+        pass
+    
+    def change_status(self):
+        pass
+    
+    def start_work(self, on_leave, leave_reason):
+        pass
+    
+    def end_work(self):
+        pass
+    
+    def start_break(self):
+        pass
+    
+    def end_break(self):
+        pass
+    
+    def get_hours_worked(self):
+        pass
+    
+    def get_timesheet_status(self):
+        return self.status
+    
+    def edit_info(self, edited):
+        pass
+    
+class Difficulty(db.Model):
+    __tablename__ = "difficulty"
+    
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(60), nullable=False)
+
+class Salaries(db.Model):
+    __tablename__ = "salaries"
+    
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.DateTime, nullable=False)
+    consultant = db.Column(db.String(20), nullable=False)
