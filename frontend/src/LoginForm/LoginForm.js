@@ -26,6 +26,9 @@ function LoginForm()
                         <input type="password" id="pword" name="u_password" required></input>
                     </li><br></br>
                     <li>
+                        <a href="">Forgot Password?</a>
+                    </li><br></br>
+                    <li>
                         <input id="submit_button" type="submit" name="submit_btn" value="Submit"></input>
                     </li><br></br>
                 </ul>

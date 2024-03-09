@@ -28,6 +28,11 @@ input{
     width: 10pc;
 }
 
+a{
+    text-decoration: none;
+    color: rgb(107, 134, 155);
+}
+
 input[type=submit]{
     padding: 0.7pc 0.1pc;
     width: 20%;
