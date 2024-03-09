@@ -1,0 +1,44 @@
+.LoginForm{
+    width: 20%;
+    border: solid 0.175pc black;
+    text-align: center;
+    border-radius: 0.4pc;
+    position: relative;
+    top: 17pc;
+    right: 2.5pc;
+}
+
+ul{
+    display: inline;
+    list-style-type: none;
+}
+
+li{
+    padding: 0.4pc;
+    font-family: "Roboto", sans-serif;
+}
+
+figure, img{
+    display: inline;
+    width: 25%;
+    position: relative;
+}
+
+input{
+    width: 10pc;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(107, 134, 155);
+}
+
+input[type=submit]{
+    padding: 0.7pc 0.1pc;
+    width: 20%;
+    cursor: pointer;
+    background-color: rgb(196, 200, 204);
+    border-radius: 0.5pc;
+    border: none;
+}
+
