@@ -1,17 +1,17 @@
-import Header from './Header/Header.js';
-import LoginForm from './LoginForm/LoginForm.js';
-import styles from './App.module.css'
+import { HashRouter, Routes, Route} from "react-router-dom";
+import MainHome from "./Pages/main_home";
+import LoginPage from "./Pages/login_page";
 
 function App() 
 {
-  return (
-      <>
-        <div className={styles.App}>
-          <Header></Header>
-          <LoginForm></LoginForm>
-        </div>
-      </>
-  );
+  return(
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<MainHome/>}/>
+        <Route path="/login_page" element={<LoginPage/>}/>
+      </Routes>
+    </HashRouter>
+  )
 }
 
 export default App;

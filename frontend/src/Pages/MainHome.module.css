@@ -1,0 +1,13 @@
+.MainHome{
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 4em;
+    font-size: large;
+}
+
+p{
+    color: rgb(104, 104, 116);
+    font-size: 1.15em;
+}
