@@ -1,17 +1,22 @@
 from datetime import datetime
 from timesheets import db
+from flask_login import UserMixin
+from uuid import uuid4
+
+def get_uuid():
+    return uuid4().hex
 
 # ========== USERS ==========
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __abstract__ = True
     
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(32), primary_key=True, default=get_uuid)
     username = db.Column(db.String(20), unique=True, nullable=False)
     firstname = db.Column(db.String(20), nullable=False)
     lastname = db.Column(db.String(20), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    dob = db.Column(db.DateTime, nullable=False)
+    # dob = db.Column(db.DateTime, nullable=False)
     password = db.Column(db.String(60), nullable=False)
     notifications = db.Column(db.Boolean, default=True)
     
@@ -36,7 +41,7 @@ class Consultant(User):
     
     working_status = db.Column(db.String(20), nullable=False)
     hourly_rate = db.Column(db.Float, nullable=False)
-    line_manager_id = db.Column(db.Integer, db.ForeignKey("line_manager.id"), nullable=False)
+    line_manager_id = db.Column(db.String(32), db.ForeignKey("line_manager.id"), nullable=False)
     timesheets = db.relationship("Timesheet", backref="timesheet", lazy=True)
     
     def get_working_status(self) -> str:
@@ -122,7 +127,7 @@ class Timesheet(db.Model):
     hours_worked = db.Column(db.Integer, nullable=False)
     status = db.Column(db.String(20), nullable=False)
     edited = db.Column(db.Boolean, default=False, nullable=False)
-    consultant_id = db.Column(db.Integer, db.ForeignKey("consultant.id"), nullable=False)
+    consultant_id = db.Column(db.String(32), db.ForeignKey("consultant.id"), nullable=False)
     
     
     def calculate_hours_worked(self):
