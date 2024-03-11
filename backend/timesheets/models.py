@@ -21,20 +21,33 @@ class User(UserMixin, db.Model):
     notifications = db.Column(db.Boolean, default=True)
     
     def update_personal_details(self, firstname: db.String, lastname: db.String, dob: db.DateTime):
-        pass
+        self.firstname = firstname
+        self.lastname = lastname
+        self.dob = dob
     
     def update_account_details(self, username: db.String, password: db.String):
-        pass
+        self.username = username
+        self.password = password
     
     def turn_on_notifications(self) -> db.Boolean:
-        pass
+        self.notifications = True
     
     def login(self, username: db.String, password: db.String):
-        pass
+        if username == self.username and password == self.password:
+            session_id = self.id
+            # Set session ID in cookie
+            return "Login Successful"
+        else:
+            return "Unauthorized Access: Invalid Username or Password."
     
     def logout(self):
-        pass
-
+        session_id = self.id
+        if session_id: 
+            # Deletes the session ID from the db
+            # Clears cookie with session data
+            return "Logout Successful"
+        else:
+            return "No Active Session for this user."
 
 class Consultant(User):
     __tablename__ = "consultant"
@@ -169,3 +182,8 @@ class Salaries(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime, nullable=False)
     consultant = db.Column(db.String(20), nullable=False)
+
+    def calculate_salary(self, consultant, timesheet):
+        hourlyRate = consultant.get_hourly_rate()
+        hoursWorked = timesheet.get_hours_worked()
+        return round(float(hourlyRate*hoursWorked), 2)
