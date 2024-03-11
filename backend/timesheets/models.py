@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from timesheets import db
 
 # ========== USERS ==========
@@ -40,10 +40,10 @@ class Consultant(User):
     timesheets = db.relationship("Timesheet", backref="timesheet", lazy=True)
     
     def get_working_status(self) -> str:
-        return working_status
+        return self.working_status
     
     def get_hourly_rate(self) -> float:
-        return hourly_rate
+        return self.hourly_rate
     
     def approve_timesheet(self, timesheet):
         pass
@@ -60,7 +60,7 @@ class Consultant(User):
     def edit_timesheet(self, ITapproval, timesheet):
         pass
     
-class LineManager(User):
+class LineManager(User): #linemanager should not have editRequest or editTimesheet, consultant should
     __tablename__ = "line_manager"
     consultants = db.relationship("Consultant", backref="line_manager", lazy=True)
     
@@ -80,13 +80,17 @@ class FinanceTeamMember(User):
     __tablename__ = "finance_team_member"
     
     def track_consultant(self):
-        pass
+        pass #???
     
     def approve_timesheet(self, timesheet):
-        pass
+        pass #copy code from LineManager.approve_timesheet
     
     def set_hourly_rate(self, consultant, new_rate):
-        pass
+        if isinstance(consultant, Consultant):
+                consultant.hourly_rate = new_rate
+        else:
+            raise ValueError("Invalid user. Please provide a valid Consultant")
+        
 
 class ITTechnician(User):
     __tablename__ = "ITTechnician"
@@ -120,37 +124,43 @@ class Timesheet(db.Model):
     start_break_time = db.Column(db.DateTime, nullable=False)
     end_break_time = db.Column(db.DateTime, nullable=False)
     hours_worked = db.Column(db.Integer, nullable=False)
-    status = db.Column(db.String(20), nullable=False)
+    status = db.Column(db.Boolean, default= False, nullable=False) #changed to boolean from string
     edited = db.Column(db.Boolean, default=False, nullable=False)
     consultant_id = db.Column(db.Integer, db.ForeignKey("consultant.id"), nullable=False)
     
     
     def calculate_hours_worked(self):
-        pass
+        time_worked = self.end_work_time - self.start_work_time
+
+        # Extract hours and minutes from the time difference
+        hours, remainder = divmod(time_worked.seconds, 3600)
+        minutes = remainder // 60
+
+        self.hours_worked = hours + minutes / 60
     
-    def change_status(self):
-        pass
-    
-    def start_work(self, on_leave, leave_reason):
-        pass
-    
+    def change_status(self, status):
+        self.status = status
+
+    def start_work(self):
+        self.start_work_time = datetime.now()
+
     def end_work(self):
-        pass
+        self.end_work_time = datetime.now()
     
     def start_break(self):
-        pass
+        self.start_break_time = datetime.now()
     
     def end_break(self):
-        pass
+        self.end_break_time = datetime.now()
     
     def get_hours_worked(self):
-        pass
+        return self.hours_worked
     
     def get_timesheet_status(self):
         return self.status
     
     def edit_info(self, edited):
-        pass
+        pass #???
     
 class Difficulty(db.Model):
     __tablename__ = "difficulty"
@@ -164,3 +174,6 @@ class Salaries(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime, nullable=False)
     consultant = db.Column(db.String(20), nullable=False)
+
+
+
