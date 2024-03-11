@@ -3,6 +3,7 @@ import LoginForm from '../Components/LoginForm/LoginForm.js'
 import styles from './Login.module.css'
 
 function LoginPage(){
+    document.title = "Login Page";
     return (
         <>
         <div className={styles.Login}>

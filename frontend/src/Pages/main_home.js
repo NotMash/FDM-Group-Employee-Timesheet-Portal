@@ -18,17 +18,17 @@ function getTimeGreeting(){
 }
 
 function MainHome(){
+    document.title = "Landing Page";
     return (
         <>
-            <div id="landing_page" className={styles.MainHome}>
+            <div id={styles.landing_page} className={styles.MainHome}>
                 <h1>FDM Timesheets App</h1>
                 <h2>Good {getTimeGreeting()}</h2>
-                <Link to="/"><p>Home</p></Link><br/><br/>
-                <Link to="/login_page"><p>Login</p></Link>
+                <Link className={styles.Link} to="/login_page"><p>Login</p></Link>
             </div>
         </>
     )
 }
 
-
+//<Link className={styles.Link} to="/"><p>Home</p></Link><br/><br/>
 export default MainHome;
