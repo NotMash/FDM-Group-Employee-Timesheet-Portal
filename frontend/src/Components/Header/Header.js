@@ -2,11 +2,11 @@
 
 import styles from './Header.module.css'
 
-function Header()
+function Header(props)
 {
     return(
         <header className={styles.Header}>
-            <h1>Login</h1>
+            <h1>{props.formTitle}</h1>
         </header>
     )
 }
