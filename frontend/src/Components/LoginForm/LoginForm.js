@@ -9,15 +9,23 @@ function LoginForm()
     const [password, setPassword] = useState('');
     const [userType, setUserType] = useState('Consultant');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const loginDetails = {username, password, userType}
-        console.log(loginDetails)
+
         fetch('https://localhost:5000/login', {
             method: "POST",
             headers: {"Content-Type": "application/json",
             body: JSON.stringify(loginDetails)}
         }).then(() => {console.log("login success")});
+
+        //create response object
+        let formData = new FormData()
+        formData.append("file", loginDetails)
+        let resp = await fetch("https://localhost:5000/login", {method: "POST", body: formData});
+        resp = await resp.json();
+        console.log(resp)
+
     }
 
     return(
