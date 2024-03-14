@@ -13,19 +13,13 @@ function LoginForm()
         e.preventDefault();
         const loginDetails = {username, password, userType}
 
-        fetch('https://localhost:5000/login', {
+        let obj = fetch('https://localhost:5000/login', {
             method: "POST",
             headers: {"Content-Type": "application/json",
             body: JSON.stringify(loginDetails)}
         }).then(() => {console.log("login success")});
 
-        //create response object
-        let formData = new FormData()
-        formData.append("file", loginDetails)
-        let resp = await fetch("https://localhost:5000/login", {method: "POST", body: formData});
-        resp = await resp.json();
-        console.log(resp)
-
+        return obj.JSON
     }
 
     return(
