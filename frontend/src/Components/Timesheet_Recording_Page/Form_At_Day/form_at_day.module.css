@@ -1,4 +1,14 @@
 .TimesheetFormDay{
+    display: inline;
+}
+
+.TimesheetFormDay, li{
+    text-align: center;
+}
+
+.TimesheetFormContainer{
+    background-color: rgb(212, 212, 212);
     border: solid 0.1em black;
     width: 25%;
+    margin: 3%;
 }

@@ -1,4 +1,5 @@
 import TimesheetFormDay from "../../Components/Timesheet_Recording_Page/Form_At_Day/timesheet_form_day"
+import TimesheetPageLinks from "../../Components/Timesheet_Recording_Page/Timesheet_Links/timesheet_page_links"
 
 function TimesheetRecordingPage(){
     return(
@@ -8,7 +9,8 @@ function TimesheetRecordingPage(){
             <TimesheetFormDay day="Tuesday"/>
             <TimesheetFormDay day="Wednesday"/>
             <TimesheetFormDay day="Thursday"/>
-            <TimesheetFormDay day="Friday"/>
+            <TimesheetFormDay day="Friday"/><br/>
+            <TimesheetPageLinks/>
         </>
     )    
 }
