@@ -41,6 +41,7 @@ function LoginForm()
                             <option>Consultant</option>
                             <option>Line Manager</option>
                             <option>Finance Team Member</option>
+                            <option>IT Technician</option>
                         </select>
                     </li>
                     <li>

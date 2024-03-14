@@ -4,7 +4,7 @@ function ConsultantLinks(){
     return(
         <>
             <nav>
-                <Link to=""><p>Record Times</p></Link>
+                <Link to="/timesheet_recording_page"><p>Create Timesheet</p></Link>
                 <Link to=""><p>View Timesheet</p></Link>
                 <Link to=""><p>View Saved Timesheets</p></Link>
                 <Link to="/"><p>Back</p></Link>
