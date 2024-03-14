@@ -7,7 +7,7 @@ function LoginPage(){
     return (
         <>
         <div className={styles.Login}>
-            <Header></Header>
+            <Header formTitle="Login"></Header>
             <LoginForm></LoginForm>
         </div>
         </>
