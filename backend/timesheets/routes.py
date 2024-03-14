@@ -18,7 +18,7 @@ def get_current_user():
     if not user_id:
         return jsonify({"error": "Unauthorised"}), 401
     
-    user = ITTechnician.query.filter_by(id=user_id).first()
+    user = Consultant.query.filter_by(id=user_id).first()
     return jsonify({"id": user.id, "email": user.username})
 
 @app.route("/login", methods=["POST"])
@@ -72,6 +72,10 @@ def create_timesheet():
     return jsonify({
         "id": timesheet.id
     })
+
+@app.route("/delete_timesheet/{id}")
+def delete_timesheet(id):
+    pass
 
 @app.route("/view_timesheets", methods=["GET"])
 def view_timesheets():
