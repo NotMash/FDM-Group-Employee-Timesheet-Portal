@@ -9,18 +9,32 @@ function LoginForm()
     const [password, setPassword] = useState('');
     const [userType, setUserType] = useState('Consultant');
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const loginDetails = {username, password, userType}
+    const handleSubmit = (e) => {
+    e.preventDefault();
+    const loginDetails = { username, password }; //put back userType when backend is ready
 
-        let obj = fetch('https://localhost:5000/login', {
-            method: "POST",
-            headers: {"Content-Type": "application/json",
-            body: JSON.stringify(loginDetails)}
-        }).then(() => {console.log("login success")});
+ // for mac its http://127.0.0.1:5000 and for windows its http://localhost:5000
+    fetch('http://127.0.0.1:5000/login', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(loginDetails)
+    }).then(response => {
+        if (response.ok) {
+            console.log("Login success");
+            return response.json();
+        } else {
+            throw new Error('Login failed with status: ' + response.status);
+        }
+    }).then(data => {
+        console.log(data);
+    }).catch(error => {
+        console.error(error);
+    });
+};
 
-        return obj.JSON
-    }
+
+
+
 
     return(
         <>
