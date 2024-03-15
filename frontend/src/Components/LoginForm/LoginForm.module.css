@@ -8,33 +8,41 @@
     right: 2.5pc;
 }
 
-ul{
+.LoginForm, ul{
     display: inline;
     list-style-type: none;
 }
 
-li{
+.LoginForm, li{
     padding: 0.4pc;
     font-family: "Roboto", sans-serif;
 }
 
-figure, img{
+.UserIcon{
     display: inline;
-    width: 25%;
+    width: 35%;
     position: relative;
 }
 
-input{
+.input{
     width: 45%;
 }
 
-a{
+.selectInput{
+    width: 48%;
+    background-color: white;
+    height: 1.75pc;
+    border-radius: 0.25pc;
+}
+
+#forgotPass{
     text-decoration: none;
     color: rgb(107, 134, 155);
 }
 
 input[type=submit]{
     padding: 0.7pc 0.1pc;
+    width: 20%;
     cursor: pointer;
     background-color: rgb(196, 200, 204);
     border-radius: 0.5pc;
