@@ -53,29 +53,29 @@ def create_timesheet():
     timesheet = Timesheet(
         consultant_name=f"{consultant.firstname} {consultant.lastname}", 
                         week_start_date=datetime.utcnow(),
-                        start_work_time_monday=request.json["start_work_time_monday"],
-                        end_work_time_monday=request.json["end_work_time_monday"],
-                        start_work_time_tuesday=request.json["start_work_time_tuesday"],
-                        end_work_time_tuesday=request.json["end_work_time_tuesday"],
-                        start_work_time_wednesday=request.json["start_work_time_wednesday"],
-                        end_work_time_wednesday=request.json["end_work_time_wednesday"],
-                        start_work_time_thursday=request.json["start_work_time_thursday"],
-                        end_work_time_thursday=request.json["end_work_time_thursday"],
-                        start_work_time_friday=request.json["start_work_time_friday"],
-                        end_work_time_friday=request.json["end_work_time_friday"],
-                        hours_worked=request.json["hours_worked"],
+                        start_work_time=request.json["start_work_time"],
+                        end_work_time=request.json["end_work_time"],
+                        hours_worked=0,
                         consultant_id=user_id,
                         status="pending",
         )
     db.session.add(timesheet)
     db.session.commit()
     return jsonify({
-        "id": timesheet.id
+        "timesheet_id": timesheet.id
     })
 
-@app.route("/delete_timesheet/{id}")
-def delete_timesheet(id):
-    pass
+@app.route("/delete_timesheet")
+def delete_timesheet():
+    user_id = session.get("user_id")
+    timesheet_id = request.json["timesheet_id"]
+    consultant = Consultant.query.filter_by(id=user_id).first()
+    timesheet = Timesheet.query.filter_by(id=timesheet_id).first()
+    if timesheet.consultant_id == consultant.id:
+        timesheet.delete()
+        return "OK", 202
+    return "Unauthorised", 403
+    
 
 @app.route("/view_timesheets", methods=["GET"])
 def view_timesheets():
