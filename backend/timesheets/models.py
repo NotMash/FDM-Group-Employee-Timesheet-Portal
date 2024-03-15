@@ -2,7 +2,7 @@ from datetime import datetime
 from timesheets import db
 from flask_login import UserMixin
 from uuid import uuid4
-
+from sqlalchemy.sql import text
 def get_uuid():
     return uuid4().hex
 
@@ -34,7 +34,21 @@ class User(UserMixin, db.Model):
     
     def logout(self):
         pass
-
+    
+    def get_all_users():
+        # use cross-table query to get retrieve a user searching through all tables
+        # use SQL INNER JOIN
+        return db.session.execute(text(f"""
+                                    
+                                    SELECT id, username, password FROM "ITTechnician"
+                                    UNION
+                                    SELECT id, username, password FROM "finance_team_member"
+                                    UNION
+                                    SELECT id, username, password FROM "line_manager"
+                                    UNION
+                                    SELECT id, username, password FROM "consultant"
+            """))
+    
 
 class Consultant(User):
     __tablename__ = "consultant"
@@ -120,10 +134,16 @@ class Timesheet(db.Model):
     consultant_name = db.Column(db.String(30), nullable=False)
     consultant_approval = db.Column(db.Boolean, default=False, nullable=False)
     week_start_date = db.Column(db.DateTime, nullable=False)
-    start_work_time = db.Column(db.DateTime, nullable=False)
-    end_work_time = db.Column(db.DateTime, nullable=False)
-    start_break_time = db.Column(db.DateTime, nullable=False)
-    end_break_time = db.Column(db.DateTime, nullable=False)
+    start_work_time_monday = db.Column(db.String(20), nullable=True)
+    end_work_time_monday = db.Column(db.String(20), nullable=True)
+    start_work_time_tuesday = db.Column(db.String(20), nullable=True)
+    end_work_time_tuesday = db.Column(db.String(20), nullable=True)
+    start_work_time_wednesday = db.Column(db.String(20), nullable=True)
+    end_work_time_wednesday = db.Column(db.String(20), nullable=True)
+    start_work_time_thursday = db.Column(db.String(20), nullable=True)
+    end_work_time_thursday = db.Column(db.String(20), nullable=True)
+    start_work_time_friday = db.Column(db.String(20), nullable=True)
+    end_work_time_friday = db.Column(db.String(20), nullable=True)
     hours_worked = db.Column(db.Integer, nullable=False)
     status = db.Column(db.String(20), nullable=False)
     edited = db.Column(db.Boolean, default=False, nullable=False)
