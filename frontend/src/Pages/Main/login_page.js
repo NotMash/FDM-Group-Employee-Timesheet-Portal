@@ -1,5 +1,5 @@
-import Header from '../Components/Header/Header.js';
-import LoginForm from '../Components/LoginForm/LoginForm.js'
+import Header from '../../Components/Header/Header.js';
+import LoginForm from '../../Components/LoginForm/LoginForm.js'
 import styles from './Login.module.css'
 
 function LoginPage(){
@@ -7,7 +7,7 @@ function LoginPage(){
     return (
         <>
         <div className={styles.Login}>
-            <Header></Header>
+            <Header formTitle="Login"></Header>
             <LoginForm></LoginForm>
         </div>
         </>
@@ -15,3 +15,5 @@ function LoginPage(){
 }
 
 export default LoginPage;
+
+
