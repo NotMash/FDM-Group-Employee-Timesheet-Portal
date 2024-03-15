@@ -14,25 +14,13 @@ function TimesheetFormDay(props) {
                         </li>
                         <li>
                             <input name="work_start_time" type="text"></input>
-                        </li><br/>
-                        <li>
-                            <label>Break Start Time</label>
                         </li>
-                        <li>
-                            <input name="break_start_time" type="text"></input>
-                        </li>
-                        <li>
-                            <label>Break End Time</label>
-                        </li>
-                        <li>
-                            <input name="break_end_time" type="text"></input>
-                        </li><br/>
                         <li>
                             <label>Work End Time</label>
                         </li>
                         <li>
                             <input name="work_end_time" type="text"></input>
-                        </li><br/>
+                        </li><br/><br/>
                     </ul>
                 </form>
             </div>
