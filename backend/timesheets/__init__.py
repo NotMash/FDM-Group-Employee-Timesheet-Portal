@@ -12,7 +12,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost/ti
 # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///timesheets.db"
 
 app.config["SESSION_TYPE"] = "redis"
-CORS(app, supports_credentials=True)
+CORS(app, supports_credentials=True, withCredentials=True)
 SESSION_TYPE = "redis"
 SESSION_PERMANENT = False
 SESSION_USE_SIGNER = False
