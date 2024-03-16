@@ -51,17 +51,22 @@ class CreateTimesheetView(MethodView):
         if consultant is None:
             return jsonify({"Error": "Consultant not found"}), 404
 
-        timesheet = Timesheet(
-            consultant_name=f"{consultant.firstname} {consultant.lastname}",
-            week_start_date=datetime.utcnow(),
-            # Extract other timesheet fields from request.json
-            # ...
-            consultant_id=user_id,
-            status="pending",
-        )
-        db.session.add(timesheet)
-        db.session.commit()
-        return jsonify({"id": timesheet.id})
+        print("Received data:", request.json)
+
+        # Here, you can simulate a successful response without committing to the database
+        return jsonify({"status": "success", "message": "Timesheet data received"}), 200
+
+        # timesheet = Timesheet(
+        #     consultant_name=f"{consultant.firstname} {consultant.lastname}",
+        #     week_start_date=datetime.utcnow(),
+        #     # Extract other timesheet fields from request.json
+        #     # ...
+        #     consultant_id=user_id,
+        #     status="pending",
+        # )
+        # db.session.add(timesheet)
+        # db.session.commit()
+        # return jsonify({"id": timesheet.id})
 
 
 class ViewTimesheetsView(MethodView):
