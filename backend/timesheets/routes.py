@@ -53,9 +53,10 @@ class CreateTimesheetView(MethodView):
 
         timesheet = Timesheet(
             consultant_name=f"{consultant.firstname} {consultant.lastname}",
+            start_work_time=request.json["start_time"],
+            end_work_time=request.json["end_time"],
+            hours_worked=0,
             week_start_date=datetime.utcnow(),
-            # Extract other timesheet fields from request.json
-            # ...
             consultant_id=user_id,
             status="pending",
         )
@@ -94,3 +95,4 @@ app.add_url_rule("/create_timesheet", view_func=CreateTimesheetView.as_view("cre
 app.add_url_rule("/view_timesheets", view_func=ViewTimesheetsView.as_view("view_timesheets_view"), methods=["GET"])
 app.add_url_rule("/logout", view_func=LogoutView.as_view("logout_view"))
 app.add_url_rule("/create_user", view_func=CreateUserView.as_view("create_user_view"))
+

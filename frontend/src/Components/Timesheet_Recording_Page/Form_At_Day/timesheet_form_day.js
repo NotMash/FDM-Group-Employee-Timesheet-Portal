@@ -77,10 +77,10 @@ function TimesheetFormDay() {
 
         if (startTime && endTime && !submitted) {
             const formData = {
-                day: formattedDate,
+                // day: formattedDate,
                 start_time: startTime.toISOString(),
                 end_time: endTime.toISOString(),
-                duration: duration
+                // duration: duration
             };
 
 
