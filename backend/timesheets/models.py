@@ -41,7 +41,7 @@ class User(UserMixin, db.Model):
             return "Unauthorized Access: Invalid Username or Password."
     
     def logout(self):
-      session_id = self.id
+        session_id = self.id
         if session_id: 
             # Deletes the session ID from the db
             # Clears cookie with session data
