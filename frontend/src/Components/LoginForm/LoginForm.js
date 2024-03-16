@@ -1,19 +1,17 @@
-//Login Form component
+import styles from './LoginForm.module.css';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
-import styles from './LoginForm.module.css'
-import {useState} from 'react';
-
-function LoginForm()
-{
+function LoginForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [userType, setUserType] = useState('Consultant');
+    const navigate = useNavigate(); // Create navigate instance
 
     const handleSubmit = (e) => {
     e.preventDefault();
-    const loginDetails = { username, password }; //put back userType when backend is ready
+    const loginDetails = { username, password };
 
- // for mac its http://127.0.0.1:5000 and for windows its http://localhost:5000
     fetch('http://127.0.0.1:5000/login', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -27,10 +25,12 @@ function LoginForm()
         }
     }).then(data => {
         console.log(data);
+        navigate('/consultant_home_page#/timesheet_recording_page'); // Navigate to Timesheet page on successful login
     }).catch(error => {
         console.error(error);
     });
 };
+
 
 
 
@@ -71,8 +71,8 @@ function LoginForm()
                         <label for="password">Password</label>
                     </li>
                     <li>
-                        <input type="password" id="pword" name="u_password" required   
-                        className={styles.input}                     
+                        <input type="password" id="pword" name="u_password" required
+                        className={styles.input}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}></input>
                     </li><br></br>
@@ -81,6 +81,7 @@ function LoginForm()
                     </li><br></br>
                     <li>
                         <input id="submit_button" type="submit" name="submit_btn" value="Submit"></input>
+
                     </li><br></br>
                 </ul>
             </form>
