@@ -1,0 +1,32 @@
+
+.difficultyContainer {
+    display: flex;
+    align-items: center;
+    gap: 5%;
+    height: 50px;
+    padding-left: 3%;
+    background-color: #e0dddd;
+    border-bottom: solid 1pt #c3c2c2;
+}
+
+.difficultyHeader {
+    display: flex;
+    align-items: center;
+    gap: 5%;
+    height: 50px;
+    padding-left: 3%;
+    background-color: #c3cfdc;
+    border-bottom: solid 1pt #a6b0bf;
+}
+
+.difficultyHeader p {
+    color: #2a4f87;
+}
+
+.difficulty {
+    width: 200px;
+}
+
+.difficultyTopic {
+    width: 500px;
+}
