@@ -95,4 +95,3 @@ app.add_url_rule("/create_timesheet", view_func=CreateTimesheetView.as_view("cre
 app.add_url_rule("/view_timesheets", view_func=ViewTimesheetsView.as_view("view_timesheets_view"), methods=["GET"])
 app.add_url_rule("/logout", view_func=LogoutView.as_view("logout_view"))
 app.add_url_rule("/create_user", view_func=CreateUserView.as_view("create_user_view"))
-

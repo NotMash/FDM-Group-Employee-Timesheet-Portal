@@ -42,7 +42,7 @@ class User(UserMixin, db.Model):
             return "Login Successful"
         else:
             return "Unauthorized Access: Invalid Username or Password."
-
+          
     def logout(self):
         session_id = self.id
         if session_id:
@@ -66,7 +66,6 @@ class User(UserMixin, db.Model):
                                     UNION
                                     SELECT id, username, password FROM "consultant"
             """))
-
 
 class Consultant(User):
     __tablename__ = "consultant"
@@ -208,4 +207,6 @@ class Salaries(db.Model):
     def calculate_salary(self, consultant, timesheet):
         hourlyRate = consultant.get_hourly_rate()
         hoursWorked = timesheet.get_hours_worked()
+
         return round(float(hourlyRate * hoursWorked), 2)
+

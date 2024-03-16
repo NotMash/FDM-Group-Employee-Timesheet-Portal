@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import DayHeader from "../Day_Header/day_header";
 import styles from "../Form_At_Day/form_at_day.module.css";
 
-
-
 function TimesheetFormDay() {
     const [startTime, setStartTime] = useState(null);
     const [endTime, setEndTime] = useState(null);
@@ -59,6 +57,7 @@ function TimesheetFormDay() {
             headers: {
                 "Content-Type": "application/json"
             },
+
             credentials: 'include',
 
             body: JSON.stringify(formData)
@@ -77,10 +76,12 @@ function TimesheetFormDay() {
 
         if (startTime && endTime && !submitted) {
             const formData = {
+
                 // day: formattedDate,
                 start_time: startTime.toISOString(),
                 end_time: endTime.toISOString(),
                 // duration: duration
+
             };
 
 

@@ -6,6 +6,7 @@ function TimesheetRecordingPage(){
         <>
             <h1>Timesheet Recording Page</h1><br/>
 
+            {/*this just adds days to the timesheet form*/}
             {/*<TimesheetFormDay day="Monday"/>*/}
             {/*<TimesheetFormDay day="Tuesday"/>*/}
             {/*<TimesheetFormDay day="Wednesday"/>*/}
