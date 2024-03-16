@@ -6,6 +6,7 @@ from timesheets import app, db
 from timesheets.forms import LoginForm
 from timesheets.models import User, Consultant, ITTechnician, FinanceTeamMember, LineManager, Timesheet
 from datetime import datetime
+from flask_cors import cross_origin
 
 
 class HomeView(MethodView):
@@ -39,6 +40,7 @@ class LoginView(MethodView):
 
 
 class CreateTimesheetView(MethodView):
+    @cross_origin(supports_credentials=True)
     def post(self):
         user_id = session.get("user_id")
 
@@ -51,17 +53,21 @@ class CreateTimesheetView(MethodView):
         if consultant is None:
             return jsonify({"Error": "Consultant not found"}), 404
 
-        timesheet = Timesheet(
-            consultant_name=f"{consultant.firstname} {consultant.lastname}",
-            week_start_date=datetime.utcnow(),
-            # Extract other timesheet fields from request.json
-            # ...
-            consultant_id=user_id,
-            status="pending",
-        )
-        db.session.add(timesheet)
-        db.session.commit()
-        return jsonify({"id": timesheet.id})
+        print("Received data:", request.json)
+
+        # Here, you can simulate a successful response without committing to the database
+        return jsonify({"status": "success", "message": "Timesheet data received"}), 200
+
+        # timesheet = Timesheet(
+        #     consultant_name=f"{consultant.firstname} {consultant.lastname}",
+        #     week_start_date=datetime.utcnow(),
+        #
+        #     consultant_id=user_id,
+        #     status="pending",
+        # )
+        # db.session.add(timesheet)
+        # db.session.commit()
+        # return jsonify({"id": timesheet.id})
 
 
 class ViewTimesheetsView(MethodView):
