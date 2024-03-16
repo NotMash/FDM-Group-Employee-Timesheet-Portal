@@ -1,0 +1,26 @@
+.MainHome{
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 4em;
+    font-size: large;
+}
+
+#landing_page, body{
+    background-color: rgb(236, 236, 236);
+}
+
+p{
+    color: rgb(104, 104, 116);
+    font-size: 1.15em;
+}
+
+.Link{
+    background-color: rgb(192, 192, 192);
+    width: 50%;
+    position: relative;
+    left: 25%;
+    top: 30%;
+    border-radius: 15%;
+}
