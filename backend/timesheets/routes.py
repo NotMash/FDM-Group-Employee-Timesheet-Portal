@@ -45,6 +45,7 @@ def login():
         }
     )
 
+@cross_origin
 @app.route("/create_timesheet", methods=["POST"])
 def create_timesheet():
     user_id = session.get("user_id")
