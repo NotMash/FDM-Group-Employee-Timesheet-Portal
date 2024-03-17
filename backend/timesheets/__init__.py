@@ -26,7 +26,13 @@ server_session = Session(app)
 
 
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+
+
+# KEEP COMMENTED UNTIL MIGRATION IS NEEDED
+
+# migrate = Migrate(app, db)
+
+
 app.app_context().push()
 
 login_manager = LoginManager(app)
