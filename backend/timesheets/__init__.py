@@ -6,11 +6,14 @@ from flask_session import Session
 from flask_migrate import Migrate
 
 
-
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
+
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost/timesheets'
+
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///timesheets.db"
+
+
 app.config["SESSION_TYPE"] = "filesystem"  # Use the server's filesystem
   # Optional: Customize the location
 app.config["SESSION_COOKIE_SAMESITE"] = 'None'  # Set SameSite attribute of session cookie to 'None'
@@ -24,12 +27,7 @@ server_session = Session(app)
 
 
 db = SQLAlchemy(app)
-
-
-# KEEP THIS COMMENTED OUT UNTIL YOU HAVE A DATABASE MIGRATION STRATEGY
 # migrate = Migrate(app, db)
-
-
 app.app_context().push()
 
 login_manager = LoginManager(app)
