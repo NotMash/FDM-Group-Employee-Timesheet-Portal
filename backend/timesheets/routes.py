@@ -38,7 +38,14 @@ class LoginView(MethodView):
         return jsonify({"id": consultant.id, "username": consultant.username})
 
 
-class CreateTimesheetView(MethodView):
+class TimesheetView(MethodView):
+    def get(self, timesheet_id):
+        user_id = session.get("user_id")
+        timesheet = Timesheet.query.filter_by(id=timesheet_id, consultant_id=user_id).first()
+        if timesheet is None:
+            return jsonify({"Error": "Unauthorized"}), 403
+        return jsonify({"id": timesheet.id, "start_work_time": timesheet.start_work_time, "end_work_time": timesheet.end_work_time})
+    
     def post(self):
         user_id = session.get("user_id")
 
@@ -63,9 +70,19 @@ class CreateTimesheetView(MethodView):
         db.session.add(timesheet)
         db.session.commit()
         return jsonify({"id": timesheet.id})
+    
+    def put(self, timesheet_id):
+        pass
+    
+    def delete(self, timesheet_id):
+        user_id = session.get("user_id")
+        Timesheet.query.filter_by(id=timesheet_id, consultant_id=user_id).delete()
+        db.session.commit()
+        return jsonify("Timesheet deleted"), 200
 
 
-class ViewTimesheetsView(MethodView):
+
+class ListTimesheetsView(MethodView):
     def get(self):
         user_id = session.get("user_id")
         if not user_id:
@@ -88,10 +105,13 @@ class CreateUserView(MethodView):
 
 
 # Registering the views
+timesheets_view = TimesheetView.as_view("timesheet_view")
 app.add_url_rule("/", view_func=HomeView.as_view("home_view"))
 app.add_url_rule("/@me", view_func=CurrentUserView.as_view("current_user_view"))
 app.add_url_rule("/login", view_func=LoginView.as_view("login_view"), methods=["POST"])
-app.add_url_rule("/create_timesheet", view_func=CreateTimesheetView.as_view("create_timesheet_view"), methods=["POST"])
-app.add_url_rule("/view_timesheets", view_func=ViewTimesheetsView.as_view("view_timesheets_view"), methods=["GET"])
+app.add_url_rule("/create_timesheet", view_func=timesheets_view, methods=["POST"])
+app.add_url_rule("/view_timesheet/<timesheet_id>", view_func=timesheets_view, methods=["GET"])
+app.add_url_rule("/delete_timesheet/<timesheet_id>", view_func=timesheets_view, methods=["DELETE"])
+app.add_url_rule("/list_timesheets", view_func=ListTimesheetsView.as_view("list_timesheets_view"), methods=["GET"])
 app.add_url_rule("/logout", view_func=LogoutView.as_view("logout_view"))
 app.add_url_rule("/create_user", view_func=CreateUserView.as_view("create_user_view"))
