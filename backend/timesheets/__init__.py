@@ -10,23 +10,12 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
-<<<<<<< HEAD
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost/timesheets'
-
-# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///timesheets.db"
-
-app.config["SESSION_TYPE"] = "redis"
-CORS(app, supports_credentials=True, withCredentials=True)
-=======
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///timesheets.db"
-
-
 app.config["SESSION_TYPE"] = "filesystem"  # Use the server's filesystem
   # Optional: Customize the location
 app.config["SESSION_COOKIE_SAMESITE"] = 'None'  # Set SameSite attribute of session cookie to 'None'
 app.config["SESSION_COOKIE_SECURE"] = True  # Requires HTTPS
 CORS(app, supports_credentials=True)
->>>>>>> c904f4745b91df98c8992e48b08ef819b4ade52e
 SESSION_TYPE = "redis"
 SESSION_PERMANENT = False
 SESSION_USE_SIGNER = False
