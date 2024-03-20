@@ -41,7 +41,7 @@ class User(UserMixin, db.Model):
             return "Unauthorized Access: Invalid Username or Password."
     
     def logout(self):
-      session_id = self.id
+        session_id = self.id
         if session_id: 
             # Deletes the session ID from the db
             # Clears cookie with session data
@@ -93,7 +93,7 @@ class Consultant(User):
     def edit_timesheet(self, ITapproval, timesheet):
         pass
     
-class LineManager(User): #linemanager should not have editRequest or editTimesheet, consultant should
+class LineManager(User): 
     __tablename__ = "line_manager"
     consultants = db.relationship("Consultant", backref="line_manager", lazy=True)
     
@@ -155,7 +155,7 @@ class Timesheet(db.Model):
     start_work_time = db.Column(db.String(20), nullable=True)
     end_work_time = db.Column(db.String(20), nullable=True)
     hours_worked = db.Column(db.Integer, nullable=False)
-    status = db.Column(db.Boolean, default= False, nullable=False) #changed to boolean from string
+    status = db.Column(db.String(20), nullable=False)
     edited = db.Column(db.Boolean, default=False, nullable=False)
     consultant_id = db.Column(db.String(32), db.ForeignKey("consultant.id"), nullable=False)
     
