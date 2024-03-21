@@ -21,6 +21,7 @@
 
 .difficultyHeader p {
     color: #2a4f87;
+    font-weight: bold;
 }
 
 .difficulty {
