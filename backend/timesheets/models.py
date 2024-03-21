@@ -67,6 +67,7 @@ class User(UserMixin, db.Model):
 class Consultant(User):
     __tablename__ = "consultant"
     
+    consultant_id = db.Column(db.String(32), db.ForeignKey("consultant.id"), nullable=False) #consultant should have id????
     working_status = db.Column(db.String(20), nullable=False)
     hourly_rate = db.Column(db.Float, nullable=False)
     line_manager_id = db.Column(db.String(32), db.ForeignKey("line_manager.id"), nullable=False)
@@ -79,11 +80,12 @@ class Consultant(User):
         return self.hourly_rate
     
     def approve_timesheet(self, timesheet):
-        pass
+        timesheet.consultant_approval = True
 
-    def submit_timesheet(self, timesheet, approval):
-        pass
-    
+    def submit_timesheet(self, timesheet):
+        if timesheet.consultant_approval:
+            timesheet.status = "Pending"
+
     def view_timesheet(self):
         pass
     
@@ -98,10 +100,16 @@ class LineManager(User):
     consultants = db.relationship("Consultant", backref="line_manager", lazy=True)
     
     def approve_timesheet(self, timesheet):
-        pass
+        if timesheet.status == "Pending":
+            timesheet.status = "approved"
+
+
+    def disapprove_timesheet(self, timesheet):
+        if timesheet.status == "Pending":
+            timesheet.status = "disapproved"
     
     def track_consultant(self):
-        pass
+        pass #??
     
     def edit_request(self, timesheet):
         pass
@@ -138,6 +146,9 @@ class ITTechnician(User):
         pass
     
     def approve_edit_request(self):
+        pass
+
+    def dissaprove_edit_request(self):
         pass
     
     def create_account(self, username, password, firstname, lastname, email):
@@ -198,6 +209,7 @@ class Difficulty(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(60), nullable=False)
+
 
 class Salaries(db.Model):
     __tablename__ = "salaries"
