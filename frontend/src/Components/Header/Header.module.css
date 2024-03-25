@@ -1,12 +1,7 @@
 .Header{
     position: relative;
-<<<<<<< Updated upstream
     top: 2pc;
     left: 10pc;
-=======
-    bottom: 2pc;
-    left: 8pc;
->>>>>>> Stashed changes
     font-size: large;
     font-family: "Roboto", sans-serif;
 }

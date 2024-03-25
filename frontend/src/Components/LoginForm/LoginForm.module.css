@@ -13,12 +13,7 @@ html{
     right: 2.5pc;
 }
 
-<<<<<<< Updated upstream
 ul{
-=======
-
-.LoginForm, ul{
->>>>>>> Stashed changes
     display: inline;
     list-style-type: none;
     background-color: white;
@@ -37,37 +32,11 @@ figure, img{
 
 }
 
-<<<<<<< Updated upstream
 input{
     width: 10pc;
 }
 
 a{
-=======
-
-figure{
-    background: none;
-    width: 120px;
-}
-
-
-.input{
-    width: 50%;
-    height: 20px;
-    background-color: #012E6E;
-    color: white;
-}
-
-.selectInput{
-    width: 48%;
-    background-color: #012E6E;
-    height: 1.75pc;
-    border-radius: 0.25pc;
-    color: white;
-}
-
-#forgotPass{
->>>>>>> Stashed changes
     text-decoration: none;
     color: #012E6E;
 }
