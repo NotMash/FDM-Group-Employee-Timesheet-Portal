@@ -25,15 +25,17 @@ function getTimeGreeting(){
 function MainHome(){
     document.title = "Landing Page";
     return (
-        <>
-            <div className={styles.landingPageBackground}> {/* Background container */}
-                <div id={styles.landing_page} className={styles.MainHome}>
-                    <img src={logo} alt="FDM Logo" className={styles.logo}/>
-                    <h1>FDM Timesheets App</h1>
-                    <h2>Good {getTimeGreeting()}</h2>
-                    <Link className={styles.Link} to="/login_page"><p>Login</p></Link>
-                </div>
+       <>
+          <div className={styles.landingPageBackground}> {/* Background container */}
+            <div className={styles.logoBar}> {/* Black bar container */}
+              <img src={logo} alt="FDM Logo" className={styles.logo}/>
             </div>
+            <div id={styles.landing_page} className={styles.MainHome}>
+              <h1>FDM Timesheets App</h1>
+              <h2>Good {getTimeGreeting()}</h2>
+              <Link className={styles.Link} to="/login_page"><p>Login</p></Link>
+            </div>
+          </div>
         </>
     )
 }
