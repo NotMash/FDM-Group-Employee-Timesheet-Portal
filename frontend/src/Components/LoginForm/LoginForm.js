@@ -9,6 +9,7 @@ function LoginForm()
     const [password, setPassword] = useState('');
 
     const handleSubmit = (e) => {
+<<<<<<< Updated upstream
         e.preventDefault();
         const loginDetails = {username, password}
         fetch('https://localhost:5000/login', {
@@ -17,6 +18,33 @@ function LoginForm()
             body: JSON.stringify(loginDetails)}
         }).then(() => {console.log("login success")});
     }
+=======
+    e.preventDefault();
+    const loginDetails = { username, password };
+
+    fetch('http://127.0.0.1:5000/login', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include',
+        body: JSON.stringify(loginDetails)
+    }).then(response => {
+        if (response.ok) {
+            console.log("Login success");
+            return response.json();
+        } else {
+            throw new Error('Login failed with status: ' + response.status);
+        }
+    }).then(data => {
+        console.log(data);
+        navigate('/consultant_home_page#/timesheet_recording_page'); // Navigate to Timesheet page on successful login
+    }).catch(error => {
+        console.error(error);
+    });
+};
+
+
+
+>>>>>>> Stashed changes
 
     return(
         <>

@@ -1,26 +1,62 @@
+html{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url("main.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+body{
+    margin: 0;
+}
+
+
+figure{
+    background-color: black;
+    float: top;
+    margin: 0;
+    width: 100%;
+}
+
+img{
+    width: 100px;
+    margin-left: 46%;
+}
+
 .MainHome{
+    margin-top: 50px;
+    margin-bottom: 350px;
     display: grid;
     justify-content: center;
     text-align: center;
     align-items: center;
-    padding: 4em;
-    font-size: large;
 }
 
-#landing_page, body{
-    background-color: rgb(236, 236, 236);
+
+h1{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 70px;
 }
 
-p{
-    color: rgb(104, 104, 116);
-    font-size: 1.15em;
+h2{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    margin-bottom: 80px;
+    animation: slidein 3s linear 1s infinite running;
 }
 
 .Link{
-    background-color: rgb(192, 192, 192);
-    width: 50%;
+    background-image: linear-gradient(to right, blue, purple);
+    width: 190px;
     position: relative;
-    left: 25%;
-    top: 30%;
-    border-radius: 15%;
+    left: 20%;
+    border-radius: 25px;
+    color: white;
+    font-size: 1.5rem;
+    height: 3rem;
+    text-align: center;
+    text-decoration: dashed;
+    padding-top: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
 }
