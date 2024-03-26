@@ -11,6 +11,9 @@ app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost/timesheets'
 
+
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost/timesheets'
+
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///timesheets.db"
 
 
@@ -27,6 +30,13 @@ server_session = Session(app)
 
 
 db = SQLAlchemy(app)
+
+
+# KEEP COMMENTED UNTIL MIGRATION IS NEEDED
+
+# migrate = Migrate(app, db)
+
+
 # migrate = Migrate(app, db)
 app.app_context().push()
 
