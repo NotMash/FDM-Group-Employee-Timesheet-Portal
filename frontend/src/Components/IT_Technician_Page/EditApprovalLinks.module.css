@@ -1,27 +1,33 @@
 .linksContainer {
     display: flex;
-    gap: 3%;
+    gap: 20px;
     justify-content: center;
     margin-top: 10%;
 }
 
 .approveLink, .disapproveLink {
-    width: 150px;
+    width: 120px;
     text-align: center;
     font-size: 8pt;
     border-radius: 15px;
     padding: 3%;
+    text-decoration: none;
 }
 
 .approveLink {
-    background-color: #33b8649a;
+    background-color: #1c8844a1;
 }
 
 .disapproveLink {
-    background-color: #bc544b98;
+    background-color: #c3493eb1;
 }
 
 .approveLink p, .disapproveLink p {
-    color: #2e2828;
+    color: #473e3e;
+    font-weight: bold;
     margin: 0;
+}
+
+.approveLink p:hover, .disapproveLink p:hover {
+    color: #000000;
 }

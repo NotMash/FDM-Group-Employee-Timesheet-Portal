@@ -2,7 +2,7 @@ import React from "react";
 import TimesheetEditRequestCard from "../../Components/IT_Technician_Page/TimesheetEditRequestCard";
 import styles from "./timesheet_edit_requests_page.module.css";
 
-function IT_Difficulties_Page () {
+function Timesheet_Edit_Requests_Page () {
     document.title = "Timesheet Edit Requests";
     const userNames = ["USER-1", "USER-2", "USER-3", "USER-4", "USER-5", "USER-6", "USER-7", "USER-8"]; //will be collected from the db
     const editRequestElements = [];
@@ -25,4 +25,4 @@ function IT_Difficulties_Page () {
     )
 }
 
-export default IT_Difficulties_Page;
+export default Timesheet_Edit_Requests_Page;

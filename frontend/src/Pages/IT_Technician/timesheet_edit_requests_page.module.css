@@ -12,7 +12,9 @@ body {
     font-size: 22pt;
     margin: 0;
     padding: 2%;
-    box-shadow: 0 14px 6px -6px #06192f;
+    box-shadow: 0 4px 4px 0px #06192f;
+    position: relative;
+    z-index: 1;
 }
 
 .cardContainer {

@@ -8,6 +8,7 @@ import LineManagerHomePage from "./Pages/Line_Manager/line_manager_home_page";
 import TimesheetRecordingPage from "./Pages/Consultant/timesheet_recording_page";
 import ItDifficultiesPage from "./Pages/IT_Technician/it_difficulties_page";
 import TimesheetEditRequestsPage from "./Pages/IT_Technician/timesheet_edit_requests_page";
+import ItUserCreationPage from "./Pages/IT_Technician/it_user_creation_page";
 
 function App() 
 {
@@ -21,8 +22,9 @@ function App()
         <Route path="/it_technician_home_page" element={<ITTechnicianHomePage/>}/>
         <Route path="/line_manager_home_page" element={<LineManagerHomePage/>}/>
         <Route path="/timesheet_recording_page" element={<TimesheetRecordingPage/>}/>
-        <Route path="/it_difficulties_page" element={<ItDifficultiesPage/>}/>
+        <Route path="/it_difficulties" element={<ItDifficultiesPage/>}/>
         <Route path="/timesheet_edit_requests" element={<TimesheetEditRequestsPage/>}/>
+        <Route path="/it_user_creation" element={<ItUserCreationPage/>}/>
       </Routes>
     </HashRouter>
   )

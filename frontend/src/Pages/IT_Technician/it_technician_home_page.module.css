@@ -12,5 +12,5 @@ p {
 nav {
     display: flex;
     justify-content: center;
-    gap: 5%;
+    gap: 50px;
 }
