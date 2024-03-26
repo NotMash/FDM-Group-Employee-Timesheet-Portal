@@ -88,8 +88,21 @@ class ListTimesheetsView(MethodView):
         if not user_id:
             return jsonify({"Error": "Unauthorised"}), 401
         timesheets = Timesheet.query.filter_by(consultant_id=user_id).all()
+        json_dict = {}
         timesheet_ids = [timesheet.id for timesheet in timesheets]
-        return jsonify(timesheet_ids)
+        for timesheet in timesheets:
+            json_dict[timesheet.id] = {"name": timesheet.consultant_name, "status": timesheet.status}
+        return jsonify(json_dict)
+
+class LineManagerView(MethodView):
+    def get(self):
+        user_id = session.get("user_id")
+        consultants = Consultant.query.filter_by(line_manager_id=user_id)
+        json_dict = {}
+        for consultant in consultants:
+            json_dict[consultant.id] = consultant.username 
+        return jsonify(json_dict)
+    
 
 
 class LogoutView(MethodView):
