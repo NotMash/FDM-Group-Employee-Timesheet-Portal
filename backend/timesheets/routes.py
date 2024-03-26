@@ -94,7 +94,13 @@ class ListTimesheetsView(MethodView):
 
 class LogoutView(MethodView):
     def get(self):
+        print("Logged before outtt: ", session.get("user_id"))
         session.pop("user_id", None)
+
+
+        print("Logged out aftererrererer: ", session.get("user_id"))
+
+
         return "Logged out successfully", 200
 
 
