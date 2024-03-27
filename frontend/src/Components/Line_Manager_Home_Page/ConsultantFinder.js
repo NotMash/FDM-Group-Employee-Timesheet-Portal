@@ -12,7 +12,8 @@ const consultantPlaceholderNames = [
     "Sarah Wilson",
     "David Taylor",
     "Emily Martinez",
-    "Chris Anderson"
+    "Chris Anderson",
+    "Walter White"
   ];
 //a
 
