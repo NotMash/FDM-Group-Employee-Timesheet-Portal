@@ -45,7 +45,7 @@ class User(UserMixin, db.Model):
           
     def logout(self):
         session_id = self.id
-        if session_id:
+        if session_id: 
             # Deletes the session ID from the db
             # Clears cookie with session data
             return "Logout Successful"
