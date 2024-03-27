@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styles from "./UserAccountCreation.module.css";
 
 function UserAccountCreation() {
@@ -34,7 +33,7 @@ function UserAccountCreation() {
                             <input type="password" id="confirm_pword" name="confirm_u_password" placeholder="Confirm Password" required className={styles.input}></input>
                         </li>
                         <li>
-                            <input id="submit_button" type="submit" name="submit_btn" value="Submit"></input>
+                            <input id="submit_button" type="submit" name="submit_btn" value="Create"></input>
                         </li>
                     </ul>
                 </form>

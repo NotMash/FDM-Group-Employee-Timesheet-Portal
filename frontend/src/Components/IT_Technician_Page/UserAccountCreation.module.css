@@ -2,6 +2,7 @@
 .card {
     display: flex;
     align-items: center;
+    height: 100vh;
 }
 
 .userAccountForm{
@@ -11,47 +12,51 @@
 
 .userAccountForm label, .userAccountForm h2 {
     font-family: "Poppins", serif;
-    color: #b4b29b;
+    color: #eaecf6a3;
 }
 
 .userAccountForm h2 {
     margin: 0;
-    color: #7f4f33;
+    color: #c4a378;
 }
 
 .main_img {
     width: 50%;
-    height: auto;
-    border-radius: 25px;
+    height: 100vh;
 }
 
 .input, .selectInput{
-    width: 50%;
+    width: 35%;
     height: 1.75pc;
-    padding-left: 2%;
-    background-color: #151515;
+    padding-left: 1.5%;
+    background-color: #eaecf6a3;
     border: solid 1pt #ffffff3c;
     border-radius: 10px;
-    color: #b4b29b;
+    color: #151515;
     margin: 0.5%;
 }
 
 .selectInput{
-    width: 52%;
+    width: 37%;
     height: 1.95pc;
     border-radius: 0.25pc;
+    cursor: pointer;
 }
 
+::placeholder {
+    color: #151515;
+  }
+
 input[type=submit]{
-    width: 52%;
+    width: 37%;
     margin-top: 5%;
     cursor: pointer;
-    background: linear-gradient(to right, #2f1d13 0%, #151515 50%, #2f1d13 100%);
-    color: #9F6442;
+    background: linear-gradient(to right, #c4a378 0%, #eaecf6a3 50%, #c4a378 100%);
+    color: #070819;
     text-transform: uppercase;
     font-family: "Poppins", serif;
     letter-spacing: 2px;
-    border: solid 1pt #9F6442;
+    border: solid 1pt #070819;
     border-radius: 0.5pc;
     margin-bottom: 5%;
 }
