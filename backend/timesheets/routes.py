@@ -26,16 +26,32 @@ class LoginView(MethodView):
     def post(self):
         username = request.json["username"]
         password = request.json["password"]
+        
         consultant = Consultant.query.filter_by(username=username).first()
+        line_manager = LineManager.query.filter_by(username=username).first()
+        techy = ITTechnician.query.filter_by(username=username).first()
+        finance_member = FinanceTeamMember.query.filter_by(username=username).first()
+        
+        if consultant != None:
+            user = consultant
+        elif line_manager != None:
+            user = line_manager
+        elif techy != None:
+            user = techy
+        elif finance_member != None:
+            user = finance_member
+        else:
+            return jsonify({"Error": "User does not exist"})
+        
 
-        if consultant is None or password != consultant.password:
-            return jsonify({"Error": "Unauthorised or Password incorrect"})
+        if password != user.password:
+            return jsonify({"Error": "Password incorrect"})
 
-        session["user_id"] = consultant.id
+        session["user_id"] = user.id
 
         print("Logged in: ", session.get("user_id"))
 
-        return jsonify({"id": consultant.id, "username": consultant.username})
+        return jsonify({"id": user.id, "username": user.username})
 
 
 class TimesheetView(MethodView):
@@ -80,8 +96,6 @@ class TimesheetView(MethodView):
         db.session.commit()
         return jsonify("Timesheet deleted"), 200
 
-
-
 class ListTimesheetsView(MethodView):
     def get(self):
         user_id = session.get("user_id")
@@ -94,7 +108,7 @@ class ListTimesheetsView(MethodView):
             json_dict[timesheet.id] = {"name": timesheet.consultant_name, "status": timesheet.status}
         return jsonify(json_dict)
 
-class LineManagerView(MethodView):
+class ListConsultantsView(MethodView):
     def get(self):
         user_id = session.get("user_id")
         consultants = Consultant.query.filter_by(line_manager_id=user_id)
@@ -102,8 +116,24 @@ class LineManagerView(MethodView):
         for consultant in consultants:
             json_dict[consultant.id] = consultant.username 
         return jsonify(json_dict)
-    
 
+class ListConsultantTimesheetsView(MethodView):
+    def get(self, consultant_id):
+        user_id = session.get("user_id")
+        line_manager = LineManager.query.filter_by(id=user_id).first()
+        consultant = Consultant.query.filter_by(id=consultant_id).first()
+        if consultant.line_manager_id != user_id:
+            return jsonify({"Error": "Unauthorized"})
+        timesheets = Timesheet.query.filter_by(consultant_id=consultant_id)
+        json_dict = {}
+        
+        for timesheet in timesheets:
+            json_dict[timesheet.id] = {"name": timesheet.consultant_name, 
+                                       "status": timesheet.status, "Work Start": timesheet.start_work_time, 
+                                       "End Work": timesheet.end_work_time}
+        
+        return jsonify(json_dict)
+        
 
 class LogoutView(MethodView):
     def get(self):
@@ -132,5 +162,7 @@ app.add_url_rule("/create_timesheet", view_func=timesheets_view, methods=["POST"
 app.add_url_rule("/view_timesheet/<timesheet_id>", view_func=timesheets_view, methods=["GET"])
 app.add_url_rule("/delete_timesheet/<timesheet_id>", view_func=timesheets_view, methods=["DELETE"])
 app.add_url_rule("/list_timesheets", view_func=ListTimesheetsView.as_view("list_timesheets_view"), methods=["GET"])
+app.add_url_rule("/list_timesheets/<consultant_id>", view_func=ListConsultantTimesheetsView.as_view("list_consultant_timesheets_view"), methods=["GET"])
+app.add_url_rule("/list_consultants", view_func=ListConsultantsView.as_view("list_consultants_view"), methods=["GET"])
 app.add_url_rule("/logout", view_func=LogoutView.as_view("logout_view"))
 app.add_url_rule("/create_user", view_func=CreateUserView.as_view("create_user_view"))
