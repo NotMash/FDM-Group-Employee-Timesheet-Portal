@@ -53,20 +53,16 @@ function UserAccountCreation() {
                                     <option value="Finance TeamMember">Finance Team Member</option>
                                 </select>
                             </li>
+                            <li>
+                                <input type="text" id="firstname" name="first_name" placeholder="First Name" required className={styles.input} />
+                            </li>
+                            <li>
+                                <input type="text" id="lastname" name="last_name" placeholder="Last Name" required className={styles.input} />
+                            </li>
                             {userType == "Consultant" &&
-                                (
-                                    <>
-                                        <li>
-                                            <input type="text" id="firstname" name="first_name" placeholder="First Name" required className={styles.input} />
-                                        </li>
-                                        <li>
-                                            <input type="text" id="lastname" name="last_name" placeholder="Last Name" required className={styles.input} />
-                                        </li>
-                                        <li>
-                                            <input type="text" id="managername" name="manager_name" placeholder="Manager Username" required className={styles.input} />
-                                        </li>
-                                    </>
-                                )
+                                <li>
+                                    <input type="text" id="managername" name="manager_name" placeholder="Manager Username" required className={styles.input} />
+                                </li>
                             }
                             <li>
                                 <input type="text" id="uname" name="u_name" placeholder="Username" required className={styles.input} />
