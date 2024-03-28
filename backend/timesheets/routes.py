@@ -88,7 +88,17 @@ class TimesheetView(MethodView):
         return jsonify({"id": timesheet.id})
     
     def put(self, timesheet_id):
-        pass
+        timesheet = Timesheet.query.filter_by(id=timesheet_id).first()
+        if timesheet.status in ["pending", "approved"]:
+            return jsonify({"Error": "Unauthorized"}), 400
+        
+        start_time = request.json["start_time"]
+        end_time = request.json["end_time"]
+        timesheet.start_work_time = start_time
+        timesheet.end_work_time = end_time
+        db.session.commit()
+        return jsonify("Timesheet updated")
+        
     
     def delete(self, timesheet_id):
         user_id = session.get("user_id")
@@ -230,6 +240,7 @@ app.add_url_rule("/create_user", view_func=CreateUserView.as_view("create_user_v
 
 app.add_url_rule("/create_timesheet", view_func=timesheets_view, methods=["POST"])
 app.add_url_rule("/view_timesheet/<timesheet_id>", view_func=timesheets_view, methods=["GET"])
+app.add_url_rule("/update_timesheet/<timesheet_id>", view_func=timesheets_view, methods=["PUT"])
 app.add_url_rule("/delete_timesheet/<timesheet_id>", view_func=timesheets_view, methods=["DELETE"])
 app.add_url_rule("/list_timesheets", view_func=ListTimesheetsView.as_view("list_timesheets_view"), methods=["GET"])
 app.add_url_rule("/list_timesheets/<consultant_id>", view_func=ListConsultantTimesheetsView.as_view("list_consultant_timesheets_view"), methods=["GET"])
