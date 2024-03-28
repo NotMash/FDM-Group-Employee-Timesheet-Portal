@@ -96,6 +96,7 @@ class TimesheetView(MethodView):
         db.session.commit()
         return jsonify("Timesheet deleted"), 200
 
+
 class ListTimesheetsView(MethodView):
     def get(self):
         user_id = session.get("user_id")
@@ -133,7 +134,25 @@ class ListConsultantTimesheetsView(MethodView):
                                        "End Work": timesheet.end_work_time}
         
         return jsonify(json_dict)
-        
+
+class TimesheetApprovalView(MethodView):
+    def post(self, timesheet_id):
+        timesheet = Timesheet.query.filter_by(id=timesheet_id).first()
+        if timesheet == None:
+            return jsonify({"Error: Timesheet does not exist"}), 400
+        timesheet.status = "approved"
+        db.session.commit()
+        return jsonify("Timesheet Approved")
+
+class TimesheetDisapprovalView(MethodView):
+    def post(self, timesheet_id):
+        timesheet = Timesheet.query.filter_by(id=timesheet_id).first()
+        if timesheet == None:
+            return jsonify({"Error: Timesheet does not exist"}), 400
+        timesheet.status = "disapproved"
+        db.session.commit()
+        return jsonify("Timesheet Disapproved")
+
 
 class LogoutView(MethodView):
     def get(self):
@@ -198,6 +217,8 @@ class CreateUserView(MethodView):
         return jsonify("User created successfully")
 
 
+
+
 # Registering the views
 timesheets_view = TimesheetView.as_view("timesheet_view")
 app.add_url_rule("/", view_func=HomeView.as_view("home_view"))
@@ -212,6 +233,9 @@ app.add_url_rule("/view_timesheet/<timesheet_id>", view_func=timesheets_view, me
 app.add_url_rule("/delete_timesheet/<timesheet_id>", view_func=timesheets_view, methods=["DELETE"])
 app.add_url_rule("/list_timesheets", view_func=ListTimesheetsView.as_view("list_timesheets_view"), methods=["GET"])
 app.add_url_rule("/list_timesheets/<consultant_id>", view_func=ListConsultantTimesheetsView.as_view("list_consultant_timesheets_view"), methods=["GET"])
+app.add_url_rule("/approve_timesheet/<timesheet_id>", view_func=TimesheetApprovalView.as_view("timesheet_approval_view"), methods=["POST"])
+app.add_url_rule("/disapprove_timesheet/<timesheet_id>", view_func=TimesheetDisapprovalView.as_view("timesheet_disapproval_view"), methods=["POST"])
+
 
 app.add_url_rule("/list_consultants", view_func=ListConsultantsView.as_view("list_consultants_view"), methods=["GET"])
 
