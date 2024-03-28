@@ -130,10 +130,7 @@ class FinanceTeamMember(User):
 
     def track_consultant(self):
         pass #???
-    
-    def approve_timesheet(self, timesheet):
-        pass #copy code from LineManager.approve_timesheet
-      
+
     def set_hourly_rate(self, consultant, new_rate):
         if isinstance(consultant, Consultant):
                 consultant.hourly_rate = new_rate

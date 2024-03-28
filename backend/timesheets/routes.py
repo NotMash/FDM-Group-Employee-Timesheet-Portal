@@ -146,6 +146,35 @@ class LogoutView(MethodView):
 
         return "Logged out successfully", 200
 
+class FinanceTeamView(MethodView):
+
+    # POST method to set the hourly rate for a specific consultant
+    def post(self):
+        data = request.json
+        consultant_id = data.get('consultant_id')
+        new_rate = data.get('hourly_rate')
+
+        if not consultant_id or new_rate is None:
+            return jsonify({"error": "Consultant ID and new hourly rate must be provided"}), 400
+
+        consultant = Consultant.query.filter_by(id=consultant_id).first()
+        if consultant is None:
+            return jsonify({"error": "Consultant not found"}), 404
+
+        try:
+            # Assuming instantiation and authorization logic is handled elsewhere
+            finance_team_member = FinanceTeamMember()
+            finance_team_member.set_hourly_rate(consultant, float(new_rate))
+            db.session.commit()
+            return jsonify({"message": "Hourly rate updated successfully", "consultant_id": consultant_id, "new_hourly_rate": new_rate}), 200
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({"error": str(e)}), 500
+
+    
+
+    
+
 
 class CreateUserView(MethodView):
     def get(self):
@@ -166,3 +195,4 @@ app.add_url_rule("/list_timesheets/<consultant_id>", view_func=ListConsultantTim
 app.add_url_rule("/list_consultants", view_func=ListConsultantsView.as_view("list_consultants_view"), methods=["GET"])
 app.add_url_rule("/logout", view_func=LogoutView.as_view("logout_view"))
 app.add_url_rule("/create_user", view_func=CreateUserView.as_view("create_user_view"))
+app.add_url_rule("/set_hourly_rate", view_func=FinanceTeamView.as_view("finance_team_view"), methods=["POST"])
