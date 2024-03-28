@@ -10,6 +10,8 @@ import ConsultantFinderPage from "./Pages/Line_Manager/consultant_finder_page";
 import ItDifficultiesPage from "./Pages/IT_Technician/it_difficulties_page";
 import TimesheetEditRequestsPage from "./Pages/IT_Technician/timesheet_edit_requests_page";
 import ItUserCreationPage from "./Pages/IT_Technician/it_user_creation_page";
+import FinanceTeamPage from './frontend\src\Components\Finance_Team_Page\Finance_Team_Form.js'; 
+
 
 function App() 
 {
@@ -27,6 +29,8 @@ function App()
         <Route path="/it_difficulties" element={<ItDifficultiesPage/>}/>
         <Route path="/timesheet_edit_requests" element={<TimesheetEditRequestsPage/>}/>
         <Route path="/it_user_creation" element={<ItUserCreationPage/>}/>
+     
+
       </Routes>
     </HashRouter>
   )

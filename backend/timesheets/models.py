@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from timesheets import db
 from flask_login import UserMixin
 from uuid import uuid4
@@ -69,20 +69,25 @@ class User(UserMixin, db.Model):
 
 class Consultant(User):
     __tablename__ = "consultant"
-
+    
+    consultant_id = db.Column(db.String(32), db.ForeignKey("consultant.id"), nullable=False) #consultant should have id????
     working_status = db.Column(db.String(20), nullable=False)
     hourly_rate = db.Column(db.Float, nullable=False)
     line_manager_id = db.Column(db.String(32), db.ForeignKey("line_manager.id"), nullable=False)
     timesheets = db.relationship("Timesheet", backref="timesheet", lazy=True)
 
     def get_working_status(self) -> str:
-        return working_status
-
+        return self.working_status
+    
     def get_hourly_rate(self) -> float:
-        return hourly_rate
+        return self.hourly_rate
 
     def approve_timesheet(self, timesheet):
-        pass
+        timesheet.consultant_approval = True
+
+    def submit_timesheet(self, timesheet):
+        if timesheet.consultant_approval:
+            timesheet.status = "Pending"
 
     def submit_timesheet(self, timesheet, approval):
         pass
@@ -96,17 +101,23 @@ class Consultant(User):
     def edit_timesheet(self, ITapproval, timesheet):
         pass
 
-
 class LineManager(User):
     __tablename__ = "line_manager"
+    
     consultants = db.relationship("Consultant", backref="line_manager", lazy=True)
 
     def approve_timesheet(self, timesheet):
-        pass
+        if timesheet.status == "Pending":
+            timesheet.status = "approved"
 
+
+    def disapprove_timesheet(self, timesheet):
+        if timesheet.status == "Pending":
+            timesheet.status = "disapproved"
+    
     def track_consultant(self):
-        pass
-
+        pass #??
+    
     def edit_request(self, timesheet):
         pass
 
@@ -118,13 +129,14 @@ class FinanceTeamMember(User):
     __tablename__ = "finance_team_member"
 
     def track_consultant(self):
-        pass
-
-    def approve_timesheet(self, timesheet):
-        pass
+        pass #???
 
     def set_hourly_rate(self, consultant, new_rate):
-        pass
+        if isinstance(consultant, Consultant):
+                consultant.hourly_rate = new_rate
+        else:
+            raise ValueError("Invalid user. Please provide a valid Consultant")
+        
 
 
 class ITTechnician(User):
@@ -142,6 +154,9 @@ class ITTechnician(User):
     def approve_edit_request(self):
         pass
 
+    def dissaprove_edit_request(self):
+        pass
+    
     def create_account(self, username, password, firstname, lastname, email):
         pass
 
@@ -163,32 +178,38 @@ class Timesheet(db.Model):
     consultant_id = db.Column(db.String(32), db.ForeignKey("consultant.id"), nullable=False)
 
     def calculate_hours_worked(self):
-        pass
+        time_worked = self.end_work_time - self.start_work_time
 
-    def change_status(self):
-        pass
+        # Extract hours and minutes from the time difference
+        hours, remainder = divmod(time_worked.seconds, 3600)
+        minutes = remainder // 60
 
-    def start_work(self, on_leave, leave_reason):
-        pass
+        self.hours_worked = hours + minutes / 60
+    
+    def change_status(self, status):
+        self.status = status
+
+    def start_work(self):
+        self.start_work_time = datetime.now()
 
     def end_work(self):
-        pass
-
+        self.end_work_time = datetime.now()
+    
     def start_break(self):
-        pass
-
+        self.start_break_time = datetime.now()
+    
     def end_break(self):
-        pass
-
+        self.end_break_time = datetime.now()
+    
     def get_hours_worked(self):
-        pass
+        return self.hours_worked
+   
 
     def get_timesheet_status(self):
         return self.status
 
     def edit_info(self, edited):
-        pass
-
+        pass #???
 
 class Difficulty(db.Model):
     __tablename__ = "difficulty"
@@ -207,6 +228,6 @@ class Salaries(db.Model):
     def calculate_salary(self, consultant, timesheet):
         hourlyRate = consultant.get_hourly_rate()
         hoursWorked = timesheet.get_hours_worked()
+        return round(float(hourlyRate*hoursWorked), 2)
 
-        return round(float(hourlyRate * hoursWorked), 2)
 
