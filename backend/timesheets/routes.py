@@ -148,21 +148,71 @@ class LogoutView(MethodView):
 
 
 class CreateUserView(MethodView):
-    def get(self):
-        # Your user creation logic here
-        return "<h1>User creation page</h1>"
+    def post(self):
+        current_user_id = session.get("user_id")
+        current_user = ITTechnician.query.filter_by(id=current_user_id).first()
+        
+        if current_user == None:
+            return jsonify({"Error": "Unauthorized bumbaclaat"}), 400
+        
+        user_type = request.json["user_type"]
+        if user_type.lower() == "consultant":
+            firstname = request.json["firstname"]
+            lastname = request.json["lastname"]
+            username = request.json["username"]
+            password = request.json["password"]
+            line_manager_username = request.json["line_manager_username"]
+            email = request.json["email"]
+            line_manager = LineManager.query.filter_by(username=line_manager_username).first()
+            user = Consultant(firstname=firstname, lastname=lastname, username=username,
+                                    password=password, email=email, line_manager_id=line_manager.id, 
+                                    working_status="working", hourly_rate=0)
+            db.session.add(user)
+            db.session.commit()  
+        elif user_type.lower() in ["finance_member", "ittechnician", "line_manager"]:
+            firstname = request.json["firstname"]
+            lastname = request.json["lastname"]
+            username = request.json["username"]
+            password = request.json["password"]
+            email = request.json["email"]
+            
+            errors = False
+            if user_type.lower() == "finance_member":
+                user = FinanceTeamMember(firstname=firstname, lastname=lastname, username=username,
+                                password=password, email=email)
+               
+            elif user_type.lower() == "ittechnician":
+                user = ITTechnician(firstname=firstname, lastname=lastname, username=username,
+                                password=password, email=email)
+            elif user_type.lower() == "line_manager":
+                user = LineManager(firstname=firstname, lastname=lastname, username=username,
+                                password=password, email=email)
+            else:
+                return jsonify({"Error": "User type does not exist"}), 400
+            
+            db.session.add(user)
+            db.session.commit()  
+        else:
+            return jsonify({"Error": "Invalid user type"}), 400
+        
+        return jsonify("User created successfully")
 
 
 # Registering the views
 timesheets_view = TimesheetView.as_view("timesheet_view")
 app.add_url_rule("/", view_func=HomeView.as_view("home_view"))
 app.add_url_rule("/@me", view_func=CurrentUserView.as_view("current_user_view"))
+
 app.add_url_rule("/login", view_func=LoginView.as_view("login_view"), methods=["POST"])
+app.add_url_rule("/logout", view_func=LogoutView.as_view("logout_view"))
+app.add_url_rule("/create_user", view_func=CreateUserView.as_view("create_user_view"), methods=["POST"])
+
 app.add_url_rule("/create_timesheet", view_func=timesheets_view, methods=["POST"])
 app.add_url_rule("/view_timesheet/<timesheet_id>", view_func=timesheets_view, methods=["GET"])
 app.add_url_rule("/delete_timesheet/<timesheet_id>", view_func=timesheets_view, methods=["DELETE"])
 app.add_url_rule("/list_timesheets", view_func=ListTimesheetsView.as_view("list_timesheets_view"), methods=["GET"])
 app.add_url_rule("/list_timesheets/<consultant_id>", view_func=ListConsultantTimesheetsView.as_view("list_consultant_timesheets_view"), methods=["GET"])
+
 app.add_url_rule("/list_consultants", view_func=ListConsultantsView.as_view("list_consultants_view"), methods=["GET"])
-app.add_url_rule("/logout", view_func=LogoutView.as_view("logout_view"))
-app.add_url_rule("/create_user", view_func=CreateUserView.as_view("create_user_view"))
+
+
