@@ -1,11 +1,14 @@
-function FinanceTeamMemberHomePage () {
-    document.title = "Finance Team Member Home Page";
+import React from 'react';
+import FinanceTeamMember from './\Pages\Finance_Team\finance_team_mem_home_page.js'; 
 
-    return(
-        <>
-            <h1>Finance Team Member Home Page</h1>
-        </>
-    )
-}
+const FinanceTeamPage = () => {
+  return (
+    <div>
+      <h2>Finance Team Dashboard</h2>
+      <p>Welcome to the finance team dashboard. Here you can manage consultant hourly rates.</p>
+      <FinanceTeamMember />
+    </div>
+  );
+};
 
-export default FinanceTeamMemberHomePage;
+export default FinanceTeamPage;
