@@ -10,7 +10,7 @@ from datetime import datetime
 
 class HomeView(MethodView):
     def get(self):
-        return "Done", 202
+        return "Done", 200
 
 
 class CurrentUserView(MethodView):
@@ -19,7 +19,7 @@ class CurrentUserView(MethodView):
         if not user_id:
             return jsonify({"error": "Unauthorised"}), 401
         user = Consultant.query.filter_by(id=user_id).first()
-        return jsonify({"id": user.id, "email": user.username})
+        return jsonify({"id": user.id, "email": user.username}), 200
 
 
 class LoginView(MethodView):
@@ -34,24 +34,28 @@ class LoginView(MethodView):
         
         if consultant != None:
             user = consultant
+            user_type = "consultant"
         elif line_manager != None:
             user = line_manager
+            user_type = "line_manager"
         elif techy != None:
             user = techy
+            user_type = "ittechnician"
         elif finance_member != None:
             user = finance_member
+            user_type = "finance_member"
         else:
-            return jsonify({"Error": "User does not exist"})
+            return jsonify({"Error": "User does not exist"}), 400
         
 
         if password != user.password:
-            return jsonify({"Error": "Password incorrect"})
+            return jsonify({"Error": "Password incorrect"}), 400
 
         session["user_id"] = user.id
 
         print("Logged in: ", session.get("user_id"))
 
-        return jsonify({"id": user.id, "username": user.username})
+        return jsonify({"id": user.id, "username": user.username, "user_type": user_type}), 200
 
 
 class TimesheetView(MethodView):
@@ -85,7 +89,7 @@ class TimesheetView(MethodView):
         )
         db.session.add(timesheet)
         db.session.commit()
-        return jsonify({"id": timesheet.id})
+        return jsonify({"id": timesheet.id}), 200
     
     def put(self, timesheet_id):
         timesheet = Timesheet.query.filter_by(id=timesheet_id).first()
@@ -97,7 +101,7 @@ class TimesheetView(MethodView):
         timesheet.start_work_time = start_time
         timesheet.end_work_time = end_time
         db.session.commit()
-        return jsonify("Timesheet updated")
+        return jsonify("Timesheet updated"), 200
         
     
     def delete(self, timesheet_id):
@@ -117,7 +121,7 @@ class ListTimesheetsView(MethodView):
         timesheet_ids = [timesheet.id for timesheet in timesheets]
         for timesheet in timesheets:
             json_dict[timesheet.id] = {"name": timesheet.consultant_name, "status": timesheet.status}
-        return jsonify(json_dict)
+        return jsonify(json_dict), 200
 
 class ListConsultantsView(MethodView):
     def get(self):
@@ -126,7 +130,7 @@ class ListConsultantsView(MethodView):
         json_dict = {}
         for consultant in consultants:
             json_dict[consultant.id] = consultant.username 
-        return jsonify(json_dict)
+        return jsonify(json_dict), 200
 
 class ListConsultantTimesheetsView(MethodView):
     def get(self, consultant_id):
@@ -134,7 +138,7 @@ class ListConsultantTimesheetsView(MethodView):
         line_manager = LineManager.query.filter_by(id=user_id).first()
         consultant = Consultant.query.filter_by(id=consultant_id).first()
         if consultant.line_manager_id != user_id:
-            return jsonify({"Error": "Unauthorized"})
+            return jsonify({"Error": "Unauthorized"}), 400
         timesheets = Timesheet.query.filter_by(consultant_id=consultant_id)
         json_dict = {}
         
@@ -143,7 +147,7 @@ class ListConsultantTimesheetsView(MethodView):
                                        "status": timesheet.status, "Work Start": timesheet.start_work_time, 
                                        "End Work": timesheet.end_work_time}
         
-        return jsonify(json_dict)
+        return jsonify(json_dict), 200
 
 class TimesheetApprovalView(MethodView):
     def post(self, timesheet_id):
@@ -152,7 +156,7 @@ class TimesheetApprovalView(MethodView):
             return jsonify({"Error: Timesheet does not exist"}), 400
         timesheet.status = "approved"
         db.session.commit()
-        return jsonify("Timesheet Approved")
+        return jsonify("Timesheet Approved"), 200
 
 class TimesheetDisapprovalView(MethodView):
     def post(self, timesheet_id):
@@ -161,7 +165,7 @@ class TimesheetDisapprovalView(MethodView):
             return jsonify({"Error: Timesheet does not exist"}), 400
         timesheet.status = "disapproved"
         db.session.commit()
-        return jsonify("Timesheet Disapproved")
+        return jsonify("Timesheet Disapproved"), 200
 
 
 class LogoutView(MethodView):
@@ -173,7 +177,7 @@ class LogoutView(MethodView):
         print("Logged out aftererrererer: ", session.get("user_id"))
 
 
-        return "Logged out successfully", 200
+        return jsonify("Logged out successfully"), 200
 
 
 class CreateUserView(MethodView):
@@ -224,7 +228,7 @@ class CreateUserView(MethodView):
         else:
             return jsonify({"Error": "Invalid user type"}), 400
         
-        return jsonify("User created successfully")
+        return jsonify("User created successfully"), 200
 
 
 
