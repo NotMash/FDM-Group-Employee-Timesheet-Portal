@@ -13,37 +13,51 @@ html{
     position: relative;
     top: 17pc;
     right: 2.5pc;
+    background-color: white;
 }
 
-ul{
+.LoginFormList{
     display: inline;
     list-style-type: none;
     background-color: white;
 }
 
-li{
+.LoginFormListElement{
     padding: 0.4pc;
     font-family: "Roboto", sans-serif;
 }
 
-figure, img{
+.UserIcon{
     display: inline;
     width: 25%;
     position: relative;
     margin-left: 85px;
-
 }
 
-input{
+.input{
     width: 10pc;
+    padding: 0.5em;
+    background-color: #012E6E;
+    color: white;
 }
 
-a{
+.SelectInput{
+    background-color: #012E6E;
+    padding: 0.6em;
+    width: 42%;
+    color: white;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+#ForgotPass{
     text-decoration: none;
     color: #012E6E;
 }
 
-input[type=submit]{
+.Submit{
     padding: 0.7pc 0.1pc;
     width: 100px;
     cursor: pointer;

@@ -42,7 +42,7 @@
     border-radius: 0.25pc;
 }
 
-input[type=submit]{
+.accCreationSubmit{
     width: 52%;
     margin-top: 5%;
     cursor: pointer;
