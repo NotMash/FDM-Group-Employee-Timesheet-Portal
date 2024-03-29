@@ -40,17 +40,17 @@ function LoginForm() {
     return(
         <>
             <form onSubmit={handleSubmit} className={styles.LoginForm}>
-                <ul>
-                    <li>
+                <ul className={styles.LoginFormList}>
+                    <li className={styles.LoginFormListElement}>
                         <figure>
                             <img className={styles.UserIcon} src="./user_icon.png"></img>
                         </figure>
                     </li>
-                    <li>
+                    <li className={styles.LoginFormListElement}>
                         <label>User Type</label>
                     </li>
-                    <li>
-                        <select className={styles.selectInput}
+                    <li className={styles.LoginFormListElement}>
+                        <select className={styles.SelectInput}
                         value={userType}
                         onChange={(e) => setUserType(e.target.value)}>
                             <option>Consultant</option>
@@ -59,29 +59,29 @@ function LoginForm() {
                             <option>IT Technician</option>
                         </select>
                     </li>
-                    <li>
+                    <li className={styles.LoginFormListElement}>
                         <label for="username">Username</label>
                     </li>
-                    <li>
+                    <li className={styles.LoginFormListElement}>
                         <input type="username" id="uname" name="u_name" required
                         className={styles.input}
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}></input>
                     </li>
-                    <li>
+                    <li className={styles.LoginFormListElement}>
                         <label for="password">Password</label>
                     </li>
-                    <li>
+                    <li className={styles.LoginFormListElement}>
                         <input type="password" id="pword" name="u_password" required
                         className={styles.input}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}></input>
                     </li><br></br>
-                    <li>
-                        <a id={styles.forgotPass} href="">Forgot Password?</a>
+                    <li className={styles.LoginFormListElement}>
+                        <a id={styles.ForgotPass} href="">Forgot Password?</a>
                     </li><br></br>
-                    <li>
-                        <input id="submit_button" type="submit" name="submit_btn" value="Submit"></input>
+                    <li className={styles.LoginFormListElement}>
+                        <input className={styles.Submit} id="submit_button" type="submit" name="submit_btn" value="Submit"></input>
 
                     </li><br></br>
                 </ul>
