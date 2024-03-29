@@ -4,7 +4,7 @@ from flask_login import current_user, login_manager, LoginManager, login_user, l
 from flask_cors import cross_origin
 from timesheets import app, db
 from timesheets.forms import LoginForm
-from timesheets.models import User, Consultant, ITTechnician, FinanceTeamMember, LineManager, Timesheet
+from timesheets.models import User, Consultant, ITTechnician, FinanceTeamMember, LineManager, Timesheet, Difficulty
 from datetime import datetime
 
 
@@ -168,6 +168,45 @@ class TimesheetDisapprovalView(MethodView):
         return jsonify("Timesheet Disapproved"), 200
 
 
+class DifficultiesView(MethodView):
+    def get(self):
+        pass
+    
+    def post(self):
+        user_id = session.get("user_id")
+        consultant = Consultant.query.filter_by(id=user_id).first()
+        line_manager = LineManager.query.filter_by(id=user_id).first()
+        finance_member = FinanceTeamMember.query.filter_by(id=user_id).first()
+        
+        if (consultant and line_manager and finance_member) == None:
+            return jsonify({"Error": "Unauthorized"}), 400
+        
+        description = request.json["description"]
+        difficulty = Difficulty(description=description)
+        db.session.add(difficulty)
+        db.session.commit()
+        
+        return jsonify("Difficulty added successfully"), 200
+        
+    def delete(self, id):
+        user_id = session.get("user_id")
+        techy = ITTechnician.query.filter_by(id=user_id).first()
+        
+        return None # Will work on this later (need to update database model and stuff)
+    
+class ListDifficultiesView(MethodView):
+    def get(self):
+        user_id = session.get("user_id")
+        user = ITTechnician.query.filter_by(id=user_id).first()
+        
+        if user == None:
+            return jsonify({"Error": "Unauthorized"}), 400
+        
+        difficulties = Difficulty.query.all()
+
+        return jsonify(difficulties), 200
+
+
 class LogoutView(MethodView):
     def get(self):
         print("Logged before outtt: ", session.get("user_id"))
@@ -201,7 +240,7 @@ class CreateUserView(MethodView):
                                     password=password, email=email, line_manager_id=line_manager.id, 
                                     working_status="working", hourly_rate=0)
             db.session.add(user)
-            db.session.commit()  
+            db.session.commit()
         elif user_type.lower() in ["finance_member", "ittechnician", "line_manager"]:
             firstname = request.json["firstname"]
             lastname = request.json["lastname"]
