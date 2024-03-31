@@ -6,7 +6,6 @@ function IT_User_Creation_Page() {
 
     return (
         <>
-            <img className={styles.backImg} src="./main.jpeg"/>
             <div className={styles.container}>
                 <UserAccountCreation/>
             </div>
