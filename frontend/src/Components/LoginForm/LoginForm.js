@@ -25,8 +25,8 @@ function LoginForm() {
             throw new Error('Login failed with status: ' + response.status);
         }
     }).then(data => {
-        console.log(data);
-        navigate('/consultant_home_page#/timesheet_recording_page'); // Navigate to Timesheet page on successful login
+        var pageToRedirTo = ("/"+data.user_type + "_home_page");
+        navigate(pageToRedirTo);
     }).catch(error => {
         console.error(error);
     });
@@ -45,19 +45,6 @@ function LoginForm() {
                         <figure>
                             <img className={styles.UserIcon} src="./user_icon.png"></img>
                         </figure>
-                    </li>
-                    <li className={styles.LoginFormListElement}>
-                        <label>User Type</label>
-                    </li>
-                    <li className={styles.LoginFormListElement}>
-                        <select className={styles.SelectInput}
-                        value={userType}
-                        onChange={(e) => setUserType(e.target.value)}>
-                            <option>Consultant</option>
-                            <option>Line Manager</option>
-                            <option>Finance Team Member</option>
-                            <option>IT Technician</option>
-                        </select>
                     </li>
                     <li className={styles.LoginFormListElement}>
                         <label for="username">Username</label>
