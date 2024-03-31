@@ -83,7 +83,7 @@ class TimesheetView(MethodView):
             start_work_time=request.json["start_time"],
             end_work_time=request.json["end_time"],
             hours_worked=0,
-            week_start_date=datetime.utcnow(),
+            week_start_date=datetime.datetime.today()  - datetime.timedelta(days=datetime.datetime.today().weekday() % 7),
             consultant_id=user_id,
             status="pending",
         )
@@ -122,6 +122,25 @@ class ListTimesheetsView(MethodView):
         for timesheet in timesheets:
             json_dict[timesheet.id] = {"name": timesheet.consultant_name, "status": timesheet.status}
         return jsonify(json_dict), 200
+
+class ListWeeklyTimesheetsView(MethodView):
+    def get(self):
+        user_id = session.get("user_id")
+        
+        if not user_id:
+            return jsonify({"Error": "Unauthorized"}), 401
+        
+        week_start = datetime.datetime.today()  - datetime.timedelta(days=datetime.datetime.today().weekday() % 7)
+        week_start = f"{week_start.day}/{week_start.month}/{week_start.year}"
+        
+        timesheets = Timesheet.query.filter_by(week_start_date=week_start, consultant_id=user_id).all()
+        
+        timesheets = [i for i in timesheets]
+        for timesheet in timesheets:
+            json_dict[timesheet.id] = {"start_work": timesheet.start_work_time, "end_work": timesheet.end_work_time}
+        return jsonify(json_dict), 200
+    
+    
 
 class ListConsultantsView(MethodView):
     def get(self):
@@ -205,7 +224,6 @@ class ListDifficultiesView(MethodView):
         difficulties = Difficulty.query.all()
 
         return jsonify(difficulties), 200
-
 
 class LogoutView(MethodView):
     def get(self):
