@@ -7,7 +7,7 @@ function ConsultantLinks() {
         <>
             <nav>
                 <Link to="/timesheet_recording_page"><p>Create Timesheet</p></Link>
-                <Link to=""><p>View Timesheet</p></Link>
+                <Link to="/current_timesheet_viewer"><p>View Timesheet</p></Link>
                 <Link to=""><p>View Saved Timesheets</p></Link>
                 <Link to="/"><p>Back</p></Link>
                 <LogoutButton/>
