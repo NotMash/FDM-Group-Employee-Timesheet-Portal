@@ -25,7 +25,7 @@ function LogoutButton () {
     };
 
     return(<div>
-        <button onClick={handleLogout}>Logout</button>
+        <button className={styles.Logout} onClick={handleLogout}>Logout</button>
     </div>);
 }
 
