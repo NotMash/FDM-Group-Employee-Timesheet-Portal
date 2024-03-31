@@ -40,7 +40,7 @@ class LoginView(MethodView):
             user_type = "line_manager"
         elif techy != None:
             user = techy
-            user_type = "ittechnician"
+            user_type = "it_technician"
         elif finance_member != None:
             user = finance_member
             user_type = "finance_member"
