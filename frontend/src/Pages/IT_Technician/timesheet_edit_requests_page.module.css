@@ -4,17 +4,16 @@ body {
     margin: 0;
 }
 
+.mainContainer {
+    background-color: #012E6E;
+}
+
 .heading {
-    background-color: black;
-    color: rgb(170, 185, 197);
-    letter-spacing: 5px;
-    font-family: "Poppins", sans-serif;
-    font-size: 22pt;
     margin: 0;
-    padding: 2%;
-    box-shadow: 0 4px 4px 0px #06192f;
-    position: relative;
-    z-index: 1;
+    padding: 3%;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    color: white;
 }
 
 .cardContainer {
@@ -25,7 +24,7 @@ body {
     justify-items: center;
     gap: 50px;
     padding: 5%;
-    background: rgb(0, 75, 121);
-    background: linear-gradient(172deg, rgba(0, 75, 121, 1) 0%, rgba(0, 19, 42, 1) 100%);
+    padding-top: 0;
+    background: #012E6E;
     z-index: 1;
 }

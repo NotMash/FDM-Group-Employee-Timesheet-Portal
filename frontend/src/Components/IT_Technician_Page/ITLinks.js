@@ -5,7 +5,7 @@ import LogoutButton from "../Global/LogoutButton";
 function ITLinks() {
     return (
         <>
-            <nav>
+            <nav className={styles.navbar}>
                 <div className={styles.linkContainer}>
                     <Link className={styles.links} to="/it_difficulties"><p>View IT Difficulties</p></Link>
                 </div>

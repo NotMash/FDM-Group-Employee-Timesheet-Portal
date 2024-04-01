@@ -1,58 +1,119 @@
 
 .card {
     display: flex;
+    justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100vh;
 }
 
 .userAccountForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    width: 100%;
+    background-color: white;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: 0 0 15px white;
+    width: 30%;
+    height: 85%;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
 .userAccountForm label, .userAccountForm h2 {
     font-family: "Poppins", serif;
-    color: #b4b29b;
+    color: #012E6E;
+}
+
+.userAccountForm p {
+    font-family: "Poppins", serif;
+    font-size: 9pt;
+    color: #850000a3;
+    margin: 3%;
 }
 
 .userAccountForm h2 {
     margin: 0;
-    color: #7f4f33;
+    color: #012E6E;
 }
 
 .main_img {
-    width: 50%;
-    height: auto;
-    border-radius: 25px;
+    width: 30%;
+    height: 85%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-color: #002252;
+    box-shadow: 0 0 15px white;
 }
 
 .input, .selectInput{
-    width: 50%;
+    width: 70%;
     height: 1.75pc;
-    padding-left: 2%;
-    background-color: #151515;
+    padding-left: 15px;
+    background-color: #012E6E;
     border: solid 1pt #ffffff3c;
     border-radius: 10px;
-    color: #b4b29b;
-    margin: 0.5%;
+    margin: 2%;
+    color: white;
+}
+
+.passwordInputWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    height: 1.9pc;
+    padding-left: 15px;
+    background-color: #012E6E;
+    border: solid 1pt #ffffff3c;
+    border-radius: 10px;
+    margin: 2%;
+    color: white;
+}
+
+.passwordInput {
+    background-color: #07081900;
+    color: white;
+    border: none;
+}
+
+.passwordInput:focus, .input:focus, .selectInput:focus {
+    outline: none;
+}
+
+.eyeIcon {
+    height: 1.2pc;
+    margin-right: 5%;
+    cursor: pointer;
+    filter: invert()
 }
 
 .selectInput{
-    width: 52%;
+    width: 75%;
     height: 1.95pc;
-    border-radius: 0.25pc;
+    cursor: pointer;
 }
 
-.accCreationSubmit{
+.userAccountForm input[type=submit]{
+    width: 70%;
     width: 52%;
     margin-top: 5%;
     cursor: pointer;
-    background: linear-gradient(to right, #2f1d13 0%, #151515 50%, #2f1d13 100%);
-    color: #9F6442;
+    background: linear-gradient(to right, #012E6E 0%, #4d016e 100%);
+    color: white;
     text-transform: uppercase;
     font-family: "Poppins", serif;
     letter-spacing: 2px;
-    border: solid 1pt #9F6442;
-    border-radius: 0.5pc;
+    border: solid 1pt #070819;
+    border-radius: 10px;
+    margin-top: 5%;
     margin-bottom: 5%;
 }
+
+::placeholder {
+    color: rgba(255, 255, 255, 0.704);
+  }
 
