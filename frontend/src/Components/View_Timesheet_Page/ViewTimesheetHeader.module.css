@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.headerContainer{
+    display: flex;
+    flex-direction:column;
+    width: 30%;
+    position: absolute;
+    left: 35%;
+    top: 2%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.weekStarting{
+    position: absolute;
+    left: 25%;
+    top: 60%;
+    font-family: 'Roboto', sans-serif;
+}
