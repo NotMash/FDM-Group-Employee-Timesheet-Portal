@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom";
+import styles from './ConsultantFinder.module.css';
+import ConsultantCard from "./ConsultantCard";
 
 //bunch of placeholder names
 const consultantPlaceholderNames = [
@@ -34,21 +36,28 @@ function ConsultantFinder() {
       };
 
     return(
-        <div id="search">
-            <input type="search"
-            value={search}
-            onChange={handleSearchChange}></input>
-            <p>My Consultants</p>
-            <ul>
-                {search === '' ? (
-                    consultantPlaceholderNames.map((result, index) => (
-                    <li><Link key={index}>{result}</Link></li> 
-                ))
-                ) : (
-                    searchResults.map((result, index) => (
-                    <li><Link key={index}>{result}</Link></li> 
-                )))}
-            </ul>
+        <div className={styles.pageContainer}>
+            <div className={styles.searchContainer}>
+                <h2 className={styles.searchTitle}>Search Consultant</h2>
+                <input type="search"
+                value={search}
+                onChange={handleSearchChange}
+                className={styles.searchBox}></input>
+            </div>
+
+            <div className={styles.searchResultsContainer}>
+                <p className={styles.myConsultantsTitle}>My Consultants</p>
+                <ul className={styles.searchResults}>
+                    {search === '' ? (
+                        consultantPlaceholderNames.map((result, index) => (
+                        <li><Link key={index}>{result}</Link></li> 
+                    ))
+                    ) : (
+                        searchResults.map((result, index) => (
+                        <li><ConsultantCard name={result} key={index}></ConsultantCard></li> 
+                    )))}
+                </ul>
+            </div>
         </div>
     )
 }

@@ -1,0 +1,32 @@
+.cardContainer{
+    background-color: #AEAEAE;
+    padding: 1em;
+    width: 40%;
+    height: 15em;    
+    border-radius: 1.5em;
+    box-shadow: -0.2em 0.2em 0.2em hsla(0, 0%, 24%, 0.753);
+    position: absolute;
+}
+
+.userIcon{
+    width: 95%;
+}
+
+.name{
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 19%;
+}
+
+.viewTimesheetBtn{
+    background-color: #D9D9D9;
+    border: none;
+    border-radius: 1.25em;
+    padding: 0.55em;
+    font-size: 1em;
+    position: absolute;
+    top: 75%;
+    left: 20%;
+    cursor: pointer;
+}
