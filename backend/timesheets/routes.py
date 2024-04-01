@@ -95,12 +95,14 @@ class TimesheetView(MethodView):
         time_elapsed = time_elapsed.total_seconds()
         
         week_start_date = datetime.today()  - timedelta(days=datetime.today().weekday() % 7)
+        week_start_date = datetime(week_start_date.year, week_start_date.month, week_start_date.day)
         timesheet = Timesheet(
             consultant_name=f"{consultant.firstname} {consultant.lastname}",
             start_work_time=start_work_time,
             end_work_time=end_work_time,
             hours_worked=time_elapsed,
-            week_start_date=datetime.today() - timedelta(days=datetime.today().weekday() % 7),
+            week_start_date=week_start_date,
+            day=datetime.utcnow(),
             consultant_id=user_id,
             status="pending",
         )
@@ -144,18 +146,21 @@ class ListWeeklyTimesheetsView(MethodView):
     def get(self):
         user_id = session.get("user_id")
         consultant = Consultant.query.filter_by(id=user_id).first()
+        print(consultant)
         
-        if not user_id or consultant == None:
+        if consultant == None:
             return jsonify({"Error": "Unauthorized"}), 401
         
         week_start = datetime.today()  - timedelta(days=datetime.today().weekday() % 7)
+        week_start = datetime(week_start.year, week_start.month, week_start.day)
         timesheets = Timesheet.query.filter_by(week_start_date=week_start, consultant_id=user_id).all()
         week_start = f"{week_start.day}/{week_start.month}/{week_start.year}"
-        
         json_dict = {}
         timesheets = [i for i in timesheets]
         for timesheet in timesheets:
-            json_dict[timesheet.id] = {"start_work": timesheet.start_work_time, "end_work": timesheet.end_work_time, "week_start": week_start}
+            hours_worked = str(timedelta(seconds=timesheet.hours_worked))
+            day = f"{timesheet.day.day}/{timesheet.day.month}/{timesheet.day.year}"
+            json_dict[timesheet.id] = {"start_work": timesheet.start_work_time, "end_work": timesheet.end_work_time, "week_start": week_start, "hours_worked": hours_worked, "day": day}
         return jsonify(json_dict), 200
     
 
