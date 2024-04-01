@@ -99,6 +99,8 @@
 
 .userAccountForm input[type=submit]{
     width: 70%;
+    width: 52%;
+    margin-top: 5%;
     cursor: pointer;
     background: linear-gradient(to right, #012E6E 0%, #4d016e 100%);
     color: white;

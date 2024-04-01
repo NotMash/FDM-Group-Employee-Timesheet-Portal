@@ -6,6 +6,7 @@ import FinanceTeamMemberHomePage from "./Pages/Finance_Team/finance_team_mem_hom
 import ITTechnicianHomePage from "./Pages/IT_Technician/it_technician_home_page";
 import LineManagerHomePage from "./Pages/Line_Manager/line_manager_home_page";
 import TimesheetRecordingPage from "./Pages/Consultant/timesheet_recording_page";
+import ConsultantFinderPage from "./Pages/Line_Manager/consultant_finder_page";
 import ItDifficultiesPage from "./Pages/IT_Technician/it_difficulties_page";
 import TimesheetEditRequestsPage from "./Pages/IT_Technician/timesheet_edit_requests_page";
 import ItUserCreationPage from "./Pages/IT_Technician/it_user_creation_page";
@@ -17,11 +18,12 @@ function App()
       <Routes>
         <Route path="/" element={<MainHome/>}/>
         <Route path="/login_page" element={<LoginPage/>}/>
-          <Route path="/consultant_home_page" element={<ConsultantHomePage/>}/>
+        <Route path="/consultant_home_page" element={<ConsultantHomePage/>}/>
         <Route path="/finance_team_member_home_page" element={<FinanceTeamMemberHomePage/>}/>
         <Route path="/it_technician_home_page" element={<ITTechnicianHomePage/>}/>
         <Route path="/line_manager_home_page" element={<LineManagerHomePage/>}/>
         <Route path="/timesheet_recording_page" element={<TimesheetRecordingPage/>}/>
+        <Route path="/consultant_finder_page" element={<ConsultantFinderPage/>}/>
         <Route path="/it_difficulties" element={<ItDifficultiesPage/>}/>
         <Route path="/timesheet_edit_requests" element={<TimesheetEditRequestsPage/>}/>
         <Route path="/it_user_creation" element={<ItUserCreationPage/>}/>
