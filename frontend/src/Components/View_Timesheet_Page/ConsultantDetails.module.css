@@ -1,0 +1,26 @@
+.consultantDetailsContainer{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    position: absolute;
+    top: 5%;
+    text-align: center;
+}
+
+.consultantName{
+    position: absolute;
+    top: 25%;
+    left: 42%;
+}
+
+.lineManagerContainer{
+    position: absolute;
+    top: 70%;
+    left: 31%;
+}
+
+.lineManagerName{
+    position: absolute;
+    top: 25%;
+    left: 25%;
+}
