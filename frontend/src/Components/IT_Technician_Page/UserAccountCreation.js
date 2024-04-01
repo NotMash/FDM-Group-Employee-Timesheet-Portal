@@ -1,13 +1,20 @@
 import { useState } from "react";
 import styles from "./UserAccountCreation.module.css";
+import { useNavigate } from 'react-router-dom';
 
 function UserAccountCreation() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [userType, setUserType] = useState("Consultant");
+    const [firstname, setFirstName] = useState("");
+    const [lastname, setLastName] = useState("");
+    const [username, setUsername] = useState("");
+    const [lineManagerUsername, setLineManagerUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState(false);
-    const [userType, setUserType] = useState("Consultant");
+    const navigate = useNavigate();
 
     const handlePasswordToggle = () => {
         setShowPassword(!showPassword);
@@ -33,37 +40,88 @@ function UserAccountCreation() {
         setUserType(e.target.value);
     };
 
+    const handleFirstNameChange = (e) => {
+        setFirstName(e.target.value);
+    };
+
+    const handleLastNameChange = (e) => {
+        setLastName(e.target.value);
+    };
+
+    const handleUserNameChange = (e) => {
+        setUsername(e.target.value);
+    };
+
+    const handleLineManagerUserNameChange = (e) => {
+        setLineManagerUsername(e.target.value);
+    };
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        var accountDetails;
+        if (userType=="Consultant") {
+            accountDetails = { userType, firstname, lastname, username, lineManagerUsername, email, password };
+        } else {
+            accountDetails = { userType, firstname, lastname, username, email, password };
+        }
+    
+        fetch('http://127.0.0.1:5000/create_user', {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: 'include',
+            body: JSON.stringify(accountDetails)
+        }).then(response => {
+            if (response.ok) {
+                console.log("User Created Successfully!");
+                return response.json();
+            } else {
+                throw new Error('User Creation Failed with Status: ' + response.status);
+            }
+        }).then(data => {
+            var pageToRedirTo = ("/"+data.user_type + "_home_page");
+            navigate(pageToRedirTo);
+        }).catch(error => {
+            console.error(error);
+        });
+    };
+
     return (
         <>
             <div className={styles.mainContainer}>
                 <div className={styles.card}>
                     <img className={styles.main_img} src="./fdm.gif" alt="Background" />
-                    <form className={styles.userAccountForm}>
+                    <form onSubmit={handleSubmit} className={styles.userAccountForm}>
 
                         <h2>Create User Account</h2>
 
                         <label>User Type</label>
 
-                        <select className={styles.selectInput} onChange={handleUserTypeChange}>
+                        <select name="user_type" className={styles.selectInput} onChange={handleUserTypeChange}>
                             <option value="Consultant">Consultant</option>
                             <option value="Line Manager">Line Manager</option>
-                            <option value="Finance TeamMember">Finance Team Member</option>
+                            <option value="Finance Team Member">Finance Team Member</option>
+                            <option value="IT Technician">IT Technician</option>
                         </select>
 
-                        <input type="text" id="firstname" name="first_name" placeholder="First Name" required className={styles.input} />
+                        <input onChange={handleFirstNameChange} type="text" id="firstname" name="firstname" placeholder="First Name" required className={styles.input} />
 
-                        <input type="text" id="lastname" name="last_name" placeholder="Last Name" required className={styles.input} />
+                        <input onChange={handleLastNameChange} type="text" id="lastname" name="lastname" placeholder="Last Name" required className={styles.input} />
 
                         {userType == "Consultant" &&
-                            <input type="text" id="managername" name="manager_name" placeholder="Manager Username" required className={styles.input} />
+                            <input onChange={handleLineManagerUserNameChange} type="text" id="managername" name="line_manager_username" placeholder="Manager Username" required className={styles.input} />
                         }
-                        <input type="text" id="uname" name="u_name" placeholder="Username" required className={styles.input} />
-                        <input type="email" id="email" name="e_mail" placeholder="Email" required className={styles.input} />
+                        <input onChange={handleUserNameChange} type="text" id="uname" name="username" placeholder="Username" required className={styles.input} />
+                        <input onChange={handleEmailChange} type="email" id="email" name="email" placeholder="Email" required className={styles.input} />
                         <div className={styles.passwordInputWrapper}>
                             <input
                                 type={showPassword ? "text" : "password"}
                                 id="pword"
-                                name="u_password"
+                                name="password"
                                 placeholder="Password"
                                 required
                                 className={styles.passwordInput}
@@ -79,7 +137,7 @@ function UserAccountCreation() {
                             <input
                                 type={showConfirmPassword ? "text" : "password"}
                                 id="confirm_pword"
-                                name="confirm_u_password"
+                                name="confirmedpassword"
                                 placeholder="Confirm Password"
                                 required
                                 className={styles.passwordInput}
