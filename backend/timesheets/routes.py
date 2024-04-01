@@ -5,9 +5,20 @@ from flask_cors import cross_origin
 from timesheets import app, db
 from timesheets.forms import LoginForm
 from timesheets.models import User, Consultant, ITTechnician, FinanceTeamMember, LineManager, Timesheet, Difficulty
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
+
+def convert_gay_time(time):
+    day = time[8:10]
+    month = time[5:7]
+    year = time[0:4]
+    hour = time[11:19]
+    date = f"{day}/{month}/{year}"
+    time = hour
+    
+    return (time, date)
+    
 class HomeView(MethodView):
     def get(self):
         return "Done", 200
@@ -78,12 +89,18 @@ class TimesheetView(MethodView):
         if consultant is None:
             return jsonify({"Error": "Consultant not found"}), 404
 
+        start_work_time = convert_gay_time(request.json["start_time"])[0]
+        end_work_time = convert_gay_time(request.json["end_time"])[0]
+        time_elapsed = datetime.strptime(end_work_time, "%H:%M:%S") - datetime.strptime(start_work_time, "%H:%M:%S")
+        time_elapsed = time_elapsed.total_seconds()
+        
+        week_start_date = datetime.today()  - timedelta(days=datetime.today().weekday() % 7)
         timesheet = Timesheet(
             consultant_name=f"{consultant.firstname} {consultant.lastname}",
-            start_work_time=request.json["start_time"],
-            end_work_time=request.json["end_time"],
-            hours_worked=0,
-            week_start_date=datetime.datetime.today()  - datetime.timedelta(days=datetime.datetime.today().weekday() % 7),
+            start_work_time=start_work_time,
+            end_work_time=end_work_time,
+            hours_worked=time_elapsed,
+            week_start_date=datetime.today() - timedelta(days=datetime.today().weekday() % 7),
             consultant_id=user_id,
             status="pending",
         )
@@ -126,20 +143,20 @@ class ListTimesheetsView(MethodView):
 class ListWeeklyTimesheetsView(MethodView):
     def get(self):
         user_id = session.get("user_id")
+        consultant = Consultant.query.filter_by(id=user_id).first()
         
-        if not user_id:
+        if not user_id or consultant == None:
             return jsonify({"Error": "Unauthorized"}), 401
         
-        week_start = datetime.datetime.today()  - datetime.timedelta(days=datetime.datetime.today().weekday() % 7)
+        week_start = datetime.today()  - timedelta(days=datetime.today().weekday() % 7)
+        timesheets = Timesheet.query.filter_by(week_start_date=week_start, consultant_id=user_id).all()
         week_start = f"{week_start.day}/{week_start.month}/{week_start.year}"
         
-        timesheets = Timesheet.query.filter_by(week_start_date=week_start, consultant_id=user_id).all()
-        
+        json_dict = {}
         timesheets = [i for i in timesheets]
         for timesheet in timesheets:
-            json_dict[timesheet.id] = {"start_work": timesheet.start_work_time, "end_work": timesheet.end_work_time}
+            json_dict[timesheet.id] = {"start_work": timesheet.start_work_time, "end_work": timesheet.end_work_time, "week_start": week_start}
         return jsonify(json_dict), 200
-    
     
 
 class ListConsultantsView(MethodView):
@@ -304,6 +321,7 @@ app.add_url_rule("/view_timesheet/<timesheet_id>", view_func=timesheets_view, me
 app.add_url_rule("/update_timesheet/<timesheet_id>", view_func=timesheets_view, methods=["PUT"])
 app.add_url_rule("/delete_timesheet/<timesheet_id>", view_func=timesheets_view, methods=["DELETE"])
 app.add_url_rule("/list_timesheets", view_func=ListTimesheetsView.as_view("list_timesheets_view"), methods=["GET"])
+app.add_url_rule("/list_weekly_timesheets", view_func=ListWeeklyTimesheetsView.as_view("list_weekly_timesheets_view"), methods=["GET"])
 app.add_url_rule("/list_timesheets/<consultant_id>", view_func=ListConsultantTimesheetsView.as_view("list_consultant_timesheets_view"), methods=["GET"])
 app.add_url_rule("/approve_timesheet/<timesheet_id>", view_func=TimesheetApprovalView.as_view("timesheet_approval_view"), methods=["POST"])
 app.add_url_rule("/disapprove_timesheet/<timesheet_id>", view_func=TimesheetDisapprovalView.as_view("timesheet_disapproval_view"), methods=["POST"])
