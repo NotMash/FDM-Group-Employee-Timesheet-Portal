@@ -188,7 +188,7 @@ class CreateUserView(MethodView):
         if current_user == None:
             return jsonify({"Error": "Unauthorized bumbaclaat"}), 400
         
-        user_type = request.json["user_type"]
+        user_type = request.json["userType"]
         if user_type.lower() == "consultant":
             firstname = request.json["firstname"]
             lastname = request.json["lastname"]
@@ -240,6 +240,7 @@ app.add_url_rule("/@me", view_func=CurrentUserView.as_view("current_user_view"))
 
 app.add_url_rule("/login", view_func=LoginView.as_view("login_view"), methods=["POST"])
 app.add_url_rule("/logout", view_func=LogoutView.as_view("logout_view"))
+
 app.add_url_rule("/create_user", view_func=CreateUserView.as_view("create_user_view"), methods=["POST"])
 
 app.add_url_rule("/create_timesheet", view_func=timesheets_view, methods=["POST"])
