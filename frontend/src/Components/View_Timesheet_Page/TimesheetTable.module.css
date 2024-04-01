@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.timesheetTable{
+    background-color: #012E6E;
+    position: absolute;
+    left: 28%;
+    top: 25%;
+    width: 45%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.tableData{
+    background-color: #cee2ffe0;
+    padding: 0.6em;
+    text-align: center;
+    font-size: 1.5rem;
+}
