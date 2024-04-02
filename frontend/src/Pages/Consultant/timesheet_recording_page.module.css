@@ -1,0 +1,24 @@
+
+.heading {
+    margin: 0;
+    padding: 3%;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    color: white;
+}
+
+.mainContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.weekContainer {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 3%;
+}
