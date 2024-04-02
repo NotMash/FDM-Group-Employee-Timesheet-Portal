@@ -146,7 +146,7 @@ class ListWeeklyTimesheetsView(MethodView):
     def get(self):
         user_id = session.get("user_id")
         consultant = Consultant.query.filter_by(id=user_id).first()
-        line_manager = LineManager.query.filter_by(username=consultant.line_manager)
+        line_manager = LineManager.query.filter_by(username=consultant.line_manager).first()
         print(consultant)
         
         if consultant == None:
@@ -163,7 +163,7 @@ class ListWeeklyTimesheetsView(MethodView):
             day = f"{timesheet.day.day}/{timesheet.day.month}/{timesheet.day.year}"
             json_dict[timesheet.id] = {"start_work": timesheet.start_work_time, "end_work": timesheet.end_work_time, 
                                        "week_start": week_start, "hours_worked": hours_worked, "day": day, 
-                                       "consultant_name": f"{consultant.firstname} {consultant.lastname}", "line_manager_name": line_manager}
+                                       "consultant_name": f"{consultant.firstname} {consultant.lastname}", "line_manager_name": consultant.line_manager}
         return jsonify(json_dict), 200
     
 
