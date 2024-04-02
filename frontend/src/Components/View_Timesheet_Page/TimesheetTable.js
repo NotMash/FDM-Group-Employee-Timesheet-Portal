@@ -1,6 +1,7 @@
 import ViewTimesheetHeader from "../../Components/View_Timesheet_Page/ViewTimesheetHeader";
 import styles from './TimesheetTable.module.css';
 import { useState, useEffect } from 'react';
+import ConsultantDetails from "../../Components/View_Timesheet_Page/ConsultantDetails";
 
 export default function TimesheetTable() {
 
@@ -58,6 +59,7 @@ export default function TimesheetTable() {
 
 return ( 
     <>
+        {arrayOfDays.length > 0 && <ConsultantDetails consultantName={arrayOfDays[0].consultant_name} lineManagerName={arrayOfDays[0].line_manager_name}/>}
         {arrayOfDays.length > 0 && <ViewTimesheetHeader currentWeek={arrayOfDays[0].week_start}/>}
         <div>
             <table className={styles.timesheetTable}>
