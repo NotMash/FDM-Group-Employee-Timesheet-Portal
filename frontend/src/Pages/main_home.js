@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./MainHome.module.css";
-import logo from "../Main/logo.jpeg";
+import logo from "./images/logo.jpeg";
 
 //get the current time and output greeting based on time
 function getTimeGreeting(){
