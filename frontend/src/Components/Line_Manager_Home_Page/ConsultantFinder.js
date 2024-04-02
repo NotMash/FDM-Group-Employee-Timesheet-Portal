@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { Link } from "react-router-dom";
 import styles from './ConsultantFinder.module.css';
 import ConsultantCard from "./ConsultantCard";
 
@@ -47,16 +46,16 @@ function ConsultantFinder() {
 
             <div className={styles.searchResultsContainer}>
                 <p className={styles.myConsultantsTitle}>My Consultants</p>
-                <ul className={styles.searchResults}>
+                <div className={styles.searchResults}>
                     {search === '' ? (
                         consultantPlaceholderNames.map((result, index) => (
-                        <li><Link key={index}>{result}</Link></li> 
+                        <ConsultantCard name={result} key={index}></ConsultantCard>
                     ))
                     ) : (
                         searchResults.map((result, index) => (
-                        <li><ConsultantCard name={result} key={index}></ConsultantCard></li> 
+                        <ConsultantCard name={result} key={index}></ConsultantCard>
                     )))}
-                </ul>
+                </div>
             </div>
         </div>
     )
