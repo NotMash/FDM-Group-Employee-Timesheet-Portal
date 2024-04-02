@@ -146,6 +146,7 @@ class ListWeeklyTimesheetsView(MethodView):
     def get(self):
         user_id = session.get("user_id")
         consultant = Consultant.query.filter_by(id=user_id).first()
+        line_manager = LineManager.query.filter_by(username=consultant.line_manager)
         print(consultant)
         
         if consultant == None:
@@ -160,9 +161,34 @@ class ListWeeklyTimesheetsView(MethodView):
         for timesheet in timesheets:
             hours_worked = str(timedelta(seconds=timesheet.hours_worked))
             day = f"{timesheet.day.day}/{timesheet.day.month}/{timesheet.day.year}"
-            json_dict[timesheet.id] = {"start_work": timesheet.start_work_time, "end_work": timesheet.end_work_time, "week_start": week_start, "hours_worked": hours_worked, "day": day}
+            json_dict[timesheet.id] = {"start_work": timesheet.start_work_time, "end_work": timesheet.end_work_time, 
+                                       "week_start": week_start, "hours_worked": hours_worked, "day": day, 
+                                       "consultant_name": f"{consultant.firstname} {consultant.lastname}", "line_manager_name": line_manager}
         return jsonify(json_dict), 200
     
+
+class WeeklyTimesheetsApprovalView(MethodView):
+    def post(self, consultant_username, flag):
+        user_id = session.get("user_id")
+        line_manager = LineManager.query.filter_by(id=user_id)
+        consultant = Consultant.query.filter_by(username=consultant_username)
+        
+        week_start = datetime.today()  - timedelta(days=datetime.today().weekday() % 7)
+        week_start = datetime(week_start.year, week_start.month, week_start.day)
+        week_start = f"{week_start.day}/{week_start.month}/{week_start.year}"
+        timesheets = Timesheet.query.filter_by(week_start_date=week_start, username=consultant_username).all()
+        
+        for timesheet in timesheets :
+            if flag == "approve":
+                timesheet.status = "approved"
+                db.session.commit()
+            elif flag == "disapprove":
+                timesheet.status = "disapproved"
+            else:
+                return jsonify({"Error": "Invalid flag"}), 400
+        
+        return jsonify("Success"), 200
+        
 
 class ListConsultantsView(MethodView):
     def get(self):
@@ -328,7 +354,8 @@ app.add_url_rule("/update_timesheet/<timesheet_id>", view_func=timesheets_view, 
 app.add_url_rule("/delete_timesheet/<timesheet_id>", view_func=timesheets_view, methods=["DELETE"])
 app.add_url_rule("/list_timesheets", view_func=ListTimesheetsView.as_view("list_timesheets_view"), methods=["GET"])
 app.add_url_rule("/list_weekly_timesheets", view_func=ListWeeklyTimesheetsView.as_view("list_weekly_timesheets_view"), methods=["GET"])
-app.add_url_rule("/list_timesheets/<consultant_id>", view_func=ListConsultantTimesheetsView.as_view("list_consultant_timesheets_view"), methods=["GET"])
+app.add_url_rule("/list_weekly_timesheets/<consultant_username>/<flag>", view_func=WeeklyTimesheetsApprovalView.as_view("list_weekly_timesheets_approval"), methods=["POST"])
+app.add_url_rule("/list_timesheets/<consultant_id>", view_func=ListConsultantTimesheetsView.as_view("list_consultant_timesheets_viewpost"), methods=["GET"])
 app.add_url_rule("/approve_timesheet/<timesheet_id>", view_func=TimesheetApprovalView.as_view("timesheet_approval_view"), methods=["POST"])
 app.add_url_rule("/disapprove_timesheet/<timesheet_id>", view_func=TimesheetDisapprovalView.as_view("timesheet_disapproval_view"), methods=["POST"])
 
