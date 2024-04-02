@@ -1,6 +1,33 @@
 import styles from './TimesheetTable.module.css';
+import { useState, useEffect } from 'react';
 
 export default function TimesheetTable() {
+
+    const [timesheets, setTimesheets] = useState([]);
+      
+    useEffect(() => {
+        fetch('http://127.0.0.1:5000/list_weekly_timesheets', {
+                method: "GET",
+                headers: { "Content-Type": "application/json" },
+                credentials: 'include',
+            }).then(response => {
+                if (response.ok) {
+                    return response.json();
+                } 
+                else {
+                    throw new Error('User Creation Failed with Status: ' + response.status);
+                }
+            }).then(data => {
+                // Data fetched successfully
+                console.log(data)
+                setTimesheets(data);
+            }).catch(error => {
+                console.error(error);
+            });
+    }, []);
+
+    console.log("stored stuff:",timesheets)
+
     return(
         <div>
             <table className={styles.timesheetTable}>
