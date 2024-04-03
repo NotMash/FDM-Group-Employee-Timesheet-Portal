@@ -23,6 +23,22 @@ class HomeView(MethodView):
     def get(self):
         return "Done", 200
 
+class ListConsultantsView(MethodView):
+    def get(self):
+        user_id = session.get("user_id")
+        line_manager = LineManager.query.filter_by(id=user_id)
+        
+        if line_manager != None:
+            consultants = Consultant.query.filter_by(line_manager_id=user_id)
+        else:
+            return jsonify({"Error": "Unauthorized"}), 400
+        
+        json_dict = {}
+        for consultant in consultants:
+            json_dict[consultant.username] = {"username": consultant.username, "consultant_id": consultant.id}
+            
+        return jsonify(json_dict), 200
+        
 
 class CurrentUserView(MethodView):
     def get(self):
@@ -189,16 +205,6 @@ class WeeklyTimesheetsApprovalView(MethodView):
                 return jsonify({"Error": "Invalid flag"}), 400
         
         return jsonify("Success"), 200
-        
-
-class ListConsultantsView(MethodView):
-    def get(self):
-        user_id = session.get("user_id")
-        consultants = Consultant.query.filter_by(line_manager_id=user_id)
-        json_dict = {}
-        for consultant in consultants:
-            json_dict[consultant.id] = consultant.username 
-        return jsonify(json_dict), 200
 
 class ListConsultantTimesheetsView(MethodView):
     def get(self, consultant_id):
