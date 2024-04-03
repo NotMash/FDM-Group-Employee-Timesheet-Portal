@@ -65,8 +65,10 @@ function UserAccountCreation() {
         e.preventDefault();
 
         var accountDetails;
-        if (userType=="Consultant") {
+        console.log(userType)
+        if (userType=="consultant") {
             accountDetails = { userType, firstname, lastname, username, line_manager_username, email, password };
+            console.log(accountDetails)
         } else {
             accountDetails = { userType, firstname, lastname, username, email, password };
         }
