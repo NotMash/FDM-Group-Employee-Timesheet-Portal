@@ -1,12 +1,13 @@
-html{
-    background-image: none ;
-    background-color: #012E6E;
+html {
+    background-image: none;
+    background: rgb(2, 0, 36);
+    background: radial-gradient(circle, #000000 0%, rgba(24, 31, 0, 1) 100%);
 }
 
 
 
 
-.LoginForm{
+.LoginForm {
     width: 20%;
     text-align: center;
     border-radius: 0.4pc;
@@ -16,32 +17,32 @@ html{
     background-color: white;
 }
 
-.LoginFormList{
+.LoginFormList {
     display: inline;
     list-style-type: none;
     background-color: white;
 }
 
-.LoginFormListElement{
+.LoginFormListElement {
     padding: 0.4pc;
     font-family: "Roboto", sans-serif;
 }
 
-.UserIcon{
+.UserIcon {
     display: inline;
     width: 25%;
     position: relative;
     margin-left: 85px;
 }
 
-.input{
+.input {
     width: 10pc;
     padding: 0.5em;
     background-color: #012E6E;
     color: white;
 }
 
-.SelectInput{
+.SelectInput {
     background-color: #012E6E;
     padding: 0.6em;
     width: 42%;
@@ -52,12 +53,12 @@ html{
     appearance: none;
 }
 
-#ForgotPass{
+#ForgotPass {
     text-decoration: none;
     color: #012E6E;
 }
 
-.Submit{
+.Submit {
     padding: 0.7pc 0.1pc;
     width: 100px;
     cursor: pointer;

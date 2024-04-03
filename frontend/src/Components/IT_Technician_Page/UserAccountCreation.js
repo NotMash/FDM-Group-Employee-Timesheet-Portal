@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 function UserAccountCreation() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [userType, setUserType] = useState("Consultant");
+    const [userType, setUserType] = useState("consultant");
     const [firstname, setFirstName] = useState("");
     const [lastname, setLastName] = useState("");
     const [username, setUsername] = useState("");
@@ -114,7 +114,7 @@ function UserAccountCreation() {
 
                         <input onChange={handleLastNameChange} type="text" id="lastname" name="lastname" placeholder="Last Name" required className={styles.input} />
 
-                        {userType == "Consultant" &&
+                        {userType == "consultant" &&
                             <input onChange={handleLineManagerUserNameChange} type="text" id="managername" name="line_manager_username" placeholder="Manager Username" required className={styles.input} />
                         }
                         <input onChange={handleUserNameChange} type="text" id="uname" name="username" placeholder="Username" required className={styles.input} />
