@@ -7,10 +7,15 @@
     align-items:start;
     transition: width 200ms ease;
     overflow: hidden;
+    position: fixed;
 }
 
 .navbar:hover{
     width: 16rem;
+}
+
+.navbar:hover body{
+    margin-left: 15rem;
 }
 
 .navbar:hover .navText{

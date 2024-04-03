@@ -8,7 +8,7 @@ export default function Navbar(props) {
     return(<nav className={styles.navbar}>
         <ul className={styles.navContainer}>
             <li className={styles.navElement}>
-                <Link className={styles.navLink} to="/">
+                <Link className={styles.navLink} to={props.homePageLink}>
                     <img className={styles.icon} src="./Home_Page_Icons/house-solid.svg"/>
                     <p className={styles.navText} href="/">{props.homePageTitle}</p>
                 </Link>

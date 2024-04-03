@@ -19,13 +19,13 @@ export default function ConsultantDetails(props) {
 
     return(
     <div className={styles.consultantDetailsContainer}>
-        <div className={styles.consultantNameContainer}>
-            <h2>Consultant Name:</h2>
-            <h2 className={styles.consultantName}>{consultantName}</h2>
+        <div className={styles.userNameContainer}>
+            <h2 className={styles.element}>Consultant Name:</h2>
+            <h2 className={styles.element}>{consultantName}</h2>
         </div>
-        <div className={styles.lineManagerContainer}>
-            <h2>Line Manager Name:</h2>
-            <h2 className={styles.lineManagerName}>{lineManagerName}</h2>
+        <div className={styles.userNameContainer}>
+            <h2 className={styles.element}>Line Manager Name:</h2>
+            <h2 className={styles.element}>{lineManagerName}</h2>
         </div>
     </div>)
 }
