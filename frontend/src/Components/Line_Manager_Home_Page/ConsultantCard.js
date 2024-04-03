@@ -1,5 +1,9 @@
 import styles from './ConsultantCard.module.css';
 
+function getTimesheets(event, consultantName){
+    console.log("Getting Timesheets for", consultantName);
+}
+
 export default function ConsultantCard (props) {
     return(
     <div className={styles.cardContainer}>
@@ -7,6 +11,6 @@ export default function ConsultantCard (props) {
             <img className={styles.userIcon} src="/user_icon.png"/>
         </figure>
         <h2 className={styles.name}>{props.name}</h2>
-        <button className={styles.viewTimesheetBtn}>View Timesheet</button>
+        <button onClick={(event) => getTimesheets(event, props.name)} className={styles.viewTimesheetBtn}>View Timesheet</button>
     </div>)
 }

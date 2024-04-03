@@ -36,7 +36,6 @@
     align-items: flex-start;
     justify-items: center;
     gap: 0px;
-    z-index: 1;
     width: 80%;
     max-height: 35em;
     overflow: auto;
@@ -47,7 +46,7 @@
 }
 
 .searchResultsContainer{
-    width: 100%;
+    width: 90%;
     position: absolute;
     top: 35%;
 }

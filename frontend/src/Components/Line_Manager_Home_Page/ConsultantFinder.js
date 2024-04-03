@@ -25,6 +25,7 @@ function ConsultantFinder() {
     const [search, setSearch] = useState('')
     const [searchResults, setSearchResults] = useState([])
 
+    var foundConsultantNamesArray = []
 
     useEffect(() => {
         const fetchData = async () =>{
@@ -59,15 +60,18 @@ function ConsultantFinder() {
             <p>Loading data</p>
         )
     }
-    console.log("stored stuff:",foundConsultants)
+    console.log("stored stuff:",foundConsultantNamesArray)
 
+    Object.entries(foundConsultants).map(entry => {
+        foundConsultantNamesArray.push(entry[0])
+    })
 
     const handleSearchChange = (e) => {
         const searchText = e.target.value;
         setSearch(searchText);
     
         // Filter the search results based on the search text
-        const filteredResults = consultantPlaceholderNames.filter(result =>
+        const filteredResults = foundConsultantNamesArray.filter(result =>
           result.toLowerCase().includes(searchText.toLowerCase())
         );
         setSearchResults(filteredResults);
@@ -88,7 +92,7 @@ function ConsultantFinder() {
                 <p className={styles.myConsultantsTitle}>My Consultants</p>
                 <div className={styles.searchResults}>
                     {search === '' ? (
-                        consultantPlaceholderNames.map((result, index) => (
+                        foundConsultantNamesArray.map((result, index) => (
                         <ConsultantCard name={result} key={index}></ConsultantCard>
                     ))
                     ) : (

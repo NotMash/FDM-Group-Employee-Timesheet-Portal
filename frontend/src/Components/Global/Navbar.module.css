@@ -10,6 +10,7 @@
     overflow: hidden;
     position: fixed;
     font-family: "Roboto", sans-serif;
+    z-index: 999;
 }
 
 .navbar:hover{
