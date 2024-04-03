@@ -1,12 +1,14 @@
 /* ViewTimesheet.module.css */
 
 .timesheetContainer {
+  margin-left: 5rem;
   width: 80%;
   margin: 0 auto;
 }
 
 .timesheetTitle {
   text-align: center;
+  margin-top: 0;
 }
 
 .timesheetBox {

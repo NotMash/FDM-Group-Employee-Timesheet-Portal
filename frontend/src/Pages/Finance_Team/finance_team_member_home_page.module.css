@@ -1,5 +1,15 @@
 /* FinanceTeamMemberHomePage.module.css */
 
+.financeTeamMemberContainer{
+  margin-left: 5rem;
+  padding: 1rem;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+}
+
 /* Button styles */
 .financeTeamMemberButton {
   padding: 30px 60px;

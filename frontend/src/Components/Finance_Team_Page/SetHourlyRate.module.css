@@ -8,6 +8,7 @@
   justify-content: flex-start;
   height: 100vh; /* Set the container height to viewport height */
   padding: 20px; /* Add padding */
+  margin-left: 5rem;
 }
 
 /* Title styles */
