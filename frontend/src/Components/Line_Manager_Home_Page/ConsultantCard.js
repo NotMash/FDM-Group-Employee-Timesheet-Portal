@@ -3,7 +3,7 @@ import styles from './ConsultantCard.module.css';
 export default function ConsultantCard (props) {
     return(
     <div className={styles.cardContainer}>
-        <figure>
+        <figure className={styles.iconContainer}>
             <img className={styles.userIcon} src="/user_icon.png"/>
         </figure>
         <h2 className={styles.name}>{props.name}</h2>

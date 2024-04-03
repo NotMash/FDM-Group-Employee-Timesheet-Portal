@@ -1,10 +1,14 @@
 .cardContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #AEAEAE;
     padding: 1em; 
     border-radius: 1.5em;
     box-shadow: -0.2em 0.2em 0.2em hsla(0, 0%, 24%, 0.753);
     margin: 1pc;
-    max-height: 60%;
+    max-height: 11rem;
+    min-height: 11rem;
     width: 50%;
     flex-shrink: 0;
 }
@@ -13,9 +17,17 @@
     width: 95%;
 }
 
+.iconContainer{
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
 .name{
     color: black;
     text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    width: 20rem;
 }
 
 .viewTimesheetBtn{
@@ -25,6 +37,6 @@
     padding: 0.55em;
     font-size: 1em;
     cursor: pointer;
-    position: absolute;
-    bottom: 60%;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
 }
