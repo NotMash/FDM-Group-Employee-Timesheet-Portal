@@ -1,0 +1,61 @@
+.navbar{
+    background: linear-gradient(360deg, rgb(52, 68, 0) 0%, rgb(130, 170, 0) 100%);
+    border-right: solid 5pt #1e1e1e;
+    width: 4rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items:start;
+    transition: width 200ms ease;
+    overflow: hidden;
+    position: fixed;
+    font-family: "Roboto", sans-serif;
+}
+
+.navbar:hover{
+    width: 20rem;
+}
+
+.navbar:hover body{
+    margin-left: 15rem;
+}
+
+.navbar:hover .navText{
+    display: block;
+}
+
+.navElement a{
+    color: black;
+    text-decoration: none;
+}
+
+.navContainer{
+    margin-top: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.navLink{
+    display: flex;
+    align-items: center;
+    height: 4rem;
+}
+
+.navText{
+    margin-left: 0rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: none;
+    font-size: large;
+}
+
+.icon{
+    min-width: 1rem;
+    margin: 0 1rem;
+    width: 2rem;
+}
+
+.logoutButton{
+    margin-top: auto;
+}

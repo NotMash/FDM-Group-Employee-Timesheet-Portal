@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+.main{
+    margin-left: 5rem;
+    padding: 1rem;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
 .pageContainer{
     font-family: 'Roboto', sans-serif;
 }

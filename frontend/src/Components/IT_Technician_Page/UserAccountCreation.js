@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 function UserAccountCreation() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [userType, setUserType] = useState("Consultant");
+    const [userType, setUserType] = useState("consultant");
     const [firstname, setFirstName] = useState("");
     const [lastname, setLastName] = useState("");
     const [username, setUsername] = useState("");
@@ -65,8 +65,10 @@ function UserAccountCreation() {
         e.preventDefault();
 
         var accountDetails;
-        if (userType=="Consultant") {
+        console.log(userType)
+        if (userType=="consultant") {
             accountDetails = { userType, firstname, lastname, username, line_manager_username, email, password };
+            console.log(accountDetails)
         } else {
             accountDetails = { userType, firstname, lastname, username, email, password };
         }
@@ -114,9 +116,9 @@ function UserAccountCreation() {
                         <input onChange={handleFirstNameChange} type="text" id="firstname" name="firstname" placeholder="First Name" required className={styles.input} />
 
                         <input onChange={handleLastNameChange} type="text" id="lastname" name="lastname" placeholder="Last Name" required className={styles.input} />
-
-                        {userType == "Consultant" &&
-                            <input onChange={handleLineManagerUserNameChange} type="text" id="line_manager_username" name="line_manager_username" placeholder="Manager Username" required className={styles.input} />
+                          
+                        {userType == "consultant" &&
+                            <input onChange={handleLineManagerUserNameChange} type="text" id="managername" name="line_manager_username" placeholder="Manager Username" required className={styles.input} />
                         }
                         <input onChange={handleUserNameChange} type="text" id="uname" name="username" placeholder="Username" required className={styles.input} />
                         <input onChange={handleEmailChange} type="email" id="email" name="email" placeholder="Email" required className={styles.input} />

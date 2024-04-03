@@ -1,21 +1,23 @@
 import TimesheetFormDay from "../../Components/Timesheet_Recording_Page/Form_At_Day/timesheet_form_day"
-import TimesheetPageLinks from "../../Components/Timesheet_Recording_Page/Timesheet_Links/timesheet_page_links"
+import Navbar from "../../Components/Global/Navbar"
+import styles from "./TimesheetRecordingPage.module.css"
 
 function TimesheetRecordingPage(){
+    document.title = "Timesheet Recording Page"
+
+    let links = [{pageName : "Create Timesheet", pageLink : "/timesheet_recording_page", iconPath : "./Home_Page_Icons/Consultant/record_timesheet.svg"}, 
+    {pageName : "View Timesheet", pageLink : "/current_timesheet_viewer", iconPath : "./Home_Page_Icons/Consultant/view_timesheet.svg"},
+    {pageName : "View Saved Timesheets", pageLink : "/", iconPath : "./Home_Page_Icons/Consultant/view_saved_timesheets.svg"}]
+
     return(
         <>
-            <h1>Timesheet Recording Page</h1><br/>
-
-            {/*this just adds days to the timesheet form*/}
-            {/*<TimesheetFormDay day="Monday"/>*/}
-            {/*<TimesheetFormDay day="Tuesday"/>*/}
-            {/*<TimesheetFormDay day="Wednesday"/>*/}
-            {/*<TimesheetFormDay day="Thursday"/>*/}
-
-            <TimesheetFormDay day="Friday"/><br/>
-            <TimesheetPageLinks/>
+            <Navbar homePageTitle="Consultant Home Page" homePageLink="/consultant_home_page" links={links}/>
+            <main className={styles.mainContainer}>
+                <h1 className={styles.heading}>Timesheet Recording Page</h1><br/>
+                <TimesheetFormDay day="Friday"/><br/>
+            </main>
         </>
-    )    
+    )
 }
 
 export default TimesheetRecordingPage
