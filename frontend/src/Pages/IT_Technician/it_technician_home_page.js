@@ -1,7 +1,5 @@
 import styles from "./it_technician_home_page.module.css";
 import Navbar from "../../Components/Global/Navbar";
-import LogoutButton from "../../Components/Global/LogoutButton";
-
 
 function IT_Technician_HomePage() {
     document.title = "IT Technician Home Page";
@@ -15,7 +13,6 @@ function IT_Technician_HomePage() {
             <Navbar homePageTitle="IT Technician Home Page" homePageLink="/it_technician_home_page" links={links}/>
             <div className={styles.mainContainer}>
                 <h1>Home</h1>
-                <LogoutButton/>
             </div>
         </>
     )
