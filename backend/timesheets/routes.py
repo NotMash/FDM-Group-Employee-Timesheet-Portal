@@ -155,7 +155,7 @@ class ListTimesheetsView(MethodView):
         json_dict = {}
         timesheet_ids = [timesheet.id for timesheet in timesheets]
         for timesheet in timesheets:
-            json_dict[timesheet.id] = {"name": timesheet.consultant_name, "status": timesheet.status}
+            json_dict[timesheet.id] = {"id": timesheet.id, "name": timesheet.consultant_name, "status": timesheet.status}
         return jsonify(json_dict), 200
 
 class ListWeeklyTimesheetsView(MethodView):
