@@ -1,0 +1,22 @@
+/* ViewTimesheet.module.css */
+
+.timesheetContainer {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.timesheetTitle {
+  text-align: center;
+}
+
+.timesheetBox {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.timesheetBox p {
+  margin-bottom: 10px;
+}
