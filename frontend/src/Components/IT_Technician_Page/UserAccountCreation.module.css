@@ -1,4 +1,3 @@
-
 .card {
     display: flex;
     justify-content: center;
@@ -7,7 +6,7 @@
     height: 100vh;
 }
 
-.userAccountForm{
+.userAccountForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,7 +22,8 @@
     padding-right: 2%;
 }
 
-.userAccountForm label, .userAccountForm h2 {
+.userAccountForm label,
+.userAccountForm h2 {
     font-family: "Poppins", serif;
     color: white;
 }
@@ -31,7 +31,7 @@
 .userAccountForm p {
     font-family: "Poppins", serif;
     font-size: 9pt;
-    color: #850000a3;
+    color: #ffa9a7;
     margin: 3%;
 }
 
@@ -40,7 +40,10 @@
     color: #8ab400;
 }
 
-.main_img {
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 30%;
     height: 85%;
     border-top-left-radius: 15px;
@@ -49,15 +52,22 @@
     box-shadow: 0 0 15px #c5ff00;
 }
 
-.input, .selectInput{
+.main_img {
+    width: 75%;
+}
+
+.input,
+.selectInput {
     width: 70%;
     height: 1.75pc;
     padding-left: 15px;
-    background-color: #012E6E;
-    border: solid 1pt #ffffff3c;
-    border-radius: 10px;
     margin: 2%;
     color: white;
+    background-color: rgb(48, 48, 48);
+    box-shadow: 0 0 .4vw rgba(0, 0, 0, 0.5), 0 0 0 .15vw transparent;
+    border-radius: 15px;
+    border: none;
+    outline: none;
 }
 
 .passwordInputWrapper {
@@ -67,9 +77,11 @@
     width: 70%;
     height: 1.9pc;
     padding-left: 15px;
-    background-color: #012E6E;
-    border: solid 1pt #ffffff3c;
-    border-radius: 10px;
+    background-color: rgb(48, 48, 48);
+    box-shadow: 0 0 .4vw rgba(0, 0, 0, 0.5), 0 0 0 .15vw transparent;
+    border-radius: 15px;
+    border: none;
+    outline: none;
     margin: 2%;
     color: white;
 }
@@ -80,8 +92,20 @@
     border: none;
 }
 
-.passwordInput:focus, .input:focus, .selectInput:focus {
+.passwordInput:focus {
     outline: none;
+}
+
+.passwordInputWrapper:focus,
+.input:focus,
+.selectInput:focus {
+    box-shadow: 0 0 0 .15vw #c5ff00;
+}
+
+.passwordInputWrapper:hover,
+.input:hover,
+.selectInput:hover {
+    box-shadow: 0 0 0 .1vw #c5ff00;
 }
 
 .eyeIcon {
@@ -91,32 +115,17 @@
     filter: invert()
 }
 
-.selectInput{
+.selectInput {
     width: 75%;
     height: 1.95pc;
     cursor: pointer;
 }
 
-/* .userAccountForm input[type=submit]{
-    width: 70%;
-    margin-top: 5%;
-    cursor: pointer;
-    background: linear-gradient(to right, #012E6E 0%, #4d016e 100%);
-    color: white;
-    text-transform: uppercase;
-    font-family: "Poppins", serif;
-    letter-spacing: 2px;
-    border: solid 1pt #070819;
-    border-radius: 10px;
-    margin-top: 5%;
-    margin-bottom: 5%;
-} */
-
 ::placeholder {
     color: rgba(255, 255, 255, 0.704);
-  }
+}
 
-  .userAccountForm input[type=submit] {
+.userAccountForm input[type=submit] {
     font-family: "Poppins", sans-serif;
     width: 50%;
     padding: 1%;
@@ -130,20 +139,20 @@
     text-transform: uppercase;
     font-size: 15px;
     transition: all 0.5s ease;
-  }
-  
-  .userAccountForm input[type=submit]:hover {
+}
+
+.userAccountForm input[type=submit]:hover {
     letter-spacing: 2px;
     background-color: #1e1e1e;
     color: hsl(0, 0%, 100%);
     box-shadow: #c5ff00 0px 3px 29px 0px;
-  }
-  
-  .userAccountForm input[type=submit]:active {
+}
+
+.userAccountForm input[type=submit]:active {
     letter-spacing: 2px;
     background-color: #1e1e1e;
     color: white;
     box-shadow: #c5ff00 0px 0px 0px 0px;
     transform: translateY(10px);
     transition: 100ms;
-  }
+}

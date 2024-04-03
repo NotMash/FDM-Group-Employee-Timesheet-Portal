@@ -10,11 +10,10 @@ function UserAccountCreation() {
     const [lastname, setLastName] = useState("");
     const [username, setUsername] = useState("");
     const [line_manager_username, setLineManagerUsername] = useState("");
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState(false);
+    const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState(true);
     const navigate = useNavigate();
 
     const handlePasswordToggle = () => {
@@ -65,12 +64,12 @@ function UserAccountCreation() {
         e.preventDefault();
 
         var accountDetails;
-        if (userType=="Consultant") {
+        if (userType == "Consultant") {
             accountDetails = { userType, firstname, lastname, username, line_manager_username, email, password };
         } else {
             accountDetails = { userType, firstname, lastname, username, email, password };
         }
-    
+
         fetch('http://127.0.0.1:5000/create_user', {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -97,7 +96,9 @@ function UserAccountCreation() {
         <>
             <div className={styles.mainContainer}>
                 <div className={styles.card}>
-                    <img className={styles.main_img} src="./fdm.gif" alt="Background" />
+                    <div className={styles.imageContainer}>
+                        <img className={styles.main_img} src="./fdm.png" alt="Background" />
+                    </div>
                     <form onSubmit={handleSubmit} className={styles.userAccountForm}>
 
                         <h2>Create User Account</h2>
@@ -114,7 +115,7 @@ function UserAccountCreation() {
                         <input onChange={handleFirstNameChange} type="text" id="firstname" name="firstname" placeholder="First Name" required className={styles.input} />
 
                         <input onChange={handleLastNameChange} type="text" id="lastname" name="lastname" placeholder="Last Name" required className={styles.input} />
-                          
+
                         {userType == "consultant" &&
                             <input onChange={handleLineManagerUserNameChange} type="text" id="managername" name="line_manager_username" placeholder="Manager Username" required className={styles.input} />
                         }
