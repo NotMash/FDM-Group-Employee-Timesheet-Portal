@@ -17,7 +17,7 @@ function TimesheetRecordingPage(){
                 <TimesheetFormDay day="Friday"/><br/>
             </main>
         </>
-    )    
+    )
 }
 
 export default TimesheetRecordingPage
