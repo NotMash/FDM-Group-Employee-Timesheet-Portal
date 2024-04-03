@@ -4,10 +4,10 @@ import styles from "../Timesheet_Links/Timesheet_Links.module.css"
 function TimesheetPageLinks() {
     return(
         <>
-            <nav>
-                <Link to="/consultant_home_page"><button className={styles.TimesheetPageLink}>Save</button></Link>
-                <Link to="/consultant_home_page"><button className={styles.TimesheetPageLink}>Submit</button></Link>
-                <Link to="/consultant_home_page"><button className={styles.TimesheetPageLink}>Back</button></Link>
+            <nav className={styles.linksContainer}>
+                <Link className={styles.TimesheetPageLink} to="/consultant_home_page"><p>Save</p></Link>
+                <Link className={styles.TimesheetPageLink} to="/consultant_home_page"><p>Submit</p></Link>
+                <Link className={styles.TimesheetPageLink} to="/consultant_home_page"><p>Back</p></Link>
             </nav>
         </>
     )
