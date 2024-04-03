@@ -13,10 +13,10 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: white;
+    background-color: #1e1e1e;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    box-shadow: 0 0 15px white;
+    box-shadow: 0 0 15px #c5ff00;
     width: 30%;
     height: 85%;
     padding-left: 2%;
@@ -25,7 +25,7 @@
 
 .userAccountForm label, .userAccountForm h2 {
     font-family: "Poppins", serif;
-    color: #012E6E;
+    color: white;
 }
 
 .userAccountForm p {
@@ -37,7 +37,7 @@
 
 .userAccountForm h2 {
     margin: 0;
-    color: #012E6E;
+    color: #8ab400;
 }
 
 .main_img {
@@ -45,8 +45,8 @@
     height: 85%;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
-    background-color: #002252;
-    box-shadow: 0 0 15px white;
+    background-color: #111111;
+    box-shadow: 0 0 15px #c5ff00;
 }
 
 .input, .selectInput{
@@ -97,7 +97,7 @@
     cursor: pointer;
 }
 
-.userAccountForm input[type=submit]{
+/* .userAccountForm input[type=submit]{
     width: 70%;
     margin-top: 5%;
     cursor: pointer;
@@ -110,9 +110,40 @@
     border-radius: 10px;
     margin-top: 5%;
     margin-bottom: 5%;
-}
+} */
 
 ::placeholder {
     color: rgba(255, 255, 255, 0.704);
   }
 
+  .userAccountForm input[type=submit] {
+    font-family: "Poppins", sans-serif;
+    width: 50%;
+    padding: 1%;
+    margin: 3%;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 0;
+    background-color: white;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 15px;
+    transition: all 0.5s ease;
+  }
+  
+  .userAccountForm input[type=submit]:hover {
+    letter-spacing: 2px;
+    background-color: #1e1e1e;
+    color: hsl(0, 0%, 100%);
+    box-shadow: #c5ff00 0px 3px 29px 0px;
+  }
+  
+  .userAccountForm input[type=submit]:active {
+    letter-spacing: 2px;
+    background-color: #1e1e1e;
+    color: white;
+    box-shadow: #c5ff00 0px 0px 0px 0px;
+    transform: translateY(10px);
+    transition: 100ms;
+  }

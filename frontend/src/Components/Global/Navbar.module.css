@@ -1,13 +1,15 @@
 .navbar{
-    background-color: #D9D9D9;
-    width: 5rem;
-    height: 100%;
+    background: linear-gradient(360deg, rgb(52, 68, 0) 0%, rgb(130, 170, 0) 100%);
+    border-right: solid 5pt #1e1e1e;
+    width: 4rem;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items:start;
     transition: width 200ms ease;
     overflow: hidden;
     position: fixed;
+    font-family: "Roboto", sans-serif;
 }
 
 .navbar:hover{
@@ -28,6 +30,7 @@
 }
 
 .navContainer{
+    margin-top: 0;
     padding: 0;
     list-style-type: none;
 }
@@ -35,7 +38,7 @@
 .navLink{
     display: flex;
     align-items: center;
-    height: 5rem;
+    height: 4rem;
 }
 
 .navText{
@@ -48,7 +51,7 @@
 }
 
 .icon{
-    min-width: 3rem;
+    min-width: 1rem;
     margin: 0 1rem;
     width: 2rem;
 }

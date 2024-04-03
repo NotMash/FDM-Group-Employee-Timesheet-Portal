@@ -3,8 +3,8 @@ import styles from "./SetHourlyRate.module.css"; // Import the CSS file
 import Navbar from "../../Components/Global/Navbar";
 
 function SetHourlyRate() {
-  let links = [{pageName : "Set Hourly Rate Page", pageLink : "/set_hourly_rate", iconPath : "./Home_Page_Icons/Consultant/record_timesheet.svg"},
-  {pageName : "View Timesheet Page", pageLink : "/view_timesheet", iconPath : "./Home_Page_Icons/Consultant/view_timesheet.svg"}]
+  let links = [{ pageName: "Set Hourly Rate Page", pageLink: "/set_hourly_rate", iconPath: "./Home_Page_Icons/Consultant/record_timesheet.svg" },
+  { pageName: "View Timesheet Page", pageLink: "/view_timesheet", iconPath: "./Home_Page_Icons/Consultant/view_timesheet.svg" }]
 
   const [consultantName, setConsultantName] = useState("");
   const [hourlyRate, setHourlyRate] = useState("");
@@ -27,13 +27,12 @@ function SetHourlyRate() {
 
   return (
     <>
-      <Navbar homePageTitle="Finance Team Home Page" homePageLink="/finance_team_member_home_page" links={links}/>
+      <Navbar homePageTitle="Finance Team Home Page" homePageLink="/finance_team_member_home_page" links={links} />
       <div className={styles.setHourlyRateContainer}>
         <h2 className={styles.setHourlyRateTitle}>Set Hourly Rate</h2>
-        <form onSubmit={handleSubmit}>
+        <form className={styles.formContainer} onSubmit={handleSubmit}>
           <div className={styles.inputGroup}>
-            <label className={styles.setHourlyRateLabel}>
-              Consultant Name:
+            <p className={styles.setHourlyRateLabel}>Consultant Name:</p>
               <input
                 type="text"
                 value={consultantName}
@@ -41,11 +40,9 @@ function SetHourlyRate() {
                 className={styles.setHourlyRateInput}
                 placeholder="Enter consultant's name"
               />
-            </label>
           </div>
           <div className={styles.inputGroup}>
-            <label className={styles.setHourlyRateLabel}>
-              Hourly Rate:
+            <p className={styles.setHourlyRateLabel}>Hourly Rate:</p>
               <input
                 type="number"
                 value={hourlyRate}
@@ -53,7 +50,6 @@ function SetHourlyRate() {
                 className={styles.setHourlyRateInput}
                 placeholder="Enter hourly rate"
               />
-            </label>
           </div>
           <button type="submit" className={styles.setHourlyRateButton}>
             Set Hourly Rate
