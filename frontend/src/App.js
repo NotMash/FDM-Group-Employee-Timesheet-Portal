@@ -18,7 +18,6 @@ function App() {
   return (
     <HashRouter>
       <Routes>
-<<<<<<< HEAD
         <Route path="/" element={<MainHome />} />
         <Route path="/login_page" element={<LoginPage />} />
         <Route path="/consultant_home_page" element={<ConsultantHomePage />} />
@@ -51,7 +50,6 @@ function App() {
           element={<TimesheetEditRequestsPage />}
         />
         <Route path="/it_user_creation" element={<ItUserCreationPage />} />
-=======
         <Route path="/" element={<MainHome/>}/>
         <Route path="/login_page" element={<LoginPage/>}/>
         <Route path="/consultant_home_page" element={<ConsultantHomePage/>}/>
@@ -64,7 +62,6 @@ function App() {
         <Route path="/timesheet_edit_requests" element={<TimesheetEditRequestsPage/>}/>
         <Route path="/it_user_creation" element={<ItUserCreationPage/>}/>
         <Route path="/current_timesheet_viewer" element={<ViewCurrentTimesheetPage/>}/>
->>>>>>> 7b4835a0b8b51715265696305962807646957ef2
       </Routes>
     </HashRouter>
   );
