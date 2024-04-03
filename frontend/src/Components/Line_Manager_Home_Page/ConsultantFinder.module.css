@@ -33,7 +33,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-template-rows: 1fr;
-    align-items: center;
+    align-items: flex-start;
     justify-items: center;
     gap: 0px;
     z-index: 1;
@@ -43,6 +43,7 @@
     position: absolute;
     left: 10%;
     background-color: #D9D9D9;
+    min-height: 35em;
 }
 
 .searchResultsContainer{

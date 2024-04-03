@@ -24,8 +24,9 @@ function LogoutButton () {
         });
     };
 
-    return(<div>
-        <button className={styles.Logout} onClick={handleLogout}>Logout</button>
+    return(<div className={styles.logoutContainer}>
+        <img className={styles.Logout} src='./Home_Page_Icons/logout.svg' onClick={handleLogout}/>
+        <p className={styles.logoutText}>Logout</p>
     </div>);
 }
 
