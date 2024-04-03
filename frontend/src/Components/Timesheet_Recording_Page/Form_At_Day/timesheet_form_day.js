@@ -93,21 +93,21 @@ function TimesheetFormDay() {
         return (
             <div className={styles.TimesheetFormContainer}>
                 {/* Pass the formatted date to the DayHeader */}
-                <DayHeader day={formattedDate} />
+                <DayHeader className={styles.dayHeader} day={formattedDate} />
 
                 <div>
                     <p>Start Time: {startTime ? startTime.toLocaleTimeString() : ''}</p>
-                    <button onClick={handleStartTime} disabled={startTime !== null}>Start Time</button>
+                    <button className={styles.buttons} onClick={handleStartTime} disabled={startTime !== null}>Start Time</button>
                 </div>
                 <div>
                     <p>End Time: {endTime ? endTime.toLocaleTimeString() : ''}</p>
-                    <button onClick={handleEndTime} disabled={startTime === null || endTime !== null}>End Time</button>
+                    <button className={styles.buttons} onClick={handleEndTime} disabled={startTime === null || endTime !== null}>End Time</button>
                 </div>
                 <div>
                     <p>{duration}</p>
                 </div>
                 <div>
-                    <button onClick={handleSubmit} disabled={submitted || !duration}>Submit Timesheet</button>
+                    <button className={styles.buttons} onClick={handleSubmit} disabled={submitted || !duration}>Submit Timesheet</button>
                 </div>
             </div>
         );

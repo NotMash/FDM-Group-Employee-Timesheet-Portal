@@ -12,12 +12,12 @@ function TimesheetRecordingPage(){
     return(
         <>
             <Navbar homePageTitle="Consultant Home Page" homePageLink="/consultant_home_page" links={links}/>
-            <main className={styles.main}>
-                <h1>Timesheet Recording Page</h1><br/>
+            <main className={styles.mainContainer}>
+                <h1 className={styles.heading}>Timesheet Recording Page</h1><br/>
                 <TimesheetFormDay day="Friday"/><br/>
             </main>
         </>
-    )    
+    )
 }
 
 export default TimesheetRecordingPage
