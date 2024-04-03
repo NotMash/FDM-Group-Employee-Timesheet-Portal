@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import styles from "./ITLinks.module.css";
+import LogoutButton from "../Global/LogoutButton";
 
 function ITLinks() {
     return (
         <>
-            <nav>
+            <nav className={styles.navbar}>
                 <div className={styles.linkContainer}>
                     <Link className={styles.links} to="/it_difficulties"><p>View IT Difficulties</p></Link>
                 </div>
@@ -13,6 +14,9 @@ function ITLinks() {
                 </div>
                 <div className={styles.linkContainer}>
                     <Link className={styles.links} to="/it_user_creation"><p>Create New User Account</p></Link>
+                </div>
+                <div>
+                    <LogoutButton/>
                 </div>
             </nav>
         </>

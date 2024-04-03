@@ -155,6 +155,7 @@ class Timesheet(db.Model):
     consultant_name = db.Column(db.String(30), nullable=False)
     consultant_approval = db.Column(db.Boolean, default=False, nullable=False)
     week_start_date = db.Column(db.DateTime, nullable=False)
+    day = db.Column(db.DateTime, nullable=False)
     start_work_time = db.Column(db.String(20), nullable=True)
     end_work_time = db.Column(db.String(20), nullable=True)
     hours_worked = db.Column(db.Integer, nullable=False)
