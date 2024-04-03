@@ -83,10 +83,12 @@ function UserAccountCreation() {
                 throw new Error('User Creation Failed with Status: ' + response.status);
             }
         }).then(data => {
-            var pageToRedirTo = ("/"+data.user_type + "_home_page");
+            var pageToRedirTo = ("/it_technician_home_page");
             navigate(pageToRedirTo);
         }).catch(error => {
+            console.log(accountDetails)
             console.error(error);
+
         });
     };
 
@@ -102,10 +104,10 @@ function UserAccountCreation() {
                         <label>User Type</label>
 
                         <select name="user_type" className={styles.selectInput} onChange={handleUserTypeChange}>
-                            <option value="Consultant">Consultant</option>
-                            <option value="Line Manager">Line Manager</option>
-                            <option value="Finance Team Member">Finance Team Member</option>
-                            <option value="IT Technician">IT Technician</option>
+                            <option value="consultant">Consultant</option>
+                            <option value="line_manager">Line Manager</option>
+                            <option value="finance_member">Finance Team Member</option>
+                            <option value="ittechnician">IT Technician</option>
                         </select>
 
                         <input onChange={handleFirstNameChange} type="text" id="firstname" name="firstname" placeholder="First Name" required className={styles.input} />

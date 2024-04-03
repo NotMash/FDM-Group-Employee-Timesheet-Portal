@@ -1,13 +1,19 @@
-
 .heading {
-    margin: 0;
+    margin-top: 0;
     padding: 3%;
     text-align: center;
     font-family: "Poppins", sans-serif;
     color: white;
 }
 
+body{
+    margin: 0;
+    padding: 0;
+}
+
 .mainContainer {
+    margin-left: 5rem;
+    padding: 1rem;
     width: 100%;
     display: flex;
     flex-direction: column;

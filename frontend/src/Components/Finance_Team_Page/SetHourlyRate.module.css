@@ -1,0 +1,52 @@
+/* SetHourlyRate.module.css */
+
+/* Container styles */
+.setHourlyRateContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh; /* Set the container height to viewport height */
+  padding: 20px; /* Add padding */
+  margin-left: 5rem;
+}
+
+/* Title styles */
+.setHourlyRateTitle {
+  text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 30pt;
+  margin-bottom: 50px; /* Add margin at the bottom */
+}
+
+/* Label styles */
+.setHourlyRateLabel {
+  font-size: 18px; /* Increase font size */
+  margin-bottom: 10px;
+  color: #060000; /* Change text color */
+}
+
+/* Input styles */
+.setHourlyRateInput {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Button styles */
+.setHourlyRateButton {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.setHourlyRateButton:hover {
+  background-color: #0056b3;
+}

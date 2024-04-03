@@ -1,26 +1,22 @@
 .consultantDetailsContainer{
     display: flex;
     flex-direction: column;
-    width: 30%;
-    position: absolute;
+    width: 20%;
+    align-items: center;
     top: 5%;
     text-align: center;
+    gap: 4rem;
+    margin-top: 3rem;
+    margin-left: 5rem;
 }
 
-.consultantName{
-    position: absolute;
-    top: 25%;
-    left: 42%;
+.userNameContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
 }
 
-.lineManagerContainer{
-    position: absolute;
-    top: 70%;
-    left: 31%;
-}
-
-.lineManagerName{
-    position: absolute;
-    top: 25%;
-    left: 25%;
+.element{
+    margin: 0;
 }
