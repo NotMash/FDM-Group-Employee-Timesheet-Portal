@@ -9,7 +9,8 @@ function UserAccountCreation() {
     const [firstname, setFirstName] = useState("");
     const [lastname, setLastName] = useState("");
     const [username, setUsername] = useState("");
-    const [lineManagerUsername, setLineManagerUsername] = useState("");
+    const [line_manager_username, setLineManagerUsername] = useState("");
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -65,7 +66,7 @@ function UserAccountCreation() {
 
         var accountDetails;
         if (userType=="Consultant") {
-            accountDetails = { userType, firstname, lastname, username, lineManagerUsername, email, password };
+            accountDetails = { userType, firstname, lastname, username, line_manager_username, email, password };
         } else {
             accountDetails = { userType, firstname, lastname, username, email, password };
         }
@@ -115,7 +116,7 @@ function UserAccountCreation() {
                         <input onChange={handleLastNameChange} type="text" id="lastname" name="lastname" placeholder="Last Name" required className={styles.input} />
 
                         {userType == "Consultant" &&
-                            <input onChange={handleLineManagerUserNameChange} type="text" id="managername" name="line_manager_username" placeholder="Manager Username" required className={styles.input} />
+                            <input onChange={handleLineManagerUserNameChange} type="text" id="line_manager_username" name="line_manager_username" placeholder="Manager Username" required className={styles.input} />
                         }
                         <input onChange={handleUserNameChange} type="text" id="uname" name="username" placeholder="Username" required className={styles.input} />
                         <input onChange={handleEmailChange} type="email" id="email" name="email" placeholder="Email" required className={styles.input} />
