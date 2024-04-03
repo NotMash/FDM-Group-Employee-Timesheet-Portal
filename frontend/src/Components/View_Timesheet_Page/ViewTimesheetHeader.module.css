@@ -5,14 +5,14 @@
     flex-direction:column;
     width: 30%;
     position: absolute;
-    left: 35%;
+    left: 43%;
     top: 2%;
     font-family: 'Roboto', sans-serif;
 }
 
 .weekStarting{
     position: absolute;
-    left: 25%;
+    left: -5%;
     top: 60%;
     font-family: 'Roboto', sans-serif;
 }
