@@ -379,4 +379,6 @@ app.add_url_rule("/list_consultants", view_func=ListConsultantsView.as_view("lis
 app.add_url_rule("/current_consultant_payslip", view_func=SalaryViewForCurrentConsultant.as_view("salary_view_for_current_consultant"), methods=["GET"])
 
 
+
+
 app.add_url_rule("/set_hourly_rate/<consultant_username>", view_func=FinanceTeamView.as_view("finance_team_view"), methods=["POST"])
