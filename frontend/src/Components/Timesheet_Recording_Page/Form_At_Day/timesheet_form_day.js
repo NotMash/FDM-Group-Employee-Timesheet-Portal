@@ -1,13 +1,85 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DayHeader from "../Day_Header/day_header";
 import styles from "../Form_At_Day/form_at_day.module.css";
+
+function getTodaysDateInFormat() {
+    var today = new Date();
+    var dd = String(today.getDate());
+    var mm = String(today.getMonth() + 1); // January is 0!
+    var yyyy = today.getFullYear();
+    var todayString = dd + '/' + mm + '/' + yyyy;
+    return todayString;
+}
+
+function toISOTime(date) {
+    var offset = date.getTimezoneOffset();
+    
+    date.setMinutes(date.getMinutes() - offset);
+
+    return date.toISOString().slice(0, -5); // Remove milliseconds and Z (time zone indicator)
+}
 
 function TimesheetFormDay() {
     const [startTime, setStartTime] = useState(null);
     const [endTime, setEndTime] = useState(null);
     const [duration, setDuration] = useState('');
     const [submitted, setSubmitted] = useState(false);
+    const [timesheets, setTimesheets] = useState([]);
+    const [hasAlreadyFilledForm, setHasAlreadyFilledForm] = useState(false)
 
+    var arrayOfTimesheets = []
+
+    //get all timesheets
+    useEffect(() => {
+        const fetchData = async () =>{
+            try{
+                await fetch('http://127.0.0.1:5000/list_weekly_timesheets', {
+                        method: "GET",
+                        headers: { "Content-Type": "application/json" },
+                        credentials: 'include',
+                    }).then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        } 
+                        else {
+                            throw new Error('User Creation Failed with Status: ' + response.status);
+                        }
+                    }).then(data => {
+                        // Data fetched successfully
+                        console.log(data)
+                        setTimesheets(data);
+                    }).catch(error => {
+                        console.error(error);
+                    });
+            } catch(error) {
+                console.log("error fetching data")
+            }
+        };
+        fetchData();
+    }, []);
+
+    if(timesheets === null) {
+        return(
+            <p>Loading data</p>
+        )
+    }
+    console.log("stored stuff:",timesheets)
+
+    const todaysDate = getTodaysDateInFormat()
+    console.log(todaysDate, "asoidn")
+
+    console.log(arrayOfTimesheets)
+    let counter = 0
+    Object.entries(timesheets).map(entry => {
+        arrayOfTimesheets.push(entry[1])
+        const [day, month, year] = arrayOfTimesheets[counter].day.split('/');
+        const formattedDate = `${month}/${day}/${year}`;
+        console.log(formattedDate, todaysDate, formattedDate==todaysDate)
+        if(formattedDate == todaysDate && !hasAlreadyFilledForm){
+            setHasAlreadyFilledForm(true)
+        }
+        counter++
+    })
 
     const now = new Date();
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -78,18 +150,22 @@ function TimesheetFormDay() {
             const formData = {
 
                 // day: formattedDate,
-                start_time: startTime.toISOString(),
-                end_time: endTime.toISOString(),
+                start_time: toISOTime(startTime),
+                end_time: toISOTime(endTime),
                 // duration: duration
 
             };
-
+            
+            console.log(formData)
 
             postTimesheet(formData);
         }
     };
 
     if (today === days[now.getDay()]) {
+        if(hasAlreadyFilledForm) {
+            return(<h1>You have already filled out a timesheet for today</h1>)
+        }
         return (
             <div className={styles.TimesheetFormContainer}>
                 {/* Pass the formatted date to the DayHeader */}
@@ -112,7 +188,7 @@ function TimesheetFormDay() {
             </div>
         );
     } else {
-        return null;
+        return (<h1>Error: Unauthorised Access</h1>);
     }
 }
 
