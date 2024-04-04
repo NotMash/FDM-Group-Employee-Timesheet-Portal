@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DayHeader from "../Day_Header/day_header";
 import styles from "../Form_At_Day/form_at_day.module.css";
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 function getTodaysDateInFormat() {
     var today = new Date();
@@ -28,6 +29,33 @@ function TimesheetFormDay() {
     const [hasAlreadyFilledForm, setHasAlreadyFilledForm] = useState(false)
 
     var arrayOfTimesheets = []
+
+
+    var savedStartDate = localStorage.getItem("startTime")
+    var savedEndDate = localStorage.getItem("endTime")
+    var savedDuration = localStorage.getItem("duration")
+
+    var savedStartTime = new Date(savedStartDate)
+    var savedEndTime = new Date(savedEndDate)
+
+    const navigate = useNavigate()
+
+    if(savedStartDate != null) {
+        if(startTime == null) {
+            setStartTime(savedStartTime)
+        }
+    }
+    if(savedEndDate != null) {
+        if(endTime == null) {
+            setEndTime(savedEndTime)
+        }
+    }
+    if(savedDuration != null) {
+        if(duration === '') {
+            console.log(savedDuration, "HERE")
+            setDuration(savedDuration)
+        }
+    }
 
     //get all timesheets
     useEffect(() => {
@@ -97,13 +125,23 @@ function TimesheetFormDay() {
         if (!submitted) {
             const start = new Date();
             setStartTime(start);
+
+            //set start time in local storage
+            localStorage.setItem("startTime", start.toString())
+            var t = new Date(localStorage.getItem("startTime"))
+            console.log("you pressed start time:", t)
         }
     };
 
     const handleEndTime = () => {
-    if (startTime && !submitted) {
+    if (startTime || localStorage.getItem("startTime") && !submitted) {
         const end = new Date();
         setEndTime(end);
+
+        //set end time in local storage
+        localStorage.setItem("endTime", end.toString())
+        var t = new Date(localStorage.getItem("endTime"))
+        console.log("you pressed end time:", t)
 
         // Calculate duration
         const workedMillis = end - startTime;
@@ -114,6 +152,7 @@ function TimesheetFormDay() {
         const formattedDuration = `${workedHours.toString().padStart(2, '0')} hours and ${workedMinutes.toString().padStart(2, '0')} mins worked`;
 
         setDuration(formattedDuration);
+        localStorage.setItem("duration", formattedDuration)
     }
 };
 
@@ -121,7 +160,6 @@ function TimesheetFormDay() {
     const postTimesheet = (formData) => {
         // Remove the setTimeout when implementing the actual fetch call
         console.log('Sending timesheet to backend:', formData);
-
         // fetch call for the actual POST request
 
         fetch('http://127.0.0.1:5000/create_timesheet', {
@@ -138,6 +176,7 @@ function TimesheetFormDay() {
         .then(data => {
             console.log(data);
             setSubmitted(true);
+            navigate("/current_timesheet_viewer")
         })
         .catch(error => console.error('Error:', error));
 
@@ -157,27 +196,46 @@ function TimesheetFormDay() {
             };
             
             console.log(formData)
-
+            localStorage.clear()
             postTimesheet(formData);
         }
     };
+
+    const disableEndTimeButton = () => {
+        if(startTime == null || savedStartDate == null)
+            return true
+        else if((startTime == null || savedStartDate == null) && (endTime == null || savedEndDate == null)){
+            return true
+        }
+        else if((startTime != null || savedStartDate != null) && (endTime != null || savedEndDate != null)) {
+            return true
+        }
+        else{
+            return false
+        }
+    }
 
     if (today === days[now.getDay()]) {
         if(hasAlreadyFilledForm) {
             return(<h1>You have already filled out a timesheet for today</h1>)
         }
+
+        console.log("WEEEEE", savedEndDate != null ? true : (savedStartDate == null && startTime == null))
+
+        console.log(savedStartTime, savedEndTime == null , "AISFDNOn")
+        
         return (
             <div className={styles.TimesheetFormContainer}>
                 {/* Pass the formatted date to the DayHeader */}
                 <DayHeader className={styles.dayHeader} day={formattedDate} />
 
                 <div>
-                    <p>Start Time: {startTime ? startTime.toLocaleTimeString() : ''}</p>
-                    <button className={styles.buttons} onClick={handleStartTime} disabled={startTime !== null}>Start Time</button>
+                    <p>Start Time: {savedStartDate == null ? (startTime ? startTime.toLocaleTimeString() : '') : (savedStartTime.toLocaleTimeString())}</p>
+                    <button className={styles.buttons} onClick={handleStartTime} disabled={savedStartDate != null ? true : (startTime !== null)}>Start Time</button>
                 </div>
                 <div>
-                    <p>End Time: {endTime ? endTime.toLocaleTimeString() : ''}</p>
-                    <button className={styles.buttons} onClick={handleEndTime} disabled={startTime === null || endTime !== null}>End Time</button>
+                    <p>End Time: {savedEndDate == null ? (endTime ? endTime.toLocaleTimeString() : '') : (savedEndTime.toLocaleTimeString())}</p>
+                    <button className={styles.buttons} onClick={handleEndTime} disabled={disableEndTimeButton()}>End Time</button>
                 </div>
                 <div>
                     <p>{duration}</p>
