@@ -180,7 +180,8 @@ class ListWeeklyTimesheetsView(MethodView):
             json_dict[timesheet.id] = {"start_work": timesheet.start_work_time, "end_work": timesheet.end_work_time, 
                                        "week_start": week_start, "hours_worked": hours_worked, "day": day, 
                                        "consultant_name": f"{consultant.firstname} {consultant.lastname}", 
-                                       "line_manager_name": f"{consultant.line_manager.firstname} {consultant.line_manager.lastname}"}
+                                       "line_manager_name": f"{consultant.line_manager.firstname} {consultant.line_manager.lastname}",
+                                       "status": timesheet.status}
         return jsonify(json_dict), 200
     
 
@@ -211,7 +212,7 @@ class ListConsultantTimesheetsView(MethodView):
         user_id = session.get("user_id")
         line_manager = LineManager.query.filter_by(id=user_id).first()
         consultant = Consultant.query.filter_by(username=consultant_username).first()
-        if consultant.line_manager_id != user_id:
+        if consultant.line_manager_id != user_id or consultant == None:
             return jsonify({"Error": "Unauthorized"}), 400
         timesheets = Timesheet.query.filter_by(consultant_id=consultant.id)
         json_dict = {}
