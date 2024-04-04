@@ -207,17 +207,18 @@ class WeeklyTimesheetsApprovalView(MethodView):
         return jsonify("Success"), 200
 
 class ListConsultantTimesheetsView(MethodView):
-    def get(self, consultant_id):
+    def get(self, consultant_username):
         user_id = session.get("user_id")
         line_manager = LineManager.query.filter_by(id=user_id).first()
-        consultant = Consultant.query.filter_by(id=consultant_id).first()
+        consultant = Consultant.query.filter_by(username=consultant_username).first()
         if consultant.line_manager_id != user_id:
             return jsonify({"Error": "Unauthorized"}), 400
-        timesheets = Timesheet.query.filter_by(consultant_id=consultant_id)
+        timesheets = Timesheet.query.filter_by(consultant_id=consultant.id)
         json_dict = {}
         
         for timesheet in timesheets:
-            json_dict[timesheet.id] = {"name": timesheet.consultant_name, 
+            json_dict[timesheet.id] = {"name": timesheet.consultant_name,
+                                       "username": consultant.username,
                                        "status": timesheet.status, "Work Start": timesheet.start_work_time, 
                                        "End Work": timesheet.end_work_time}
         
@@ -360,6 +361,7 @@ app.add_url_rule("/view_timesheet/<timesheet_id>", view_func=timesheets_view, me
 app.add_url_rule("/update_timesheet/<timesheet_id>", view_func=timesheets_view, methods=["PUT"])
 app.add_url_rule("/delete_timesheet/<timesheet_id>", view_func=timesheets_view, methods=["DELETE"])
 app.add_url_rule("/list_timesheets", view_func=ListTimesheetsView.as_view("list_timesheets_view"), methods=["GET"])
+app.add_url_rule("/list_timesheets/<consultant_username>", view_func=ListConsultantTimesheetsView.as_view("list_consultant_timesheets_view"), methods=["GET"])
 app.add_url_rule("/list_weekly_timesheets", view_func=ListWeeklyTimesheetsView.as_view("list_weekly_timesheets_view"), methods=["GET"])
 app.add_url_rule("/list_weekly_timesheets/<consultant_username>/<flag>", view_func=WeeklyTimesheetsApprovalView.as_view("list_weekly_timesheets_approval"), methods=["POST"])
 app.add_url_rule("/list_timesheets/<consultant_id>", view_func=ListConsultantTimesheetsView.as_view("list_consultant_timesheets_viewpost"), methods=["GET"])

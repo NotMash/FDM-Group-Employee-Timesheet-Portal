@@ -115,7 +115,7 @@ function UserAccountCreation() {
                         <input onChange={handleLastNameChange} type="text" id="lastname" name="lastname" placeholder="Last Name" required className={styles.input} />
 
                         {userType == "Consultant" &&
-                            <input onChange={handleLineManagerUserNameChange} type="text" id="managername" name="line_manager_username" placeholder="Manager Username" required className={styles.input} />
+                            <input onChange={handleLineManagerUserNameChange} type="text" id="line_manager_username" name="line_manager_username" placeholder="Manager Username" required className={styles.input} />
                         }
                         <input onChange={handleUserNameChange} type="text" id="uname" name="username" placeholder="Username" required className={styles.input} />
                         <input onChange={handleEmailChange} type="email" id="email" name="email" placeholder="Email" required className={styles.input} />
