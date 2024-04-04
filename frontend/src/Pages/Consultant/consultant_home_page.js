@@ -13,7 +13,6 @@ function ConsultantHomePage () {
             <Navbar homePageTitle="Consultant Home Page" homePageLink="/consultant_home_page" links={links}/>
             <main className={styles.main}>
                 <h1>Consultant Home Page</h1>
-                <LogoutButton/>
             </main>
         </>
     )

@@ -346,6 +346,47 @@ class CreateUserView(MethodView):
 
 
 
+class SalaryViewForCurrentConsultant(MethodView):
+    def get(self):
+
+        user_id = session.get("user_id")
+        consultant = Consultant.query.filter_by(id=user_id).first()
+
+        if consultant == None:
+            return jsonify({"Error": "Unauthorized"}), 400
+        timesheets = Timesheet.query.filter_by(consultant_id=user_id).all()
+
+        salary = 0
+
+        for timesheet in timesheets:
+
+            salary += timesheet.hours_worked * consultant.hourly_rate
+
+        return jsonify({"salary": salary}), 200
+
+
+class FinanceTeamView(MethodView):
+
+    # POST method to set the hourly rate for a specific consultant
+    def post(self, consultant_username,):
+        data = request.json
+        consultant = Consultant.query.filter_by(username=consultant_username).first()
+
+        if consultant == None:
+            return jsonify({"error": "Consultant not found"}), 404
+
+        rate = data["hourly_rate"]
+        consultant.hourly_rate = rate
+            # Assuming instantiation and authorization logic is handled elsewhere
+        finance_team_member = FinanceTeamMember()
+        finance_team_member.set_hourly_rate(consultant, float(rate))
+        db.session.commit()
+        return jsonify({"message": "Hourly rate updated successfully", "consultant_id": consultant.id, "new_hourly_rate": rate}), 200
+
+
+
+
+
 # Registering the views
 timesheets_view = TimesheetView.as_view("timesheet_view")
 app.add_url_rule("/", view_func=HomeView.as_view("home_view"))
@@ -371,4 +412,9 @@ app.add_url_rule("/disapprove_timesheet/<timesheet_id>", view_func=TimesheetDisa
 
 app.add_url_rule("/list_consultants", view_func=ListConsultantsView.as_view("list_consultants_view"), methods=["GET"])
 
+app.add_url_rule("/current_consultant_payslip", view_func=SalaryViewForCurrentConsultant.as_view("salary_view_for_current_consultant"), methods=["GET"])
 
+
+
+
+app.add_url_rule("/set_hourly_rate/<consultant_username>", view_func=FinanceTeamView.as_view("finance_team_view"), methods=["POST"])

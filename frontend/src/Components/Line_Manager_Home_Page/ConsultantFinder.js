@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import styles from './ConsultantFinder.module.css';
 import ConsultantCard from "./ConsultantCard";
 
@@ -18,9 +18,49 @@ const consultantPlaceholderNames = [
   ];
 //a
 
+//localhost:5000/list_consultants
+
 function ConsultantFinder() {
+    const [foundConsultants, setFoundConsultants] = useState([])
     const [search, setSearch] = useState('')
     const [searchResults, setSearchResults] = useState([])
+
+
+    useEffect(() => {
+        const fetchData = async () =>{
+            try{
+                await fetch('http://127.0.0.1:5000/list_consultants', {
+                        method: "GET",
+                        headers: { "Content-Type": "application/json" },
+                        credentials: 'include',
+                    }).then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        } 
+                        else {
+                            throw new Error('Fetching Consultant Failed with Status: ' + response.status);
+                        }
+                    }).then(data => {
+                        // Data fetched successfully
+                        console.log(data)
+                        setFoundConsultants(data);
+                    }).catch(error => {
+                        console.error(error);
+                    });
+            } catch(error) {
+                console.log("error fetching data")
+            }
+        };
+        fetchData();
+    }, []);
+
+    if(foundConsultants === null) {
+        return(
+            <p>Loading data</p>
+        )
+    }
+    console.log("stored stuff:",foundConsultants)
+
 
     const handleSearchChange = (e) => {
         const searchText = e.target.value;

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import styles from './Navbar.module.css'
+import Logout from '../Global/LogoutButton'
 
 export default function Navbar(props) {
     let linksArray = props.links
@@ -21,6 +22,10 @@ export default function Navbar(props) {
                     </Link>
                 </li>
             ))}
+
         </ul>
+        <div className={styles.logoutButton}>
+                <Logout/>
+            </div>
     </nav>)
 }
