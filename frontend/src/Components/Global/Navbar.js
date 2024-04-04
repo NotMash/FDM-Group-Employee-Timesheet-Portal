@@ -10,22 +10,22 @@ export default function Navbar(props) {
         <ul className={styles.navContainer}>
             <li className={styles.navElement}>
                 <Link className={styles.navLink} to={props.homePageLink}>
-                    <img className={styles.icon} src="./Home_Page_Icons/house-solid.svg"/>
+                    {/* <img className={styles.icon} src="./Home_Page_Icons/house-solid.svg"/> */}
                     <p className={styles.navText} href="/">{props.homePageTitle}</p>
                 </Link>
             </li>
             {linksArray.map( (navElement, index) =>(
                 <li key={index} className={styles.navElement}>
                     <Link className={styles.navLink} to={navElement.pageLink}>
-                        <img className={styles.icon} src={navElement.iconPath}/>
+                        {/* <img className={styles.icon} src={navElement.iconPath}/> */}
                         <p className={styles.navText}>{navElement.pageName}</p>
                     </Link>
                 </li>
             ))}
+            <li className={styles.navElement}>
+                <Logout/>
+            </li>
 
         </ul>
-        <div className={styles.logoutButton}>
-                <Logout/>
-            </div>
     </nav>)
 }
