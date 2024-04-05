@@ -60,7 +60,7 @@ export default function ConsultantTimesheetViewerPage() {
         <h1>{selectedConsultantName}</h1>
         <div>
             {foundTimesheetsArray.map(timesheetDayData => (
-                <TimesheetDayCard startTime={timesheetDayData.workStart} endTime={timesheetDayData.workEnd} status={timesheetDayData.status}/>
+                <TimesheetDayCard id={timesheetDayData.timesheet_id} date={timesheetDayData.date} startTime={timesheetDayData.workStart} endTime={timesheetDayData.endWork} status={timesheetDayData.status}/>
             ))}
         </div>
     </>)
