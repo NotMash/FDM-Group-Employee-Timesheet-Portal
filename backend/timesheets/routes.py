@@ -220,8 +220,8 @@ class ListConsultantTimesheetsView(MethodView):
         for timesheet in timesheets:
             json_dict[timesheet.id] = {"name": timesheet.consultant_name,
                                        "username": consultant.username,
-                                       "status": timesheet.status, "Work Start": timesheet.start_work_time, 
-                                       "End Work": timesheet.end_work_time}
+                                       "status": timesheet.status, "workStart": timesheet.start_work_time, 
+                                       "workEnd": timesheet.end_work_time}
         
         return jsonify(json_dict), 200
 

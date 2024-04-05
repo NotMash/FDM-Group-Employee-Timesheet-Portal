@@ -57,6 +57,8 @@ export default function TimesheetTable() {
         counter++
     })
 
+    console.log(arrayOfDays)
+
 return ( 
     <>
         {arrayOfDays.length > 0 && <ConsultantDetails consultantName={arrayOfDays[0].consultant_name} lineManagerName={arrayOfDays[0].line_manager_name}/>}
@@ -70,6 +72,7 @@ return (
                         <th className={styles.tableData}>START TIME</th>
                         <th className={styles.tableData}>END TIME</th>
                         <th className={styles.tableData}>HOURS WORKED</th>
+                        <th className={styles.tableData}>STATUS</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,6 +83,7 @@ return (
                             <td className={styles.tableData}>{dayData.start_work}</td>
                             <td className={styles.tableData}>{dayData.end_work}</td>
                             <td className={styles.tableData}>{dayData.hours_worked}</td>
+                            <td className={styles.tableData}>{dayData.status.toUpperCase()}</td>
                         </tr>
                     ))}
                 </tbody>

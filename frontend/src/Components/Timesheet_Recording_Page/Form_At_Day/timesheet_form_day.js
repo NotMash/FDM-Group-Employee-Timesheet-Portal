@@ -101,7 +101,7 @@ function TimesheetFormDay() {
     Object.entries(timesheets).map(entry => {
         arrayOfTimesheets.push(entry[1])
         const [day, month, year] = arrayOfTimesheets[counter].day.split('/');
-        const formattedDate = `${month}/${day}/${year}`;
+        const formattedDate = `${day}/${month}/${year}`;
         console.log(formattedDate, todaysDate, formattedDate==todaysDate)
         if(formattedDate == todaysDate && !hasAlreadyFilledForm){
             setHasAlreadyFilledForm(true)
@@ -215,14 +215,12 @@ function TimesheetFormDay() {
         }
     }
 
+    console.log(today)
     if (today === days[now.getDay()]) {
         if(hasAlreadyFilledForm) {
             return(<h1>You have already filled out a timesheet for today</h1>)
         }
 
-        console.log("WEEEEE", savedEndDate != null ? true : (savedStartDate == null && startTime == null))
-
-        console.log(savedStartTime, savedEndTime == null , "AISFDNOn")
         
         return (
             <div className={styles.TimesheetFormContainer}>
