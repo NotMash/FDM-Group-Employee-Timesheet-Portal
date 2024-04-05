@@ -181,7 +181,7 @@ class ListWeeklyTimesheetsView(MethodView):
                                        "week_start": week_start, "hours_worked": hours_worked, "day": day, 
                                        "consultant_name": f"{consultant.firstname} {consultant.lastname}", 
                                        "line_manager_name": f"{consultant.line_manager.firstname} {consultant.line_manager.lastname}",
-                                       "status": timesheet.status}
+                                       "status": timesheet.status, "timesheet_id": timesheet.id}
         return jsonify(json_dict), 200
     
 
