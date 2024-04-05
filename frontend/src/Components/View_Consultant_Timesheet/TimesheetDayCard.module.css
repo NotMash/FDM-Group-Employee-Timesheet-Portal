@@ -1,5 +1,8 @@
 .timesheetDayCard{
     background-color: aliceblue;
+    display: flex;
+    gap: 5rem;
+    margin-bottom: 3rem;
 }
 
 .startTime{
@@ -7,5 +10,9 @@
 }
 
 .endTime{
+    color: black;
+}
+
+.status{
     color: black;
 }
