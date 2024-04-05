@@ -135,6 +135,7 @@ class TimesheetView(MethodView):
         end_time = request.json["end_time"]
         timesheet.start_work_time = start_time
         timesheet.end_work_time = end_time
+        timesheet.status = "pending"
         db.session.commit()
         return jsonify("Timesheet updated"), 200
         
