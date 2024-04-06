@@ -77,19 +77,19 @@ p, h1, h2, a, label {
 
 h1{
     margin-top: 20px;
-    margin-left: 30px;
     animation: slidein 1s ease-out;
     color: white;
     font-weight: bolder;
     font-size: 20pt;
     text-decoration: overline;
     text-decoration-color:#c5ff00 ;
-
-
 }
 
+.landingPageBackground h1 {
+  margin-left: 30px;
+}
 
-h2{
+.landingPageBackground h2{
     animation: slideinleft 1s ease-out;
     margin-top: 80px;
     color: white;
@@ -101,7 +101,6 @@ h2{
 .fullstop{
     color: #c5ff00;
 }
-
 
 button {
   font-family: "Inter", sans-serif;

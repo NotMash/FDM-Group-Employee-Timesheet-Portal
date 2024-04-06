@@ -24,7 +24,7 @@
     text-align: center;
     background-color: #1a1a1a;
     border-radius: 15px;
-    box-shadow: 0 0 15px #c3ff0096;
+    box-shadow: 0 0 15px black;
     width: 30%;
     height: 85%;
     padding-left: 2%;
@@ -45,7 +45,8 @@
 .userAccountForm h2 {
     margin-top: 0;
     margin-bottom: 30px;
-    color: #8ab400;
+    color: #c5ff00;
+    animation: none;
 }
 
 .input, .selectInput{

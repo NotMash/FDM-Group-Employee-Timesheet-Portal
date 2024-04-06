@@ -95,19 +95,19 @@ function TimesheetFormDay() {
                 {/* Pass the formatted date to the DayHeader */}
                 <DayHeader className={styles.dayHeader} day={formattedDate} />
 
-                <div>
+                <div className={styles.timeContainer}>
                     <p>Start Time: {startTime ? startTime.toLocaleTimeString() : ''}</p>
                     <button className={styles.buttons} onClick={handleStartTime} disabled={startTime !== null}>Start Time</button>
                 </div>
-                <div>
+                <div className={styles.timeContainer}>
                     <p>End Time: {endTime ? endTime.toLocaleTimeString() : ''}</p>
                     <button className={styles.buttons} onClick={handleEndTime} disabled={startTime === null || endTime !== null}>End Time</button>
                 </div>
-                <div>
+                <div className={styles.timeContainer}>
                     <p>{duration}</p>
                 </div>
-                <div>
-                    <button className={styles.buttons} onClick={handleSubmit} disabled={submitted || !duration}>Submit Timesheet</button>
+                <div className={styles.timeContainer}>
+                    <button className={styles.submitButton} onClick={handleSubmit} disabled={submitted || !duration}>Submit Timesheet</button>
                 </div>
             </div>
         );
