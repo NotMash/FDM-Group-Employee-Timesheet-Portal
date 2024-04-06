@@ -1,0 +1,22 @@
+.timesheetDayCard{
+    background-color: aliceblue;
+    display: flex;
+    gap: 5rem;
+    margin-bottom: 3rem;
+}
+
+.startTime{
+    color: black;
+}
+
+.endTime{
+    color: black;
+}
+
+.status{
+    color: black;
+}
+
+.date{
+    color: black;
+}

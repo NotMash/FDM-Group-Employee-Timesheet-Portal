@@ -13,6 +13,8 @@ import ItDifficultiesPage from "./Pages/IT_Technician/it_difficulties_page";
 import TimesheetEditRequestsPage from "./Pages/IT_Technician/timesheet_edit_requests_page";
 import ItUserCreationPage from "./Pages/IT_Technician/it_user_creation_page";
 import ViewCurrentTimesheetPage from "./Pages/Consultant/view_current_timesheet_page";
+import ConsultantTimesheetViewerPage from "./Pages/Line_Manager/view_consultant_timesheet_page";
+import ViewSavedTimesheetsPage from "./Pages/Consultant/view_saved_timesheets_page";
 
 function App() {
   return (
@@ -62,6 +64,8 @@ function App() {
         <Route path="/timesheet_edit_requests" element={<TimesheetEditRequestsPage/>}/>
         <Route path="/it_user_creation" element={<ItUserCreationPage/>}/>
         <Route path="/current_timesheet_viewer" element={<ViewCurrentTimesheetPage/>}/>
+        <Route path="/view_consultant_timesheet" element={<ConsultantTimesheetViewerPage/>}/>
+        <Route path="/view_saved_timesheet" element={<ViewSavedTimesheetsPage/>}/>
       </Routes>
     </HashRouter>
   );

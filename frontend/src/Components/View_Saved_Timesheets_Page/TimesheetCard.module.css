@@ -1,0 +1,10 @@
+.timesheetCard{
+    background-color: aliceblue;
+    display: flex;
+    margin-bottom: 5rem;
+    gap: 8rem;
+}
+
+.day, .workStart, .workEnd, .status{
+    color: black;
+}

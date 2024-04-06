@@ -118,7 +118,7 @@ class TimesheetView(MethodView):
             end_work_time=end_work_time,
             hours_worked=time_elapsed,
             week_start_date=week_start_date,
-            day=datetime.utcnow(),
+            day=datetime.now(),
             consultant_id=user_id,
             status="pending",
         )

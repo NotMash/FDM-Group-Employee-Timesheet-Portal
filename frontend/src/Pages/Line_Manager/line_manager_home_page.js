@@ -4,7 +4,7 @@ import Navbar from "../../Components/Global/Navbar";
 function LineManagerHomePage(){
     document.title = "Line Manager Home Page";
 
-    let links = [{pageName : "Consultant Finder", pageLink : "/consultant_finder_page", iconPath : "./Home_Page_Icons/Consultant/record_timesheet.svg"}]
+    let links = [{pageName : "Consultant Finder", pageLink : "/consultant_finder_page", iconPath : "./Home_Page_Icons/Line_Manager/magnifying-glass-solid.svg"}]
 
     return(
         <>
