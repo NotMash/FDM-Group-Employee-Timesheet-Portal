@@ -26,7 +26,7 @@ function LogoutButton () {
 
     return(<div className={styles.logoutContainer}>
         {/* <img className={styles.Logout} src='./Home_Page_Icons/logout.svg' onClick={handleLogout}/> */}
-        <p className={styles.logoutText}>Logout</p>
+        <p className={styles.logoutText} onClick={handleLogout}>Logout</p>
     </div>);
 }
 
