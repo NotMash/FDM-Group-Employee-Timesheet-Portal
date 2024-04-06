@@ -220,8 +220,7 @@ function TimesheetFormDay() {
         if(hasAlreadyFilledForm) {
             return(<h1>You have already filled out a timesheet for today</h1>)
         }
-
-        
+     
         return (
             <div className={styles.TimesheetFormContainer}>
                 {/* Pass the formatted date to the DayHeader */}
@@ -234,6 +233,7 @@ function TimesheetFormDay() {
                 <div className={styles.timeContainer}>
                     <p>End Time: {savedEndDate == null ? (endTime ? endTime.toLocaleTimeString() : '') : (savedEndTime.toLocaleTimeString())}</p>
                     <button className={styles.buttons} onClick={handleEndTime} disabled={disableEndTimeButton()}>End Time</button>
+                </div>
                 <div className={styles.timeContainer}>
                     <p>{duration}</p>
                 </div>
