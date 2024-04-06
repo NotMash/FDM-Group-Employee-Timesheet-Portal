@@ -118,7 +118,7 @@ class TimesheetView(MethodView):
             end_work_time=end_work_time,
             hours_worked=time_elapsed,
             week_start_date=week_start_date,
-            day=datetime.utcnow(),
+            day=datetime.now(),
             consultant_id=user_id,
             status="pending",
         )
@@ -135,6 +135,12 @@ class TimesheetView(MethodView):
         end_time = request.json["end_time"]
         timesheet.start_work_time = start_time
         timesheet.end_work_time = end_time
+        timesheet.status = "pending"
+        
+        time_elapsed = datetime.strptime(timesheet.end_work_time, "%H:%M:%S") - datetime.strptime(timesheet.start_work_time, "%H:%M:%S")
+        time_elapsed = time_elapsed.total_seconds()
+        
+        timesheet.hours_worked = time_elapsed
         db.session.commit()
         return jsonify("Timesheet updated"), 200
         
@@ -180,7 +186,8 @@ class ListWeeklyTimesheetsView(MethodView):
             json_dict[timesheet.id] = {"start_work": timesheet.start_work_time, "end_work": timesheet.end_work_time, 
                                        "week_start": week_start, "hours_worked": hours_worked, "day": day, 
                                        "consultant_name": f"{consultant.firstname} {consultant.lastname}", 
-                                       "line_manager_name": f"{consultant.line_manager.firstname} {consultant.line_manager.lastname}"}
+                                       "line_manager_name": f"{consultant.line_manager.firstname} {consultant.line_manager.lastname}",
+                                       "status": timesheet.status, "timesheet_id": timesheet.id}
         return jsonify(json_dict), 200
     
 
@@ -211,7 +218,7 @@ class ListConsultantTimesheetsView(MethodView):
         user_id = session.get("user_id")
         line_manager = LineManager.query.filter_by(id=user_id).first()
         consultant = Consultant.query.filter_by(username=consultant_username).first()
-        if consultant.line_manager_id != user_id:
+        if consultant.line_manager_id != user_id or consultant == None:
             return jsonify({"Error": "Unauthorized"}), 400
         timesheets = Timesheet.query.filter_by(consultant_id=consultant.id)
         json_dict = {}
@@ -219,8 +226,9 @@ class ListConsultantTimesheetsView(MethodView):
         for timesheet in timesheets:
             json_dict[timesheet.id] = {"name": timesheet.consultant_name,
                                        "username": consultant.username,
-                                       "status": timesheet.status, "Work Start": timesheet.start_work_time, 
-                                       "End Work": timesheet.end_work_time}
+                                       "status": timesheet.status, "workStart": timesheet.start_work_time, 
+                                       "endWork": timesheet.end_work_time, "date": timesheet.day, "weekStartDate": timesheet.week_start_date,
+                                       "timesheet_id": timesheet.id}
         
         return jsonify(json_dict), 200
 

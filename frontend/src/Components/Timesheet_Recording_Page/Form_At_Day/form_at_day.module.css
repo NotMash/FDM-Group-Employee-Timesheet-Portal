@@ -21,10 +21,9 @@
     box-shadow: 0 0 20px black;
     border-radius: 15px;
     padding: 2%;
-    font-size: 12pt;
-    color: white;
-    text-align: center;
-}
+    min-width: 15rem;
+    font-family: "Poppins", sans-serif;
+
 
 .buttons, .submitButton {
     cursor: pointer;
