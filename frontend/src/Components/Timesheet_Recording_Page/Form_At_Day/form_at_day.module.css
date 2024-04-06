@@ -18,11 +18,13 @@
     flex-direction: column;
     justify-content: center;
     background-color: #1a1a1a;
+    color: white;
     box-shadow: 0 0 20px black;
     border-radius: 15px;
     padding: 2%;
     min-width: 15rem;
     font-family: "Poppins", sans-serif;
+}
 
 
 .buttons, .submitButton {
