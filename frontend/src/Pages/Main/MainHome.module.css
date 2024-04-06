@@ -91,3 +91,18 @@ h2{
 
 
 }
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(198, 198, 198);
+  border-radius: 6px;
+}
+
+@media (prefers-color-scheme: dark) {
+  * {
+    scrollbar-color: rgb(198, 198, 198) #1e1e1e;
+  }
+}

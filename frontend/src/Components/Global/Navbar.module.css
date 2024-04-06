@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css?family=Inter";
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@400;700&family=Open+Sans&display=swap');
 
 /* .navbar{
     background: linear-gradient(360deg, rgb(52, 68, 0) 0%, rgb(130, 170, 0) 100%);
@@ -74,6 +74,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: sticky;
 }
 
 .navContainer {
@@ -84,7 +85,7 @@
 }
 
 .navElement {
-    list-style: none;
+    text-decoration: none;
     display: inline-block;
     padding: 15px;
     padding-top: 10px;
@@ -94,7 +95,12 @@
     cursor: pointer;
     position: relative;
     z-index: 2;
-    transition: color 0.5s;
+    transition: color 0.5s, top 0.5s;
+}
+
+.activeLink {
+    background: #c5ff00;
+    opacity: 1;
 }
 
 .navElement::after {
@@ -110,10 +116,6 @@
     z-index: -1;
     opacity: 0;
     transition: top 0.5s, opacity 0.5s;
-}
-
-.navElement:hover {
-    color: #fff;
 }
 
 .navElement:hover::after {

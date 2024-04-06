@@ -8,6 +8,7 @@ function ITDifficulty(props) {
                 <p className={styles.difficultyTopic}>{props.difficultyTopic}</p>
                 <p className={styles.difficulty}>{props.difficultySolved}</p>
                 <p className={styles.difficulty}>By: {props.technicianName}</p>
+                <p className={styles.deleteButton}>❌</p>
             </div>
         </>
     )

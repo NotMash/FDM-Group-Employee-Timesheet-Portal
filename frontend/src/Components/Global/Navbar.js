@@ -1,31 +1,47 @@
-import { Link } from 'react-router-dom'
-import styles from './Navbar.module.css'
-import Logout from '../Global/LogoutButton'
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react'; // Import useEffect and useState
+import styles from './Navbar.module.css';
+import Logout from '../Global/LogoutButton';
 
 export default function Navbar(props) {
-    let linksArray = props.links
-    console.log(linksArray)
+    const [prevScrollPos, setPrevScrollPos] = useState(0);
 
-    return(<nav className={styles.navbar}>
-        <ul className={styles.navContainer}>
-            <li className={styles.navElement}>
-                <Link className={styles.navLink} to={props.homePageLink}>
-                    {/* <img className={styles.icon} src="./Home_Page_Icons/house-solid.svg"/> */}
-                    <p className={styles.navText} href="/">{props.homePageTitle}</p>
-                </Link>
-            </li>
-            {linksArray.map( (navElement, index) =>(
-                <li key={index} className={styles.navElement}>
-                    <Link className={styles.navLink} to={navElement.pageLink}>
-                        {/* <img className={styles.icon} src={navElement.iconPath}/> */}
-                        <p className={styles.navText}>{navElement.pageName}</p>
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollPos = window.pageYOffset;
+            if (prevScrollPos > currentScrollPos) {
+                document.getElementById("navbar").style.top = "0";
+            } else {
+                document.getElementById("navbar").style.top = "-100px"; // Adjust based on your navbar height
+            }
+            setPrevScrollPos(currentScrollPos);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [prevScrollPos]);
+
+    let linksArray = props.links;
+
+    return (
+        <nav id="navbar" className={styles.navbar}>
+            <ul className={styles.navContainer}>
+                <Link className={styles.navElement} to={props.homePageLink}>
+                    <Link className={styles.navLink} to={props.homePageLink}>
+                        <p className={styles.navText} href="/">{props.homePageTitle}</p>
                     </Link>
+                </Link>
+                {linksArray.map((navElement, index) => (
+                    <Link key={index} className={styles.navElement} to={navElement.pageLink}>
+                        <Link className={styles.navLink} to={navElement.pageLink}>
+                            <p className={styles.navText}>{navElement.pageName}</p>
+                        </Link>
+                    </Link>
+                ))}
+                <li className={styles.navElement}>
+                    <Logout />
                 </li>
-            ))}
-            <li className={styles.navElement}>
-                <Logout/>
-            </li>
-
-        </ul>
-    </nav>)
+            </ul>
+        </nav>
+    );
 }
