@@ -1,9 +1,30 @@
 .main{
-    margin-left: 5rem;
-    padding: 1rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+
+.main h1 {
+    margin: 3%;
+    margin-top: 5%;
+    text-align: center;
+}
+
+.main button {
+    background-color: #1e1e1e;
+}
+
+.main button:hover {
+    box-shadow: none;
 }
 
 body{
     margin: 0;
     padding: 0;
+}
+
+.calendarContainer {
+    border-radius: 15px;
+    background-color: #101010;
+    box-shadow: 0 0 15px black;
+    margin-bottom: 3%;
 }

@@ -97,14 +97,14 @@ function UserAccountCreation() {
 
     return (
         <>
+        <img className={styles.bg} src="./fdm.png"/>
             <div className={styles.mainContainer}>
                 <div className={styles.card}>
-                    <img className={styles.main_img} src="./fdm.gif" alt="Background" />
                     <form onSubmit={handleSubmit} className={styles.userAccountForm}>
 
                         <h2>Create User Account</h2>
 
-                        <label>User Type</label>
+                        <label>User Type:</label>
 
                         <select name="user_type" className={styles.selectInput} onChange={handleUserTypeChange}>
                             <option value="consultant">Consultant</option>

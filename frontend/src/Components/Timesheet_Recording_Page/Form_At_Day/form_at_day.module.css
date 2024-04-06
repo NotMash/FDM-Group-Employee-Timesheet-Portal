@@ -6,29 +6,50 @@
     text-align: center;
 }
 
+.timeContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
 .TimesheetFormContainer{
-    background-color: #d4e5fe;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #1a1a1a;
+    box-shadow: 0 0 20px black;
     border-radius: 15px;
     padding: 2%;
     min-width: 15rem;
     font-family: "Poppins", sans-serif;
-    font-size: 12pt;
-    color: #151515;
-}
 
-.buttons{
-    font-family: "Poppins", sans-serif;
+
+.buttons, .submitButton {
     cursor: pointer;
-    background: linear-gradient(to right, #012E6E 0%, #4d016e 100%);
+    background-color: #292929;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
     border-radius: 10px;
     color: white;
     text-align: center;
     width: 100%;
     padding: 3%;
+    margin: 10%;
 }
 
-.buttons:disabled {
-    background: linear-gradient(to right, #012e6e94 0%, #4d016e92 100%);
-    color: rgba(255, 255, 255, 0.707);
+.submitButton {
+    margin-top: 15%;
+    margin-bottom: 3%;
+    padding: 6%;
+    font-weight: 600;
+}
+
+.buttons:disabled, .submitButton:disabled {
+    background-color: #292929;
+    box-shadow: none;
+    color: rgb(151, 151, 151);
+    transition: none;
+    transform: none;
+    letter-spacing: 1.5px;
 }
 
