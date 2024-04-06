@@ -1,4 +1,16 @@
 .main{
-    margin-left: 5rem;
-    padding: 1rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+
+.main h1 {
+    margin: 3%;
+    margin-top: 5%;
+    text-align: center;
+}
+
+.difficultyTable {
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0 5px 15px #131313;
 }

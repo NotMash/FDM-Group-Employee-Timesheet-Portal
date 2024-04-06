@@ -97,7 +97,7 @@ function UserAccountCreation() {
 
     return (
         <>
-        {/* <img className={styles.bg} src="./fdm.png"/> */}
+        <img className={styles.bg} src="./fdm.png"/>
             <div className={styles.mainContainer}>
                 <div className={styles.card}>
                     <form onSubmit={handleSubmit} className={styles.userAccountForm}>
