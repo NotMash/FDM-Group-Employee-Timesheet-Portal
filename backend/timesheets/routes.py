@@ -137,7 +137,7 @@ class TimesheetView(MethodView):
         timesheet.end_work_time = end_time
         timesheet.status = "pending"
         
-        time_elapsed = datetime.strptime(end_work_time, "%H:%M:%S") - datetime.strptime(start_work_time, "%H:%M:%S")
+        time_elapsed = datetime.strptime(timesheet.end_work_time, "%H:%M:%S") - datetime.strptime(timesheet.start_work_time, "%H:%M:%S")
         time_elapsed = time_elapsed.total_seconds()
         
         timesheet.hours_worked = time_elapsed
