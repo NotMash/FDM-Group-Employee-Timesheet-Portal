@@ -11,7 +11,50 @@ export default function ViewSavedTimesheetsPage() {
     {pageName : "View Saved Timesheets", pageLink : "/view_saved_timesheet", iconPath : "./Home_Page_Icons/Consultant/view_saved_timesheets.svg"}]
     
     const [timesheets, setTimesheets] = useState([]);
+    const [selectedTimeFilter, setSelectedTimeFilter] = useState('new_to_old')
+    const [selectedStatusFilter, setSelectedStatusFilter] = useState('all')
+    const [filteredTimesheets, setFilteredTimesheets] = useState([])
+    const [hasSelectedFiltering, setHasSelectedFiltering]  = useState(false)
+
     var timesheetsArray = []
+
+    //handle when user selects different filters
+    const handleTimeFilterChange = (event) => {
+        setSelectedTimeFilter(event.target.value)
+        setHasSelectedFiltering(true)
+    } 
+    useEffect(() => {
+        console.log(selectedTimeFilter)
+        if(timesheetsArray.length != 0) {
+            //filter results by time
+            const filteredTimeArray = selectedTimeFilter == 'new_to_old' ? timesheetsArray.reverse() : timesheetsArray
+            setFilteredTimesheets(filteredTimeArray)
+
+            //filter results by status
+            if(selectedStatusFilter != 'all') {
+                setFilteredTimesheets(filteredTimeArray.filter(item => item.status === selectedStatusFilter))
+            }
+        }
+    }, [selectedTimeFilter]);
+
+
+    const handleStatusFilterChange = (event) => {
+        setSelectedStatusFilter(event.target.value)
+        setHasSelectedFiltering(true)
+    }
+    useEffect(() => {
+        console.log(selectedStatusFilter)
+        if(timesheetsArray.length != 0) {
+            const filteredTimeArray = selectedTimeFilter == 'new_to_old' ? timesheetsArray.reverse() : timesheetsArray
+            setFilteredTimesheets(filteredTimeArray)
+
+            //filter results by status
+            if(selectedStatusFilter != 'all') {
+                setFilteredTimesheets(filteredTimeArray.filter(item => item.status === selectedStatusFilter))
+            }
+            console.log(filteredTimesheets, "filtered timesheets")
+        }
+    }, [selectedStatusFilter]); 
 
     //api call
     useEffect(() => {
@@ -54,22 +97,64 @@ export default function ViewSavedTimesheetsPage() {
         timesheetsArray.push(entry[1])
     })
 
-    console.log(timesheetsArray)
+    if(timesheetsArray.length != 0) {
+        const reversedTimesheetsArray = reverseArray(timesheetsArray)
+        console.log(filteredTimesheets, reversedTimesheetsArray)
+        return(
+            <>
+                <Navbar homePageTitle="Consultant Home Page" homePageLink="/consultant_home_page" links={links}/>
+                <main className={styles.main}>
+                    <h1>Saved Timesheets</h1>
 
-    return(
-        <>
-            <Navbar homePageTitle="Consultant Home Page" homePageLink="/consultant_home_page" links={links}/>
-            <main className={styles.main}>
-                <h1>Saved Timesheets</h1>
-                {timesheetsArray.map(timesheetData => (
-                    <TimesheetCard day={timesheetData.day}
-                    workStart={timesheetData.start_work} 
-                    workEnd={timesheetData.end_work}
-                    status={timesheetData.status}
-                    id={timesheetData.timesheet_id}
-                    hours_worked={timesheetData.hours_worked}/>
-                ))}
-            </main>
-        </>
-    )
+                    <p>{selectedTimeFilter} : {selectedStatusFilter}</p>
+
+                    <label className={styles.filterTitle}>Filter Timesheets by Time</label>
+                    <select value={selectedTimeFilter} onChange={handleTimeFilterChange}>
+                        <option value="new_to_old">Newest to Oldest</option>
+                        <option value="old_to_new">Oldest to Newest</option>
+                    </select>
+
+                    <label className={styles.filterTitle}>Filter Timesheets by Status</label>
+                    <select value={selectedStatusFilter} onChange={handleStatusFilterChange}>
+                        <option value="all">All</option>
+                        <option value="approved">Approved</option>
+                        <option value="disapproved">Disapproved</option>
+                        <option value="pending">Pending</option>
+                    </select>
+
+                    {
+                    filteredTimesheets.length == 0 && !hasSelectedFiltering? 
+                    reversedTimesheetsArray.map(timesheetData => (
+                        <TimesheetCard day={timesheetData.day}
+                        workStart={timesheetData.start_work} 
+                        workEnd={timesheetData.end_work}
+                        status={timesheetData.status}
+                        id={timesheetData.timesheet_id}
+                        hours_worked={timesheetData.hours_worked}/>
+                    )) :
+                    filteredTimesheets.map(timesheetData => (
+                        <TimesheetCard day={timesheetData.day}
+                        workStart={timesheetData.start_work} 
+                        workEnd={timesheetData.end_work}
+                        status={timesheetData.status}
+                        id={timesheetData.timesheet_id}
+                        hours_worked={timesheetData.hours_worked}/>
+                    ))}
+                </main>
+            </>
+        )
+    }
+    else {
+        return(
+            <p>Loading data</p>
+        )
+    }
+}
+
+function reverseArray(arrayToReverse) {
+    var reversedArray = []
+    for(let i=arrayToReverse.length-1; i>=0; i--) {
+        reversedArray.push(arrayToReverse[i])
+    }
+    return reversedArray
 }
