@@ -53,8 +53,11 @@ export default function TimesheetDayCard (props) {
             <h2 className={styles.startTime}>{props.startTime}</h2>
             <h2 className={styles.endTime}>{props.endTime}</h2>
             <h2 className={styles.status}>{props.status}</h2>
+            {!changedStatus ? <>           
             <button onClick={approveTimesheet} disabled={changedStatus}>Approve</button>
-            <button onClick={disapproveTimesheet} disabled={changedStatus}>Disapprove</button>
+            <button onClick={disapproveTimesheet} disabled={changedStatus}>Disapprove</button> </>  :
+            <></>}
+
         </div>)
     }
     else{
