@@ -1,27 +1,56 @@
 
 .difficultyContainer {
+    position: relative;
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    gap: 5%;
     height: 50px;
-    padding-left: 3%;
-    background-color: #e0dddd;
-    border-bottom: solid 1pt #c3c2c2;
+    padding-left: 1%;
+    margin-bottom: 2px;
+    box-shadow: 0 1px 2px #1e1e1e;
 }
 
 .difficultyHeader {
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    gap: 5%;
     height: 50px;
-    padding-left: 3%;
-    background-color: #c3cfdc;
-    border-bottom: solid 1pt #a6b0bf;
+    padding-left: 1%;
+    background-color: #383838;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 0 2px 4px #1e1e1e;
+    z-index: 1;
+    position: relative;
 }
 
+.difficultyContainer:hover {
+    background-color: #f6ffdc;
+}
+
+.deleteButton {
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    right: 1%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease; 
+  }
+  
+  .difficultyContainer:hover .deleteButton {
+    opacity: 1;
+  }
+
+
 .difficultyHeader p {
-    color: #2a4f87;
+    color: rgb(212, 212, 212);
     font-weight: bold;
+}
+
+.difficultyContainer p {
+    color: #1e1e1e;
+    font-size: 11pt;
 }
 
 .difficulty {

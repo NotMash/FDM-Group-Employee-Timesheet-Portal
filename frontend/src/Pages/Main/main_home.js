@@ -3,7 +3,7 @@ import styles from "./MainHome.module.css";
 
 import React from 'react';
 
-import logo from './Images/FDMLogo.jpeg';
+import logo from './Images/fdmnew.svg';
 
 
 //get the current time and output greeting based on time
@@ -27,13 +27,18 @@ function MainHome(){
     return (
        <>
           <div className={styles.landingPageBackground}> {/* Background container */}
-            <div className={styles.logoBar}> {/* Black bar container */}
+            <div className={styles.logoContainer}>
               <img src={logo} alt="FDM Logo" className={styles.logo}/>
+              <h1>Timesheets</h1>
             </div>
             <div id={styles.landing_page} className={styles.MainHome}>
-              <h1>FDM Timesheets App</h1>
-              <h2>Good {getTimeGreeting()}</h2>
-              <Link className={styles.Link} to="/login_page"><p>Login</p></Link>
+              <h2>
+                Good {getTimeGreeting()}
+                <span className={styles.fullstop}>.</span>
+              </h2>
+              <Link className={styles.Link} to="/login_page">
+                <button type="button">Login</button>
+              </Link>
             </div>
           </div>
         </>

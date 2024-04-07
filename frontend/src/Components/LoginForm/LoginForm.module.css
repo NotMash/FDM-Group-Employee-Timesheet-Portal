@@ -1,11 +1,7 @@
 html {
     background-image: none;
-    background: rgb(2, 0, 36);
-    background: radial-gradient(circle, #000000 0%, rgba(24, 31, 0, 1) 100%);
+    background: #1e1e1e;
 }
-
-
-
 
 .LoginForm {
     width: 20%;

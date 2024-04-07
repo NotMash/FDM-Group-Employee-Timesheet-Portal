@@ -4,7 +4,8 @@
 
 .DayHeader h2 {
     margin: 0;
-    font-family: "Poppins", sans-serif;
-    font-size: 14pt;
-    color: #012E6E;
+    font-size: 18pt;
+    font-weight: bolder;
+    color: white;
+    margin-bottom: 10%;
 }
