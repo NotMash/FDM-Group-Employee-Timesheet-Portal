@@ -425,7 +425,9 @@ app.add_url_rule("/list_consultants", view_func=ListConsultantsView.as_view("lis
 
 app.add_url_rule("/current_consultant_payslip", view_func=SalaryViewForCurrentConsultant.as_view("salary_view_for_current_consultant"), methods=["GET"])
 
-
+app.add_url_rule("/view_difficulties", view_func=ListDifficultiesView.as_view("list_difficulties"), methods=["GET"])
+app.add_url_rule("/create_difficulty/<difficulty_id>", view_func=DifficultiesView.as_view("create_difficulty"), methods=["POST"])
+app.add_url_rule("/delete_difficulty/<difficulty_id>", view_func=DifficultiesView.as_view("delete_difficulty"), methods=["DELETE"])
 
 
 app.add_url_rule("/set_hourly_rate/<consultant_username>", view_func=FinanceTeamView.as_view("finance_team_view"), methods=["POST"])
