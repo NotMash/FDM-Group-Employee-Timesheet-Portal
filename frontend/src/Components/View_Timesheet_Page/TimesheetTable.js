@@ -2,8 +2,27 @@ import ViewTimesheetHeader from "../../Components/View_Timesheet_Page/ViewTimesh
 import styles from './TimesheetTable.module.css';
 import { useState, useEffect } from 'react';
 import ConsultantDetails from "../../Components/View_Timesheet_Page/ConsultantDetails";
+import DailyRate from "../../Components/View_Timesheet_Page/DailyRate";
 
 export default function TimesheetTable() {
+
+    function getStartOfWeek() {
+        const today = new Date();
+        var diffFromWeekStart = today.getDay() - 1;
+
+        if(diffFromWeekStart < 0) {
+            diffFromWeekStart += 7
+        }
+
+        var monday = new Date(today);
+        monday.setDate(today.getDate() - diffFromWeekStart);
+
+        return monday;
+      }
+    
+    const startOfWeek = getStartOfWeek();
+    console.log(startOfWeek);
+
 
     const [timesheets, setTimesheets] = useState([]);
 
@@ -48,13 +67,19 @@ export default function TimesheetTable() {
 
     let counter = 0
     Object.entries(timesheets).map(entry => {
-        arrayOfDays.push(entry[1])
-        const [day, month, year] = arrayOfDays[counter].day.split('/');
-        const formattedDate = `${month}/${day}/${year}`; 
-        const currentDay = new Date(formattedDate).getDay()
-        arrayOfDays[counter].day_of_week = daysOfWeek[currentDay]
-        console.log(arrayOfDays[counter].day_of_week)
-        counter++
+        const entryStringDate = entry[1].day
+        const dateParts = entryStringDate.split('/');
+        const entryDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+        console.log(entryDate, entryStringDate)
+        if(entryDate >= startOfWeek) {
+            arrayOfDays.push(entry[1])
+            const [day, month, year] = arrayOfDays[counter].day.split('/');
+            const formattedDate = `${month}/${day}/${year}`; 
+            const currentDay = new Date(formattedDate).getDay()
+            arrayOfDays[counter].day_of_week = daysOfWeek[currentDay]
+            console.log(arrayOfDays[counter].day_of_week)
+            counter++
+        }
     })
 
     console.log(arrayOfDays)
@@ -63,6 +88,7 @@ return (
     <>
         {arrayOfDays.length > 0 && <ConsultantDetails consultantName={arrayOfDays[0].consultant_name} lineManagerName={arrayOfDays[0].line_manager_name}/>}
         {arrayOfDays.length > 0 && <ViewTimesheetHeader currentWeek={arrayOfDays[0].week_start}/>}
+        {arrayOfDays.length > 0 && <DailyRate hourlyRate={arrayOfDays[0].hourly_rate}/>}
         <div>
             <table className={styles.timesheetTable}>
                 <thead>

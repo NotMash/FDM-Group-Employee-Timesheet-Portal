@@ -1,7 +1,7 @@
 import styles from './DailyRate.module.css';
 
-export default function () {
+export default function (props) {
     return(<div className={styles.dailyRateContainer}>
-        <h2>Hourly Rate : £24.53</h2>
+        <h2>Hourly Rate : £{props.hourlyRate}</h2>
     </div>)
 }
