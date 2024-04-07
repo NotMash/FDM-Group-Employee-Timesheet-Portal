@@ -1,6 +1,10 @@
-.main{
-    margin-left: 5rem;
-    padding: 1rem;
+.main{    
+    text-align: center;
+}
+
+.main h1 {
+    margin: 2%;
+    margin-top: 3%;
 }
 
 body{
