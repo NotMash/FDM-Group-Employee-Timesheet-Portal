@@ -1,7 +1,13 @@
 .Login {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
     bottom: 5em;
+    height: 100vh;
+    gap: 5%;
+    background-image: url("./Images/background2.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: top;
 }

@@ -8,8 +8,6 @@ html {
     text-align: center;
     border-radius: 2pc;
     position: relative;
-    top: 17pc;
-    right: 2.5pc;
     background-color: #292929;
     box-shadow: black 0 0 15px;
     color: white;
@@ -52,6 +50,10 @@ html {
     margin: 5%;
 }
 
+.input:hover {
+    box-shadow: 0 0 .4vw #ceff2c, 0 0 0 .15vw transparent;
+}
+
 .SelectInput {
     background-color: #a8a8a8;
     padding: 0.6em;
@@ -66,6 +68,10 @@ html {
 #ForgotPass {
     text-decoration: none;
     color: #9c9c9c;
+}
+
+#ForgotPass:hover {
+    color: #91afcb;
 }
 
 
