@@ -43,7 +43,7 @@ function LoginForm() {
                 <ul className={styles.LoginFormList}>
                     <li className={styles.LoginFormListElement}>
                         <figure>
-                            <img className={styles.UserIcon} src="./user_icon.png"></img>
+                            <img className={styles.UserIcon} src="./profile-24.svg"></img>
                         </figure>
                     </li>
                     <li className={styles.LoginFormListElement}>
@@ -68,7 +68,7 @@ function LoginForm() {
                         <a id={styles.ForgotPass} href="">Forgot Password?</a>
                     </li><br></br>
                     <li className={styles.LoginFormListElement}>
-                        <input className={styles.Submit} id="submit_button" type="submit" name="submit_btn" value="Submit"></input>
+                        <input className={styles.Submit} id="submit_button" type="submit" name="submit_btn" value="Login"></input>
 
                     </li><br></br>
                 </ul>
