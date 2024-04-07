@@ -97,6 +97,7 @@ export default function ViewSavedTimesheetsPage() {
         timesheetsArray.push(entry[1])
     })
 
+
     if(timesheetsArray.length != 0) {
         const reversedTimesheetsArray = reverseArray(timesheetsArray)
         console.log(filteredTimesheets, reversedTimesheetsArray)
@@ -104,18 +105,20 @@ export default function ViewSavedTimesheetsPage() {
             <>
                 <Navbar homePageTitle="Consultant Home Page" homePageLink="/consultant_home_page" links={links}/>
                 <main className={styles.main}>
-                    <h1>Saved Timesheets</h1>
+                    <h1 className={styles.header}>Saved Timesheets</h1>
 
-                    <p>{selectedTimeFilter} : {selectedStatusFilter}</p>
+                    <p id={styles.chosenFilter}>Active Filter: {selectedTimeFilter} : {selectedStatusFilter}</p>
 
+                
                     <label className={styles.filterTitle}>Filter Timesheets by Time</label>
-                    <select value={selectedTimeFilter} onChange={handleTimeFilterChange}>
+                    <select value={selectedTimeFilter} onChange={handleTimeFilterChange} id={styles.select1} className={styles.select}>
                         <option value="new_to_old">Newest to Oldest</option>
                         <option value="old_to_new">Oldest to Newest</option>
                     </select>
 
+
                     <label className={styles.filterTitle}>Filter Timesheets by Status</label>
-                    <select value={selectedStatusFilter} onChange={handleStatusFilterChange}>
+                    <select value={selectedStatusFilter} onChange={handleStatusFilterChange} className={styles.select}>
                         <option value="all">All</option>
                         <option value="approved">Approved</option>
                         <option value="disapproved">Disapproved</option>

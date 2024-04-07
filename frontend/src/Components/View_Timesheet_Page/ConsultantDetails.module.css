@@ -2,14 +2,21 @@
     display: flex;
     gap: 10%;
     width: 100%;
-    align-items: center;
     text-align: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.userNameContainer p{
+    margin-top: 10px;
 }
 
 .userNameContainer{
     display: flex;
     flex-direction: column;
     gap: 10%;
+    width: 300px;
 }
 
 .element{

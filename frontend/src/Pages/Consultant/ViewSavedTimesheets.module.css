@@ -1,5 +1,4 @@
 .main{
-    margin-left: 5rem;
     padding: 1rem;
 }
 
@@ -10,4 +9,30 @@ body{
 
 .filterTitle{
     color: aliceblue;
+}
+
+
+#chosenFilter{
+    color: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+
+.filterTitle{
+    margin-right: 30px;
+}
+
+#select1{
+    margin-right: 200px;
+}
+
+
+.header{
+    text-align: center;
+}
+
+
+.select{
+    border-radius: 5px;
 }

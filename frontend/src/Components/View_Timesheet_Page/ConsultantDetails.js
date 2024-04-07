@@ -1,6 +1,7 @@
 import styles from './ConsultantDetails.module.css';
 import DailyRate from "../../Components/View_Timesheet_Page/DailyRate";
 
+
 function formatName(name) {
     let newName = ""
     for (let i = 0; i < name.length; i++) {
@@ -20,7 +21,7 @@ export default function ConsultantDetails(props) {
 
     return (
         <div className={styles.consultantDetailsContainer}>
-            <div className={styles.userNameContainer}>
+            <div className={styles.userNameContainer} id= {styles.consultantName}>
                 <h2 className={styles.element}>Consultant Name:</h2>
                 <p className={styles.element}>{consultantName}</p>
             </div>
