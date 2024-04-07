@@ -271,11 +271,14 @@ class DifficultiesView(MethodView):
         
         return jsonify("Difficulty added successfully"), 200
         
-    def delete(self, id):
+    def delete(self, difficulty_id):
         user_id = session.get("user_id")
         techy = ITTechnician.query.filter_by(id=user_id).first()
-        
-        return None # Will work on this later (need to update database model and stuff)
+        if tech == None:
+            return jsonify({"Error": "Unauthorized"}), 400
+        Difficulty.query.filter_by(id=difficultyt_id).delete()
+
+        return jsonify("Deletion successful")
     
 class ListDifficultiesView(MethodView):
     def get(self):
