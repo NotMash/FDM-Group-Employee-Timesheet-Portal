@@ -12,6 +12,8 @@ function Calendar() {
   const [myEvents, setEvents] = useState([]);
   const [isToastOpen, setToastOpen] = useState(false);
   const [toastText, setToastText] = useState();
+  const [timesheets, setTimesheets] = useState([]);
+  var arrayOfDays = []
 
   const handleToastClose = useCallback(() => {
     setToastOpen(false);
@@ -30,43 +32,61 @@ function Calendar() {
   const myView = useMemo(() => ({ calendar: { labels: true } }), []);
 
   useEffect(() => {
-    const events = [
-      {
-        id: 1,
-        start: new Date(2024, 3, 1, 10), // Year, Month (0-11), Day, Hour (24-hour format)
-        end: new Date(2024, 3, 1, 12),
-        title: 'Approved',
-        color: 'darkgreen'
-      },
-      {
-        id: 3,
-        start: new Date(2024, 3, 2, 10),
-        end: new Date(2024, 3, 2, 12),
-        title: 'Approved',
-        color: 'darkgreen'
-      },
-      {
-        id: 4,
-        start: new Date(2024, 3, 3, 10),
-        end: new Date(2024, 3, 3, 12),
-        title: 'Disapproved',
-        color: 'darkred' 
-      },
-      {
-        id: 2,
-        start: new Date(2024, 3, 5, 14),
-        end: new Date(2024, 3, 5, 15, 30),
-        title: 'Pending',
-        color: 'darkorange'
-      },
-    ];
+    const fetchData = async () =>{
+        try{
+            await fetch('http://127.0.0.1:5000/list_timesheets', {
+                    method: "GET",
+                    headers: { "Content-Type": "application/json" },
+                    credentials: 'include',
+                }).then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } 
+                    else {
+                        throw new Error('User Creation Failed with Status: ' + response.status);
+                    }
+                }).then(data => {
+                    // Data fetched successfully
+                    console.log(data)
+                    setTimesheets(data);
+                }).catch(error => {
+                    console.error(error);
+                });
+        } catch(error) {
+            console.log("error fetching data")
+        }
+    };
+    fetchData();
+  }, []);
+
+  console.log("stored stuff:",timesheets)
+
+  let counter = 0
+  Object.entries(timesheets).map(entry => {
+      arrayOfDays.push(entry[1])
+      console.log(new Date(arrayOfDays[counter].day))
+      counter++
+  })
+  console.log(arrayOfDays)
+
+
+  console.log(arrayOfDays.length)
+
+
+  useEffect(() => {
+    const eventsFromTimesheets = Object.values(timesheets).map(ts => ({
+      start: new Date(ts.day),
+      end: new Date(ts.day),
+      title: ts.status,
+      color: ts.status === 'approved' ? 'darkgreen' : ts.status=='disapproved' ? 'red' : '#FFD700'
+    }));
 
     const today = new Date();
-    const formattedToday = new Date(today.getFullYear(), today.getMonth(), today.getDate()); // Remove time part
-    const todayEvent = events.find(event => event.start.getTime() === formattedToday.getTime());
+    const formattedToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const todayEvent = eventsFromTimesheets.find(event => event.start.toDateString() === formattedToday.toDateString());
+
     if (!todayEvent) {
-      events.push({
-        id: events.length + 1,
+      eventsFromTimesheets.push({
         start: formattedToday,
         end: formattedToday,
         title: 'Check In',
@@ -74,8 +94,8 @@ function Calendar() {
       });
     }
 
-    setEvents(events);
-  }, []);
+    setEvents(eventsFromTimesheets);
+  }, [timesheets]);
 
   return (
     <>
