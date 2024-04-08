@@ -2,16 +2,16 @@ import { useState } from 'react'
 import styles from './TimesheetDayCard.module.css'
 
 
-export default function TimesheetDayCard (props) {
+export default function TimesheetDayCard(props) {
 
     const [changedStatus, setChangedStatus] = useState(false)
     const [statusTo, setStatusTo] = useState('pending')
 
     let date = new Date(props.date)
-    let formattedDate = date.getDay() + "/" + (date.getMonth()+1) + "/" + date.getFullYear()
+    let formattedDate = date.getDay() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
 
     function approveTimesheet() {
-        if(!changedStatus) {
+        if (!changedStatus) {
             console.log("timesheet approved. id=", props.id)
             setTimesheetStatus("approve")
             setChangedStatus(true)
@@ -21,7 +21,7 @@ export default function TimesheetDayCard (props) {
     }
 
     function disapproveTimesheet() {
-        if(!changedStatus) {
+        if (!changedStatus) {
             console.log("timesheet disapproved. id=", props.id)
             setTimesheetStatus("disapprove")
             setChangedStatus(true)
@@ -31,7 +31,7 @@ export default function TimesheetDayCard (props) {
     }
 
     function setTimesheetStatus(statusTo) {
-        fetch('http://127.0.0.1:5000/'+statusTo+'_timesheet/'+props.id, {
+        fetch('http://127.0.0.1:5000/' + statusTo + '_timesheet/' + props.id, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             credentials: 'include',
@@ -50,8 +50,8 @@ export default function TimesheetDayCard (props) {
 
     }
 
-    if(props.status == "pending") {
-        return(<div className={styles.timesheetDayCard}>
+    if (props.status == "pending") {
+        return (<div className={styles.timesheetDayCard}>
             <h2 className={styles.date}>{formattedDate}</h2>
             <h2 className={styles.startTime}>{props.startTime}</h2>
             <h2 className={styles.endTime}>{props.endTime}</h2>
@@ -66,8 +66,8 @@ export default function TimesheetDayCard (props) {
 
         </div>)
     }
-    else{
-        return(<div className={styles.timesheetDayCard}>
+    else {
+        return (<div className={styles.timesheetDayCard}>
             <h2 className={styles.date}>{formattedDate}</h2>
             <h2 className={styles.startTime}>{props.startTime}</h2>
             <h2 className={styles.endTime}>{props.endTime}</h2>

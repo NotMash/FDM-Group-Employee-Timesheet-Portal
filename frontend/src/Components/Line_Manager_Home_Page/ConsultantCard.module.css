@@ -1,29 +1,25 @@
 .cardContainer{
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color: #AEAEAE;
+    background-color: #bebebe;
     padding: 1em; 
-    border-radius: 1.5em;
-    box-shadow: -0.2em 0.2em 0.2em hsla(0, 0%, 24%, 0.753);
+    border-radius: 15px;
+    box-shadow: 0 0 20px black;
     margin: 1pc;
-    max-height: 11rem;
-    min-height: 11rem;
-    width: 50%;
-    flex-shrink: 0;
+    height: 100%;
+    width: 90%;
 }
 
 .userIcon{
-    width: 95%;
-}
-
-.iconContainer{
-    margin-bottom: 0;
-    margin-top: 0;
+    width: 3em;
 }
 
 .name{
     color: black;
+    font-size: 16pt;
+    font-family: "Open Sans", sans-serif;
     text-align: center;
     margin-top: 1rem;
     margin-bottom: 0;
@@ -31,12 +27,19 @@
 }
 
 .viewTimesheetBtn{
-    background-color: #D9D9D9;
-    border: none;
-    border-radius: 1.25em;
-    padding: 0.55em;
-    font-size: 1em;
+    width: 70%;
+    background-color: #292929;
+    box-shadow: rgb(0, 0, 0) 0 0 5px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    padding: 0.8em;
+    font-size: 11pt;
     cursor: pointer;
     margin-top: 1rem;
-    margin-bottom: 3rem;
+}
+
+.viewTimesheetBtn:hover {
+    box-shadow: rgb(0, 0, 0) 0 0 5px;
+    color: rgb(226, 254, 132);
 }

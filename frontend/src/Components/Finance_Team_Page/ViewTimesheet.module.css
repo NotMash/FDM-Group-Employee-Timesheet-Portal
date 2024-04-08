@@ -1,24 +1,97 @@
-/* ViewTimesheet.module.css */
-
 .timesheetContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px; /* Add padding */
   margin-left: 5rem;
-  width: 80%;
-  margin: 0 auto;
+  color: white;
 }
 
 .timesheetTitle {
   text-align: center;
-  margin-top: 0;
+  margin-top: 20;
+  font-weight: bold;
+  font-size: 30pt;
 }
 
-.timesheetBox {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
-  margin-top: 20px;
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.timesheetBox p {
-  margin-bottom: 10px;
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Add some space between elements */
+}
+
+.timesheetLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 18px;
+}
+
+.setHourlyRateInput {
+  font-weight: 500;
+  font-size: 11pt;
+  color: #fff;
+  background-color: rgb(28, 28, 30);
+  box-shadow: 0 0 0.4vw rgba(0, 0, 0, 0.5), 0 0 0 0.15vw transparent;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  padding: 0.4vw;
+  max-width: 100%;
+  height: 25px;
+  transition: 0.4s;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.setHourlyRateInput::placeholder {
+  color: rgba(255, 255, 255, 0.382);
+}
+
+.setHourlyRateInput:hover {
+  box-shadow: 0 0 0 0.15vw #c5ff00;
+}
+
+.setHourlyRateInput:focus {
+  box-shadow: 0 0 0 0.15vw #c5ff00;
+}
+
+.setHourlyRateButton {
+  font-family: "Poppins", sans-serif;
+  width: 70%;
+  padding: 5%;
+  margin: 3%;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 0;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: all 0.5s ease;
+}
+
+.setHourlyRateButton:hover {
+  letter-spacing: 2px;
+  background-color: #1e1e1e;
+  color: hsl(0, 0%, 100%);
+  box-shadow: #c5ff00 0px 3px 29px 0px;
+}
+
+.setHourlyRateButton:active {
+  letter-spacing: 2px;
+  background-color: #1e1e1e;
+  color: white;
+  box-shadow: #c5ff00 0px 0px 0px 0px;
+  transform: translateY(10px);
+  transition: 100ms;
 }
