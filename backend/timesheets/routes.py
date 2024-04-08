@@ -176,7 +176,7 @@ class ListWeeklyTimesheetsView(MethodView):
         
         week_start = datetime.today()  - timedelta(days=datetime.today().weekday() % 7)
         week_start = datetime(week_start.year, week_start.month, week_start.day)
-        timesheets = Timesheet.query.filter_by(week_start_date=week_start, consultant_id=user_id).all()
+        timesheets = Timesheet.query.filter_by(consultant_id=user_id).all()
         week_start = f"{week_start.day}/{week_start.month}/{week_start.year}"
         json_dict = {}
         timesheets = [i for i in timesheets]

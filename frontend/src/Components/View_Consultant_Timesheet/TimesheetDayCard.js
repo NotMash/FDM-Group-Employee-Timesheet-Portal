@@ -5,6 +5,7 @@ import styles from './TimesheetDayCard.module.css'
 export default function TimesheetDayCard(props) {
 
     const [changedStatus, setChangedStatus] = useState(false)
+    const [statusTo, setStatusTo] = useState('pending')
 
     let date = new Date(props.date)
     let formattedDate = date.getDay() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
@@ -14,6 +15,7 @@ export default function TimesheetDayCard(props) {
             console.log("timesheet approved. id=", props.id)
             setTimesheetStatus("approve")
             setChangedStatus(true)
+            setStatusTo("approved")
         }
         /**/
     }
@@ -23,6 +25,7 @@ export default function TimesheetDayCard(props) {
             console.log("timesheet disapproved. id=", props.id)
             setTimesheetStatus("disapprove")
             setChangedStatus(true)
+            setStatusTo('disapproved')
         }
         /**/
     }
@@ -52,9 +55,15 @@ export default function TimesheetDayCard(props) {
             <h2 className={styles.date}>{formattedDate}</h2>
             <h2 className={styles.startTime}>{props.startTime}</h2>
             <h2 className={styles.endTime}>{props.endTime}</h2>
+            {(!changedStatus) ? 
             <h2 className={styles.status}>{props.status}</h2>
+            :  
+            <h2 className={styles.status}>{statusTo}</h2>}
+            {!changedStatus ? <>           
             <button onClick={approveTimesheet} disabled={changedStatus}>Approve</button>
-            <button onClick={disapproveTimesheet} disabled={changedStatus}>Disapprove</button>
+            <button onClick={disapproveTimesheet} disabled={changedStatus}>Disapprove</button> </>  :
+            <></>}
+
         </div>)
     }
     else {
