@@ -15,6 +15,10 @@ export default function TimesheetTable() {
         }
 
         var monday = new Date(today);
+        monday.setHours(0)
+        monday.setMinutes(0)
+        monday.setSeconds(0)
+        monday.setMilliseconds(0)
         monday.setDate(today.getDate() - diffFromWeekStart);
 
         return monday;
@@ -70,7 +74,7 @@ export default function TimesheetTable() {
         const entryStringDate = entry[1].day
         const dateParts = entryStringDate.split('/');
         const entryDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
-        console.log(entryDate, entryStringDate)
+        //console.log(startOfWeek, entryDate >= startOfWeek)
         if(entryDate >= startOfWeek) {
             arrayOfDays.push(entry[1])
             const [day, month, year] = arrayOfDays[counter].day.split('/');
