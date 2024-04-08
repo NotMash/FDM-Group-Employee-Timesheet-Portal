@@ -11,6 +11,7 @@ export default function TimesheetTable() {
     var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
       
+    
     useEffect(() => {
         const fetchData = async () =>{
             try{
@@ -59,37 +60,41 @@ export default function TimesheetTable() {
 
     console.log(arrayOfDays)
 
-return ( 
-    <>
-        {arrayOfDays.length > 0 && <ConsultantDetails consultantName={arrayOfDays[0].consultant_name} lineManagerName={arrayOfDays[0].line_manager_name}/>}
-        {arrayOfDays.length > 0 && <ViewTimesheetHeader currentWeek={arrayOfDays[0].week_start}/>}
-        <div>
-            <table className={styles.timesheetTable}>
-                <thead>
-                    <tr className={styles.tableRow}>
-                        <th className={styles.tableData}>DAY</th>
-                        <th className={styles.tableData}>DATE</th>
-                        <th className={styles.tableData}>START TIME</th>
-                        <th className={styles.tableData}>END TIME</th>
-                        <th className={styles.tableData}>HOURS WORKED</th>
-                        <th className={styles.tableData}>STATUS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {arrayOfDays.map((dayData, index) => (
-                        <tr key={index} className={styles.tableRow}>
-                            <td className={styles.tableData}>{dayData.day_of_week}</td>
-                            <td className={styles.tableData}>{dayData.day}</td>
-                            <td className={styles.tableData}>{dayData.start_work}</td>
-                            <td className={styles.tableData}>{dayData.end_work}</td>
-                            <td className={styles.tableData}>{dayData.hours_worked}</td>
-                            <td className={styles.tableData}>{dayData.status.toUpperCase()}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    </>
+    return (
+        <>
+            {arrayOfDays.length > 0 && <ViewTimesheetHeader currentWeek={arrayOfDays[0].week_start} />}
+            <div className={styles.mainContainer}>
+                <div className={styles.sidePanel}>
+                    {arrayOfDays.length > 0 && <ConsultantDetails consultantName={arrayOfDays[0].consultant_name} lineManagerName={arrayOfDays[0].line_manager_name} />}
+                </div>
+                <div className={styles.mainPanel}>
+                    <table className={styles.timesheetTable}>
+                        <thead>
+                            <tr className={styles.tableRow}>
+                                <th className={styles.tableData}>DAY</th>
+                                <th className={styles.tableData}>DATE</th>
+                                <th className={styles.tableData}>START TIME</th>
+                                <th className={styles.tableData}>END TIME</th>
+                                <th className={styles.tableData}>HOURS WORKED</th>
+                                <th className={styles.tableData}>STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {arrayOfDays.map((dayData, index) => (
+                                <tr key={index} className={styles.tableRow}>
+                                    <td className={styles.tableData}>{dayData.day_of_week}</td>
+                                    <td className={styles.tableData}>{dayData.day}</td>
+                                    <td className={styles.tableData}>{dayData.start_work}</td>
+                                    <td className={styles.tableData}>{dayData.end_work}</td>
+                                    <td className={styles.tableData}>{dayData.hours_worked}</td>
+                                    <td className={styles.tableData}>{dayData.status.toUpperCase()}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </>
 );
 
 }

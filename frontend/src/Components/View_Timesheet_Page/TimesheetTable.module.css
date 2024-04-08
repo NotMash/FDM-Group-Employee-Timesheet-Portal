@@ -1,17 +1,88 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-.timesheetTable{
-    background-color: #012E6E;
-    position: absolute;
-    left: 28%;
-    top: 25%;
-    width: 45%;
-    font-family: 'Roboto', sans-serif;
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 5%;
+    width: 75%;
+    color: white;
 }
 
-.tableData{
-    background-color: #cee2ffe0;
+.sidePanel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    height: 10;
+    font-weight: 500;
+    font-family: "Inter", sans-serif;
+}
+
+.mainPanel {
+    margin-top: 5%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.timesheetTable {
+    border-spacing: 1;
+    border-collapse: collapse;
+    background: rgb(204, 204, 204);
+    border-radius: 20px;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    font-family: "Inter", sans-serif;
+    box-shadow: black 0px 0px 20px;
+
+}
+
+.timesheetTable thead tr {
+    height: 60px;
+    background: #353535;
+    font-size: 16px;
+    color: white;
+}
+
+.timesheetTable tbody tr {
+    height: 48px;
+    border-bottom: 1px solid #000000;
+
+    &:last-child {
+        border: 0;
+    }
+}
+
+.timesheettable td,
+th {
+    text-align: left;
+
+    &.l {
+        text-align: right
+    }
+
+    &.c {
+        text-align: center
+    }
+
+    &.r {
+        text-align: center
+    }
+}
+
+.tableData {
     padding: 0.6em;
     text-align: center;
     font-size: 1.5rem;
+}
+
+.tableRow td {
+    font-size: 1.2rem;
+    color: black;
 }

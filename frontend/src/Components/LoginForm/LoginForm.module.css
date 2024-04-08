@@ -6,17 +6,18 @@ html {
 .LoginForm {
     width: 20%;
     text-align: center;
-    border-radius: 0.4pc;
+    border-radius: 2pc;
     position: relative;
-    top: 17pc;
-    right: 2.5pc;
-    background-color: white;
+    background-color: #292929;
+    box-shadow: black 0 0 15px;
+    color: white;
 }
 
 .LoginFormList {
     display: inline;
     list-style-type: none;
     background-color: white;
+    border-radius: 100%;
 }
 
 .LoginFormListElement {
@@ -25,6 +26,7 @@ html {
 }
 
 .UserIcon {
+    margin-top: 5%;
     display: inline;
     width: 25%;
     position: relative;
@@ -32,14 +34,28 @@ html {
 }
 
 .input {
-    width: 10pc;
-    padding: 0.5em;
-    background-color: #012E6E;
-    color: white;
+    font-weight: 500;
+    font-size: 11pt;
+    color: #fff;
+    background-color: rgb(28,28,30);
+    box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    padding: 1.1vw;
+    max-width: 100%;
+    height: 25px;
+    transition: .4s;
+    text-align: center;
+    margin: 5%;
+}
+
+.input:hover {
+    box-shadow: 0 0 .4vw #ceff2c, 0 0 0 .15vw transparent;
 }
 
 .SelectInput {
-    background-color: #012E6E;
+    background-color: #a8a8a8;
     padding: 0.6em;
     width: 42%;
     color: white;
@@ -51,22 +67,43 @@ html {
 
 #ForgotPass {
     text-decoration: none;
-    color: #012E6E;
+    color: #9c9c9c;
 }
 
-.Submit {
-    padding: 0.7pc 0.1pc;
-    width: 100px;
-    cursor: pointer;
-    border: none;
-    background-image: linear-gradient(to right, blue, purple);
-    left: 20%;
-    border-radius: 25px;
-    color: white;
-    height: 3rem;
-    text-align: center;
-    text-decoration: dashed;
-    padding-top: 0.5rem;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
+#ForgotPass:hover {
+    color: #91afcb;
 }
+
+
+.Submit {
+    font-family: "Poppins", sans-serif;
+    width: 30%;
+    padding: 3%;
+    margin: 3%;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 0;
+    background-color: rgb(49, 49, 49);
+    box-shadow: rgb(0, 0, 0) 0 0 7px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 15px;
+    transition: all 0.5s ease;
+    color: white;
+  }
+  
+  .Submit:hover {
+    letter-spacing: 2px;
+    background-color: #1e1e1e;
+    color: hsl(0, 0%, 100%);
+    box-shadow: #c5ff00 0px 3px 29px 0px;
+  }
+  
+  .Submit:active {
+    letter-spacing: 2px;
+    background-color: #1e1e1e;
+    color: white;
+    box-shadow: #c5ff00 0px 0px 0px 0px;
+    transform: translateY(10px);
+    transition: 100ms;
+  }
