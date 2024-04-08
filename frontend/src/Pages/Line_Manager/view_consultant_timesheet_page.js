@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import TimesheetDayCard from "../../Components/View_Consultant_Timesheet/TimesheetDayCard";
 import styles from './view_consultant_timesheet_page.module.css'
+import Navbar from "../../Components/Global/Navbar";
 
 export default function ConsultantTimesheetViewerPage() {
     const [selectedConsultantName, setSelectedConsultantName] = useState('')
@@ -12,6 +13,9 @@ export default function ConsultantTimesheetViewerPage() {
     const [filteredTimesheets, setFilteredTimesheets] = useState([])
     var foundTimesheetsArray = []
     const [hasSelectedFiltering, setHasSelectedFiltering] = useState(false)
+
+    let links = [{pageName : "View Selected Consultant", pageLink : "/view_consultant_timesheet", iconPath : "./Home_Page_Icons/Consultant/record_timesheet.svg"}]
+
 
     if (selectedConsultantName == '') {
         setSelectedConsultantName(storedConsultantName)
@@ -109,6 +113,7 @@ export default function ConsultantTimesheetViewerPage() {
 
         return (
             <>
+                <Navbar homePageTitle="Consultant Finder" homePageLink="/consultant_finder_page" links={links}/>
                 <div className={styles.mainContainer}>
                     <h1>{selectedConsultantName}</h1>
                     <div className={styles.filterContainer}>

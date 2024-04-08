@@ -6,12 +6,11 @@ import styles from "./ITDifficultiesPage.module.css";
 function IT_Difficulties_Page() {
     document.title = "IT Difficulties";
 
-    let links = [{ pageName: "View It Difficulties", pageLink: "/it_difficulties", iconPath: "./Home_Page_Icons/Consultant/record_timesheet.svg" },
-    { pageName: "Create User", pageLink: "/it_user_creation", iconPath: "./Home_Page_Icons/Consultant/view_saved_timesheets.svg" }]
+    let links = [{ pageName: "Create User", pageLink: "/it_user_creation", iconPath: "./Home_Page_Icons/Consultant/view_saved_timesheets.svg" }]
 
     return (
         <>
-            <Navbar homePageTitle="IT Technician Home Page" homePageLink="/it_technician_home_page" links={links} />
+            <Navbar homePageTitle="View It Difficulties" homePageLink="/it_difficulties" links={links} />
             <div className={styles.main}>
                 <h1>IT Difficulties</h1>
                 <div className={styles.difficultyTable}>

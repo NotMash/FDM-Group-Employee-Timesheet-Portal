@@ -3,8 +3,13 @@ import styles from "./SetHourlyRate.module.css"; // Import the CSS file
 import Navbar from "../../Components/Global/Navbar";
 
 function SetHourlyRate() {
-  let links = [{ pageName: "Set Hourly Rate Page", pageLink: "/set_hourly_rate", iconPath: "./Home_Page_Icons/Consultant/record_timesheet.svg" },
-  { pageName: "View Timesheet Page", pageLink: "/view_timesheet", iconPath: "./Home_Page_Icons/Consultant/view_timesheet.svg" }]
+  let links = [
+    {
+      pageName: "View Timesheet Page",
+      pageLink: "/view_timesheet",
+      iconPath: "./Home_Page_Icons/Consultant/view_timesheet.svg",
+    },
+  ];
 
   const [consultantName, setConsultantName] = useState("");
   const [hourlyRate, setHourlyRate] = useState("");
@@ -42,39 +47,45 @@ function SetHourlyRate() {
       });
     };
 
-    return (
-      <>
-        <Navbar homePageTitle="Finance Team Home Page" homePageLink="/finance_team_member_home_page" links={links} />
-        <div className={styles.setHourlyRateContainer}>
-          <h2 className={styles.setHourlyRateTitle}>Set Hourly Rate</h2>
+  return (
+    <>
+      <Navbar
+        homePageTitle="Set Hourly Rate"
+        homePageLink="/set_hourly_rate"
+        links={links}
+      />
+      <div className={styles.setHourlyRateContainer}>
+        <h1 className={styles.setHourlyRateTitle}>Set Hourly Rate</h1>
+        <div className={styles.SetHourlyRateFormContainer}>
           <form className={styles.formContainer} onSubmit={handleSubmit}>
             <div className={styles.inputGroup}>
               <p className={styles.setHourlyRateLabel}>Consultant Name:</p>
-                <input
-                  type="text"
-                  value={consultantName}
-                  onChange={handleConsultantNameChange}
-                  className={styles.setHourlyRateInput}
-                  placeholder="Enter consultant's name"
-                />
+              <input
+                type="text"
+                value={consultantName}
+                onChange={handleConsultantNameChange}
+                className={styles.setHourlyRateInput}
+                placeholder="Enter consultant's name"
+              />
             </div>
             <div className={styles.inputGroup}>
               <p className={styles.setHourlyRateLabel}>Hourly Rate:</p>
-                <input
-                  type="number"
-                  value={hourlyRate}
-                  onChange={handleHourlyRateChange}
-                  className={styles.setHourlyRateInput}
-                  placeholder="Enter hourly rate"
-                />
+              <input
+                type="number"
+                value={hourlyRate}
+                onChange={handleHourlyRateChange}
+                className={styles.setHourlyRateInput}
+                placeholder="Enter hourly rate"
+              />
             </div>
             <button type="submit" className={styles.setHourlyRateButton}>
               Set Hourly Rate
             </button>
           </form>
         </div>
-      </>
-    );
+      </div>
+    </>
+  );
 }
 
 

@@ -10,7 +10,7 @@ function ViewCurrentTimesheetPage () {
     {pageName : "View Saved Timesheets", pageLink : "/view_saved_timesheet", iconPath : "./Home_Page_Icons/Consultant/view_saved_timesheets.svg"}]
 
     return(<>
-        <Navbar homePageTitle="Consultant Home Page" homePageLink="/consultant_home_page" links={links}/>
+        <Navbar homePageTitle="Home" homePageLink="/consultant_home_page" links={links}/>
         <main className={styles.main}>
             <TimesheetTable/>
         </main>

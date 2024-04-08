@@ -5,11 +5,11 @@ import styles from "./ConsultantFinderPage.module.css";
 function ConsultantFinderPage() {
     document.title = "Consultant Finder Page";
 
-    let links = [{pageName : "Consultant Finder", pageLink : "/consultant_finder_page", iconPath : "./Home_Page_Icons/Consultant/record_timesheet.svg"}]
+    let links = [{pageName : "View Selected Consultant", pageLink : "/view_consultant_timesheet", iconPath : "./Home_Page_Icons/Consultant/record_timesheet.svg"}]
 
     return(
         <>
-            <Navbar homePageTitle="Line Manager Home Page" homePageLink="/line_manager_home_page" links={links}/>
+            <Navbar homePageTitle="Consultant Finder" homePageLink="/consultant_finder_page" links={links}/>
             <main className={styles.main}>
                 <h1>Consultant Finder</h1>
                 <ConsultantFinder/>
