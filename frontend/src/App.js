@@ -15,6 +15,7 @@ import ItUserCreationPage from "./Pages/IT_Technician/it_user_creation_page";
 import ViewCurrentTimesheetPage from "./Pages/Consultant/view_current_timesheet_page";
 import ConsultantTimesheetViewerPage from "./Pages/Line_Manager/view_consultant_timesheet_page";
 import ViewSavedTimesheetsPage from "./Pages/Consultant/view_saved_timesheets_page";
+import FileItIssuePage from "./Pages/Global/File_IT_Issue_Page/file_it_issue_page";
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
         <Route path="/current_timesheet_viewer" element={<ViewCurrentTimesheetPage/>}/>
         <Route path="/view_consultant_timesheet" element={<ConsultantTimesheetViewerPage/>}/>
         <Route path="/view_saved_timesheet" element={<ViewSavedTimesheetsPage/>}/>
+        <Route path="/file_it_issue_page" element={<FileItIssuePage/>}/>
       </Routes>
     </HashRouter>
   );
