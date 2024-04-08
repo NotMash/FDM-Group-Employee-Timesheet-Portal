@@ -20,11 +20,11 @@ function Calendar() {
   }, []);
 
   const handleEventClick = useCallback((args) => {
-    if (args.event.title === 'Disapproved' || args.event.title === 'Pending') {
-      window.location.href = './#/current_timesheet_viewer';
-    } else if (args.event.title === 'Check In') {
+    if (args.event.title === 'DISAPPROVED' || args.event.title === 'PENDING') {
+      window.location.href = './#/view_saved_timesheet';
+    } else if (args.event.title === 'CHECK IN') {
       window.location.href = './#/timesheet_recording_page';
-    } else if (args.event.title === 'Approved') {
+    } else if (args.event.title === 'APPROVED') {
       window.location.href = './#/view_saved_timesheet';
     }
   }, []);
@@ -63,6 +63,7 @@ function Calendar() {
 
   let counter = 0
   Object.entries(timesheets).map(entry => {
+      entry[1].status = entry[1].status.toUpperCase()
       arrayOfDays.push(entry[1])
       console.log(new Date(arrayOfDays[counter].day))
       counter++
@@ -78,7 +79,7 @@ function Calendar() {
       start: new Date(ts.day),
       end: new Date(ts.day),
       title: ts.status,
-      color: ts.status === 'approved' ? 'darkgreen' : ts.status=='disapproved' ? 'red' : '#FFD700'
+      color: ts.status === 'APPROVED' ? '#44a13f' : ts.status=='DISAPPROVED' ? '#a52f34' : '#ce983c'
     }));
 
     const today = new Date();
@@ -89,8 +90,8 @@ function Calendar() {
       eventsFromTimesheets.push({
         start: formattedToday,
         end: formattedToday,
-        title: 'Check In',
-        color: '#454545'
+        title: 'CHECK IN',
+        color: '#787878'
       });
     }
 
