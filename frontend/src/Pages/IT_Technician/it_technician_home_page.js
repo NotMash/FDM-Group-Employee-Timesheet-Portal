@@ -4,8 +4,7 @@ import Navbar from "../../Components/Global/Navbar";
 function IT_Technician_HomePage() {
     document.title = "IT Technician Home Page";
 
-    let links = [{pageName : "View It Difficulties", pageLink : "/it_difficulties", iconPath : "./Home_Page_Icons/It_Technician/computer-solid.svg"}, 
-    {pageName : "View Timesheet Edit Requests", pageLink : "/timesheet_edit_requests", iconPath : "./Home_Page_Icons/Consultant/view_timesheet.svg"},
+    let links = [{pageName : "View It Difficulties", pageLink : "/it_difficulties", iconPath : "./Home_Page_Icons/It_Technician/computer-solid.svg"},
     {pageName : "Create User", pageLink : "/it_user_creation", iconPath : "./Home_Page_Icons/It_Technician/user-plus-solid.svg"}]
 
     return (

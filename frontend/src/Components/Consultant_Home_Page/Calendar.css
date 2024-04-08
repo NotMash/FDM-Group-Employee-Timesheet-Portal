@@ -14,3 +14,13 @@
 .mbsc-windows-dark.mbsc-calendar-slide {
     background: #10101000;
 }
+
+.mbsc-windows.mbsc-calendar-width-md .mbsc-calendar-label-text {
+    text-align: center;
+}
+
+.mbsc-calendar-labels {
+    left: 12%;
+    position: absolute;
+    right: 12%;
+}

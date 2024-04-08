@@ -18,33 +18,62 @@ function Calendar() {
   }, []);
 
   const handleEventClick = useCallback((args) => {
-    setToastText(args.event.title);
-    setToastOpen(true);
+    if (args.event.title === 'Disapproved' || args.event.title === 'Pending') {
+      window.location.href = './#/current_timesheet_viewer';
+    } else if (args.event.title === 'Check In') {
+      window.location.href = './#/timesheet_recording_page';
+    } else if (args.event.title === 'Approved') {
+      window.location.href = './#/view_saved_timesheet';
+    }
   }, []);
 
   const myView = useMemo(() => ({ calendar: { labels: true } }), []);
 
   useEffect(() => {
-    // Define your own events data array
     const events = [
       {
         id: 1,
         start: new Date(2024, 3, 1, 10), // Year, Month (0-11), Day, Hour (24-hour format)
         end: new Date(2024, 3, 1, 12),
         title: 'Approved',
-        color: '#378006' // Optional: specify a color for the event
+        color: 'darkgreen'
+      },
+      {
+        id: 3,
+        start: new Date(2024, 3, 2, 10),
+        end: new Date(2024, 3, 2, 12),
+        title: 'Approved',
+        color: 'darkgreen'
+      },
+      {
+        id: 4,
+        start: new Date(2024, 3, 3, 10),
+        end: new Date(2024, 3, 3, 12),
+        title: 'Disapproved',
+        color: 'darkred' 
       },
       {
         id: 2,
         start: new Date(2024, 3, 5, 14),
         end: new Date(2024, 3, 5, 15, 30),
         title: 'Pending',
-        color: '#d4810b'
+        color: 'darkorange'
       },
-      // Add more events as needed
     ];
 
-    // Set the events data
+    const today = new Date();
+    const formattedToday = new Date(today.getFullYear(), today.getMonth(), today.getDate()); // Remove time part
+    const todayEvent = events.find(event => event.start.getTime() === formattedToday.getTime());
+    if (!todayEvent) {
+      events.push({
+        id: events.length + 1,
+        start: formattedToday,
+        end: formattedToday,
+        title: 'Check In',
+        color: '#454545'
+      });
+    }
+
     setEvents(events);
   }, []);
 

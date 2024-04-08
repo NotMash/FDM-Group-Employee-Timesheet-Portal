@@ -1,20 +1,22 @@
 .consultantDetailsContainer{
     display: flex;
-    flex-direction: column;
-    width: 20%;
-    align-items: center;
-    top: 5%;
+    gap: 10%;
+    width: 100%;
     text-align: center;
-    gap: 4rem;
-    margin-top: 3rem;
-    margin-left: 5rem;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.userNameContainer p{
+    margin-top: 10px;
 }
 
 .userNameContainer{
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-
+    gap: 10%;
+    width: 300px;
 }
 
 .element{

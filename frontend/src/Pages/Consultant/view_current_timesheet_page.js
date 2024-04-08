@@ -1,4 +1,3 @@
-import DailyRate from "../../Components/View_Timesheet_Page/DailyRate";
 import TimesheetTable from "../../Components/View_Timesheet_Page/TimesheetTable";
 import styles from './TimesheetViewPage.module.css';
 import Navbar from "../../Components/Global/Navbar";
@@ -13,7 +12,6 @@ function ViewCurrentTimesheetPage () {
     return(<>
         <Navbar homePageTitle="Consultant Home Page" homePageLink="/consultant_home_page" links={links}/>
         <main className={styles.main}>
-            <DailyRate/>
             <TimesheetTable/>
         </main>
     </>)
