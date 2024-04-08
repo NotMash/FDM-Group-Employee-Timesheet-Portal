@@ -30,7 +30,7 @@ export default function ConsultantDetails(props) {
                 <p className={styles.element}>{lineManagerName}</p>
             </div>
             <div className={styles.userNameContainer}>
-                <DailyRate/>
+                <DailyRate hourlyRate={props.hourlyRate}/>
             </div>
         </div>)
 }

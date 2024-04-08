@@ -159,9 +159,15 @@ class ListTimesheetsView(MethodView):
             return jsonify({"Error": "Unauthorised"}), 401
         timesheets = Timesheet.query.filter_by(consultant_id=user_id).all()
         json_dict = {}
-        timesheet_ids = [timesheet.id for timesheet in timesheets]
+
         for timesheet in timesheets:
-            json_dict[timesheet.id] = {"id": timesheet.id, "name": timesheet.consultant_name, "status": timesheet.status}
+            json_dict[timesheet.id] = {
+                "id": timesheet.id,
+                "name": timesheet.consultant_name,
+                "status": timesheet.status,
+                "day": timesheet.day.strftime('%Y-%m-%d')  # Format the day as a string in YYYY-MM-DD format
+            }
+
         return jsonify(json_dict), 200
 
 class ListWeeklyTimesheetsView(MethodView):

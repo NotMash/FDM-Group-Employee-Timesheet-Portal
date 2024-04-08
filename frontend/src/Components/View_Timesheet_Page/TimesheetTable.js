@@ -94,7 +94,7 @@ export default function TimesheetTable() {
             {arrayOfDays.length > 0 && <ViewTimesheetHeader currentWeek={arrayOfDays[0].week_start} />}
             <div className={styles.mainContainer}>
                 <div className={styles.sidePanel}>
-                    {arrayOfDays.length > 0 && <ConsultantDetails consultantName={arrayOfDays[0].consultant_name} lineManagerName={arrayOfDays[0].line_manager_name} />}
+                    {arrayOfDays.length > 0 && <ConsultantDetails consultantName={arrayOfDays[0].consultant_name} lineManagerName={arrayOfDays[0].line_manager_name} hourlyRate={arrayOfDays[0].hourly_rate}/>}
                 </div>
                 <div className={styles.mainPanel}>
                     <table className={styles.timesheetTable}>
