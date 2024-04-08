@@ -89,7 +89,7 @@ function ConsultantFinder() {
                 <p className={styles.myConsultantsTitle}>My Consultants</p>
                 <div className={styles.searchResults}>
                     {search === '' ? (
-                        consultantPlaceholderNames.map((result, index) => (
+                        foundConsultantNamesArray.map((result, index) => (
                             <ConsultantCard name={result} key={index}></ConsultantCard>
                         ))
                     ) : (

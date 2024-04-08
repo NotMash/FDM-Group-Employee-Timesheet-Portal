@@ -71,7 +71,7 @@ body{
 }
 
 
-select {
+.select {
   outline: none;
   border: none;
   flex: 1;
