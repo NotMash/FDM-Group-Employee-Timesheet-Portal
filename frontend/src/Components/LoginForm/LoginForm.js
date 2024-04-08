@@ -25,7 +25,19 @@ function LoginForm() {
             throw new Error('Login failed with status: ' + response.status);
         }
     }).then(data => {
-        var pageToRedirTo = ("/"+data.user_type + "_home_page");
+        var pageToRedirTo = ("/");
+        if(data.user_type == "consultant") {
+            pageToRedirTo += 'consultant_home_page'
+        }
+        else if(data.user_type == "line_manager") {
+            pageToRedirTo += 'consultant_finder_page'
+        }
+        else if(data.user_type == "it_technician") {
+            pageToRedirTo += 'it_difficulties'
+        }
+        else{
+            pageToRedirTo += 'set_hourly_rate'
+        }
         navigate(pageToRedirTo);
     }).catch(error => {
         console.error(error);

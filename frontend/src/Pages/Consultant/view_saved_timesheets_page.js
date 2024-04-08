@@ -103,7 +103,7 @@ export default function ViewSavedTimesheetsPage() {
         console.log(filteredTimesheets, reversedTimesheetsArray)
         return (
             <>
-                <Navbar homePageTitle="Consultant Home Page" homePageLink="/consultant_home_page" links={links} />
+                <Navbar homePageTitle="Home" homePageLink="/consultant_home_page" links={links} />
                 <main className={styles.mainContainer}>
                     <h1 className={styles.header}>Saved Timesheets</h1>
                     <div className={styles.filterContainer}>

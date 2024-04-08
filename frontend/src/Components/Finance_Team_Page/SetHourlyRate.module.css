@@ -12,6 +12,19 @@
   font-family: "Roboto", sans-serif;
 }
 
+.SetHourlyRateFormContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #1a1a1a;
+  color: white;
+  box-shadow: 0 0 20px black;
+  border-radius: 15px;
+  padding: 2%;
+  min-width: 15rem;
+  font-family: "Poppins", sans-serif;
+}
+
 /* Title styles */
 .setHourlyRateTitle {
   letter-spacing: 3px;
@@ -19,12 +32,14 @@
   font-size: 30pt;
   margin-bottom: 50px; /* Add margin at the bottom */
   font-weight: bolder;
+  color: white;
 }
 
 /* Label styles */
 .setHourlyRateLabel {
   font-size: 18px; /* Increase font size */
   color: white; /* Change text color */
+  margin-bottom: 20px; /* Add space below each label */
 }
 
 .inputGroup {
@@ -33,21 +48,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px; /* Add space between input groups */
 }
 
 .setHourlyRateInput {
   font-weight: 500;
   font-size: 11pt;
   color: #fff;
-  background-color: rgb(28,28,30);
-  box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
+  background-color: rgb(28, 28, 30);
+  box-shadow: 0 0 0.4vw rgba(0, 0, 0, 0.5), 0 0 0 0.15vw transparent;
   border-radius: 15px;
   border: none;
   outline: none;
   padding: 0.4vw;
   max-width: 100%;
   height: 25px;
-  transition: .4s;
+  transition: 0.4s;
   text-align: center;
 }
 
@@ -56,11 +72,11 @@
 }
 
 .setHourlyRateInput:hover {
-  box-shadow: 0 0 0 .15vw #c5ff00;
+  box-shadow: 0 0 0 0.15vw #c5ff00;
 }
 
 .setHourlyRateInput:focus {
-  box-shadow: 0 0 0 .15vw #c5ff00;
+  box-shadow: 0 0 0 0.15vw #c5ff00;
 }
 
 .formContainer {
@@ -69,17 +85,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 20px; /* Add space above the form */
 }
 
 .setHourlyRateButton {
   font-family: "Poppins", sans-serif;
-  width: 15%;
-  padding: 1%;
-  margin: 3%;
+  width: 90%;
+  padding: 3%;
+  margin-top: 20px; /* Add space above the button */
   border-radius: 50px;
   cursor: pointer;
   border: 0;
-  background-color: white;
+  background-color: rgb(28, 28, 30);
   box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -97,7 +114,7 @@
 .setHourlyRateButton:active {
   letter-spacing: 2px;
   background-color: #1e1e1e;
-  color: white;
+  color: black;
   box-shadow: #c5ff00 0px 0px 0px 0px;
   transform: translateY(10px);
   transition: 100ms;
