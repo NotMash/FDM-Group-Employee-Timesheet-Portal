@@ -1,22 +1,31 @@
 .timesheetDayCard{
-    background-color: aliceblue;
+    background-color: #383838;
+    box-shadow: 0 0 20px black;
     display: flex;
+    justify-content: left;
+    align-items: center;
     gap: 5rem;
     margin-bottom: 3rem;
+    border-radius: 30px;
+    padding: 1%;
+    padding-left: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+    min-height: 80px;
+    margin: 2%;
 }
 
-.startTime{
-    color: black;
+.timesheetDayCard button {
+    padding: 1% !important;
+    max-width: 100%;
+    margin: 0;
 }
 
-.endTime{
-    color: black;
+.startTime, .endTime, .date, .status{
+    color: rgb(231, 231, 231);
+    text-transform: capitalize;
 }
 
-.status{
-    color: black;
-}
-
-.date{
-    color: black;
+.date {
+    color: #dbfd6e;
 }
