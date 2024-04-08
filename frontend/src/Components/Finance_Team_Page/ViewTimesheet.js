@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import styles from "./ViewTimesheet.module.css"; // Import the correct CSS module
+import React from "react";
+import ConsultantFinder from "../../Components/Line_Manager_Home_Page/ConsultantFinder"; // Import the ConsultantFinder component
 import Navbar from "../../Components/Global/Navbar";
+import styles from "./ViewTimesheet.module.css";
 
 function ViewTimesheet() {
   let links = [
@@ -16,22 +17,6 @@ function ViewTimesheet() {
     },
   ];
 
-  // Mock data for demonstration
-  const [consultantName, setConsultantName] = useState("");
-
-  const handleConsultantNameChange = (event) => {
-    setConsultantName(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Here you can fetch timesheet data from the backend based on the consultant's name
-    // For demonstration, let's just log the entered consultant's name
-    console.log("Consultant Name:", consultantName);
-    // Reset the input field after submission
-    setConsultantName("");
-  };
-
   return (
     <>
       <Navbar
@@ -39,26 +24,10 @@ function ViewTimesheet() {
         homePageLink="/finance_team_member_home_page"
         links={links}
       />
-      <div className={styles.timesheetContainer}>
-        <h2 className={styles.timesheetTitle}>View Timesheet</h2>
-        <form className={styles.formContainer} onSubmit={handleSubmit}>
-          <div className={styles.inputGroup}>
-            <label className={styles.timesheetLabel}>
-              Enter Consultant's Name:
-              <input
-                type="text"
-                value={consultantName}
-                onChange={handleConsultantNameChange}
-                className={styles.setHourlyRateInput}
-                placeholder="Enter consultant's name"
-              />
-            </label>
-            <button type="submit" className={styles.setHourlyRateButton}>
-              Search
-            </button>
-          </div>
-        </form>
-      </div>
+      <main className={styles.main}>
+        <h1>View Timesheet</h1>
+        <ConsultantFinder /> {/* Reuse the ConsultantFinder component */}
+      </main>
     </>
   );
 }
