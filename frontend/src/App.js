@@ -10,7 +10,6 @@ import LineManagerHomePage from "./Pages/Line_Manager/line_manager_home_page";
 import TimesheetRecordingPage from "./Pages/Consultant/timesheet_recording_page";
 import ConsultantFinderPage from "./Pages/Line_Manager/consultant_finder_page";
 import ItDifficultiesPage from "./Pages/IT_Technician/it_difficulties_page";
-import TimesheetEditRequestsPage from "./Pages/IT_Technician/timesheet_edit_requests_page";
 import ItUserCreationPage from "./Pages/IT_Technician/it_user_creation_page";
 import ViewCurrentTimesheetPage from "./Pages/Consultant/view_current_timesheet_page";
 import ConsultantTimesheetViewerPage from "./Pages/Line_Manager/view_consultant_timesheet_page";
@@ -48,10 +47,6 @@ function App() {
           element={<ConsultantFinderPage />}
         />
         <Route path="/it_difficulties" element={<ItDifficultiesPage />} />
-        <Route
-          path="/timesheet_edit_requests"
-          element={<TimesheetEditRequestsPage />}
-        />
         <Route path="/it_user_creation" element={<ItUserCreationPage />} />
         <Route path="/" element={<MainHome/>}/>
         <Route path="/login_page" element={<LoginPage/>}/>
@@ -62,7 +57,6 @@ function App() {
         <Route path="/timesheet_recording_page" element={<TimesheetRecordingPage/>}/>
         <Route path="/consultant_finder_page" element={<ConsultantFinderPage/>}/>
         <Route path="/it_difficulties" element={<ItDifficultiesPage/>}/>
-        <Route path="/timesheet_edit_requests" element={<TimesheetEditRequestsPage/>}/>
         <Route path="/it_user_creation" element={<ItUserCreationPage/>}/>
         <Route path="/current_timesheet_viewer" element={<ViewCurrentTimesheetPage/>}/>
         <Route path="/view_consultant_timesheet" element={<ConsultantTimesheetViewerPage/>}/>
