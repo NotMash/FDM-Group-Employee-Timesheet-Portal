@@ -13,6 +13,7 @@ function SetHourlyRate() {
 
   const [consultantName, setConsultantName] = useState("");
   const [hourlyRate, setHourlyRate] = useState("");
+  const [buttonDisabled, setButtonDisabled] = useState(false); // State to track button disabled status
 
   const handleConsultantNameChange = (event) => {
     setConsultantName(event.target.value);
@@ -22,30 +23,44 @@ function SetHourlyRate() {
     setHourlyRate(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Disable the button
+    setButtonDisabled(true);
+
     // Here, you can send the data to the backend
     // For now, let's just log the data to the console
     console.log("Consultant Name:", consultantName);
     console.log("Hourly Rate:", hourlyRate);
 
-    fetch('http://127.0.0.1:5000/set_hourly_rate/' + consultantName, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ hourly_rate: hourlyRate })
-      }).then(response => {
-          if (response.ok) {
-              console.log("Hourly rate update success");
-              return response.json();
-          } else {
-              throw new Error('Failed to update hourly rate with status: ' + response.status);
-          }
-      }).then(data => {
-          console.log("Updated hourly rate for consultant ID:", data.consultant_id, "New hourly rate:", data.new_hourly_rate);
-      }).catch(error => {
-          console.error(error);
-      });
-    };
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:5000/set_hourly_rate/" + consultantName,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ hourly_rate: hourlyRate }),
+        }
+      );
+
+      if (response.ok) {
+        console.log("Hourly rate update success");
+        // Reset the form and button state after successful submission
+        setConsultantName("");
+        setHourlyRate("");
+      } else {
+        throw new Error(
+          "Failed to update hourly rate with status: " + response.status
+        );
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      // Re-enable the button
+      setButtonDisabled(false);
+    }
+  };
 
   return (
     <>
@@ -78,7 +93,11 @@ function SetHourlyRate() {
                 placeholder="Enter hourly rate"
               />
             </div>
-            <button type="submit" className={styles.setHourlyRateButton}>
+            <button
+              type="submit"
+              className={styles.setHourlyRateButton}
+              disabled={buttonDisabled}
+            >
               Set Hourly Rate
             </button>
           </form>
@@ -87,7 +106,5 @@ function SetHourlyRate() {
     </>
   );
 }
-
-
 
 export default SetHourlyRate;
