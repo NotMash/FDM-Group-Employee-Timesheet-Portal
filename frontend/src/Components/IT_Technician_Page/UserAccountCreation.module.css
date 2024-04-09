@@ -140,3 +140,10 @@
     transform: translateY(10px);
     transition: 100ms;
   }
+
+  .userAccountForm input[type=submit]:disabled {
+    background-color: #383838;
+    color: rgb(176, 176, 176);
+    box-shadow: none;
+    transform: none;
+  }

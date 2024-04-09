@@ -14,7 +14,7 @@ function UserAccountCreation() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState(false);
+    const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState(true);
     const navigate = useNavigate();
 
     const handlePasswordToggle = () => {
@@ -156,7 +156,7 @@ function UserAccountCreation() {
                             )}
                         </div>
                         {!isConfirmPasswordValid && confirmPassword && <p className={styles.validationMessage}>Passwords do not match.</p>}
-                        <input id="submit_button" type="submit" name="submit_btn" value="Create" />
+                        <input id="submit_button" disabled={!isConfirmPasswordValid} type="submit" name="submit_btn" value="Create" />
                     </form>
                 </div>
             </div>
