@@ -64,6 +64,11 @@ function UserAccountCreation() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        if (!(confirmPassword === password)) {
+            console.log("Passwords do not match.");
+            return;
+        }
+
         var accountDetails;
         console.log(userType)
         if (userType=="consultant") {
@@ -156,7 +161,7 @@ function UserAccountCreation() {
                             )}
                         </div>
                         {!isConfirmPasswordValid && confirmPassword && <p className={styles.validationMessage}>Passwords do not match.</p>}
-                        <input id="submit_button" disabled={!isConfirmPasswordValid} type="submit" name="submit_btn" value="Create" />
+                        <input id="submit_button" disabled={!isConfirmPasswordValid && confirmPassword} type="submit" name="submit_btn" value="Create" />
                     </form>
                 </div>
             </div>
