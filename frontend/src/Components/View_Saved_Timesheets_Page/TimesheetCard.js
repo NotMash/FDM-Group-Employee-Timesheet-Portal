@@ -9,7 +9,7 @@ export default function TimesheetCard(props) {
 
     function resubmitTimesheet() {
         if (hasResubmitted != true) {
-            if (/^([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/.test(newStartTime) && /^([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/.test(newEndTime)) {
+            if (/^(?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/.test(newStartTime) && /^(?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/.test(newEndTime)) {
                 console.log("Resubmitting timesheet " + props.id)
                 fetch('http://127.0.0.1:5000/update_timesheet/' + props.id, {
                     method: "PUT",
