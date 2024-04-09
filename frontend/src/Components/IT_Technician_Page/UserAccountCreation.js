@@ -86,7 +86,7 @@ function UserAccountCreation() {
                 throw new Error('User Creation Failed with Status: ' + response.status);
             }
         }).then(data => {
-            var pageToRedirTo = ("/it_technician_home_page");
+            var pageToRedirTo = ("/it_difficulties");
             navigate(pageToRedirTo);
         }).catch(error => {
             console.log(accountDetails)
