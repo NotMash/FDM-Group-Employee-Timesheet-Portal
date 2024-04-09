@@ -8,7 +8,7 @@ export default function TimesheetDayCard(props) {
     const [statusTo, setStatusTo] = useState('pending')
 
     let date = new Date(props.date)
-    let formattedDate = date.getDay() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
+    let formattedDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
 
     function approveTimesheet() {
         if (!changedStatus) {
