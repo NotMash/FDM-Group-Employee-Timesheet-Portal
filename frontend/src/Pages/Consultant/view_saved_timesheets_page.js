@@ -108,7 +108,7 @@ export default function ViewSavedTimesheetsPage() {
                     <h1 className={styles.header}>Saved Timesheets</h1>
                     <div className={styles.filterContainer}>
                         <div className={styles.filter}>
-                            <label className={styles.filterTitle}>Filter Timesheets by Time</label>
+                            <label className={styles.filterTitle}>Sort Timesheets by Time</label>
                             <select value={selectedTimeFilter} onChange={handleTimeFilterChange} id={styles.select1} className={styles.select}>
                                 <option value="new_to_old">Newest to Oldest</option>
                                 <option value="old_to_new">Oldest to Newest</option>
