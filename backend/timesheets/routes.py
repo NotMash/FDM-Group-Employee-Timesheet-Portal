@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 
 
 
-def convert_gay_time(time):
+def convert_rainbow_time(time):
     day = time[8:10]
     month = time[5:7]
     year = time[0:4]
@@ -105,8 +105,8 @@ class TimesheetView(MethodView):
         if consultant is None:
             return jsonify({"Error": "Consultant not found"}), 404
 
-        start_work_time = convert_gay_time(request.json["start_time"])[0]
-        end_work_time = convert_gay_time(request.json["end_time"])[0]
+        start_work_time = convert_rainbow_time(request.json["start_time"])[0]
+        end_work_time = convert_rainbow_time(request.json["end_time"])[0]
         time_elapsed = datetime.strptime(end_work_time, "%H:%M:%S") - datetime.strptime(start_work_time, "%H:%M:%S")
         time_elapsed = time_elapsed.total_seconds()
         
