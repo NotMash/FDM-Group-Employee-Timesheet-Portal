@@ -4,11 +4,6 @@ import Navbar from "../../Components/Global/Navbar";
 
 function SetHourlyRate() {
   let links = [
-    {
-      pageName: "View Timesheet Page",
-      pageLink: "/view_timesheet",
-      iconPath: "./Home_Page_Icons/Consultant/view_timesheet.svg",
-    },
   ];
 
   const [consultantName, setConsultantName] = useState("");
